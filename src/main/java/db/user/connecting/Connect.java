@@ -18,7 +18,7 @@ public class Connect {
             conn = DriverManager.getConnection(URL, USER, PASSWORD);
 
             if (conn != null) {
-                System.out.println("Oracle 접속에 성공");
+                System.out.println("Oracle 접속에 성공했습니다.");
             }
         } catch (ClassNotFoundException e) { // Corrected exception handling
             System.out.println("JDBC 드라이버를 찾을 수 없습니다.");
