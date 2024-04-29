@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class Connect {
     private static final String URL = "jdbc:oracle:thin:@localhost:1521:XE";
     private static final String USER = "system";
-    private static final String PASSWORD = "1234";
+    private static final String PASSWORD = "pass";
 
     public static void main(String[] args) {
         Connection conn = null;
