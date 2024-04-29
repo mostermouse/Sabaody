@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class AttendanceRecord {
     private String id; //EmploymentStatusオブジェクトと関連付けるためのキー
-    private LocalDateTime inputDate;
+    private LocalDateTime inputDate; //입력일자
     private AttendanceType attendanceType; //勤怠記録enumで分類
     private String startDate; //期間はじめ
     private String endDate; //期間終わり
