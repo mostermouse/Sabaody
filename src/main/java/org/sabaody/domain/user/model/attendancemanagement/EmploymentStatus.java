@@ -1,6 +1,6 @@
 package org.sabaody.domain.user.model.attendancemanagement;
 
-import db.user.enums.Contract;
+
 
 import java.util.Objects;
 //DTO　オブジェクト
