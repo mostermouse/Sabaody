@@ -4,6 +4,17 @@
 <html>
 <head>
     <title>Select View</title>
+    <!-- 추가된 JavaScript -->
+
+
+
+        <script>
+            function redirectToRecord() {
+            window.location.href = "record.jsp";
+        }
+    </script>
+
+    </script>
 </head>
 <body>
 <h1>勤怠記録/管理</h1>
@@ -15,7 +26,9 @@
         <th>名前</th>
         <th>部署</th>
         <th>役職</th>
-        <th>勤怠記録</th> <!-- Division 열 추가 -->
+        <th>勤怠記録</th>
+        <!-- 새로운 열(칸) 추가 -->
+        <th>입력</th>
     </tr>
     </thead>
     <tbody>
@@ -29,16 +42,51 @@
         <td><%= employmentStatus.getName() %></td>
         <td><%= employmentStatus.getDepartment() %></td>
         <td><%= employmentStatus.getPosition() %></td>
-        <td><%= employmentStatus.getAttendanceRecord() %></td>
-
+        <!-- 근태 기록에 링크 추가 -->
+       <%-- <td><a href="record.jsp?id=<%= employmentStatus.getId() %>">記録管理</a></td>--%>
+        <td><a href="record">記録管理</a> </td>
+        <!-- 입력 폼 열 추가 -->
+        <td>
+            <form action="saveAttendance.jsp" method="post">
+                <input type="hidden" name="employee_id" value="<%= employmentStatus.getId() %>">
+                <label for="input_date">입력일자:</label>
+                <input type="date" id="input_date" name="input_date"><br>
+                <label for="input_category">근태 항목:</label>
+                <select id="input_category" name="input_category" multiple>
+                    <option value="연차">연차</option>
+                    <option value="반차">반차</option>
+                    <option value="지각">지각</option>
+                    <option value="조퇴">조퇴</option>
+                    <option value="외근">외근</option>
+                    <option value="휴일근무">휴일근무</option>
+                    <option value="연장근무">연장근무</option>
+                    <option value="포상휴가">포상휴가</option>
+                    <option value="야간근무">야간근무</option>
+                    <option value="청원휴가">청원휴가</option>
+                    <!-- 다른 근태 항목 추가 -->
+                </select><br>
+                <label for="input_start_date">시작일:</label>
+                <input type="date" id="input_start_date" name="input_start_date"><br>
+                <label for="input_end_date">종료일:</label>
+                <input type="date" id="input_end_date" name="input_end_date"><br>
+                <label for="input_days">근태 일수:</label>
+                <input type="text" id="input_days" name="input_days"><br>
+                <label for="input_amount">금액:</label>
+                <input type="text" id="input_amount" name="input_amount"><br>
+                <label for="input_summary">적요:</label>
+                <textarea id="input_summary" name="input_summary"></textarea><br><br>
+                <input type="submit" value="저장">
+            </form>
+        </td>
     </tr>
     <%  }
     } else { %>
     <tr>
-        <td colspan="6">No employment status available</td> <!-- 셀의 개수가 변경됨에 따라 colspan 값 수정 -->
+        <td colspan="7">No employment status available</td> <!-- 셀의 개수가 변경됨에 따라 colspan 값 수정 -->
     </tr>
     <% } %>
     </tbody>
 </table>
+
 </body>
 </html>

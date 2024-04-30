@@ -14,7 +14,6 @@
     Name: <input type="text" name="name"><br>
     Department: <input type="text" name="department"><br>
     Position: <input type="text" name="position"><br>
-    Attendance Record: <input type="text" name="attendanceRecord"><br>
     <input type="submit" value="Create">
 </form>
 </body>

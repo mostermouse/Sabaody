@@ -15,4 +15,15 @@
     <url-pattern>/selectview</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>RecordServlet</servlet-name>
+    <jsp-file>/WEB-INF/views/record.jsp</jsp-file>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>RecordServlet</servlet-name>
+    <url-pattern>/record</url-pattern>
+  </servlet-mapping>
+
+
 </web-app>

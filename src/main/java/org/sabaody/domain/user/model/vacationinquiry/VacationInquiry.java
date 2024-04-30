@@ -1,12 +1,12 @@
 package org.sabaody.domain.user.model.vacationinquiry;
 
 
-import db.user.enums.Contract;
+
 
 import java.util.List;
 
 public class VacationInquiry {
-    private Contract division; //区分
+    private String  division; //区分
     private String id; //社員番号
     private String  name; //名前
     private String department; //部署
@@ -16,7 +16,7 @@ public class VacationInquiry {
     private int usedVacationDays; // 使用した休暇
     private int remainingVacationDays; // 残余休暇数
     public VacationInquiry(){}
-    public VacationInquiry(String department, Contract division, String id, String name, String position, int remainingVacationDays, int usedVacationDays, List<VacationType> vacationTypes) {
+    public VacationInquiry(String department, String division, String id, String name, String position, int remainingVacationDays, int usedVacationDays, List<VacationType> vacationTypes) {
         this.department = department;
         this.division = division;
         this.id = id;
@@ -35,11 +35,11 @@ public class VacationInquiry {
         this.department = department;
     }
 
-    public Contract getDivision() {
+    public String getDivision() {
         return division;
     }
 
-    public void setDivision(Contract division) {
+    public void setDivision(String  division) {
         this.division = division;
     }
 
