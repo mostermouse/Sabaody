@@ -1,11 +1,11 @@
 package db.user.enums;
 
 public enum ProjectType {
-	FIRSTSITE("현장1"),
-	SECONDSITE("현장2"),
-	LABORATORY("연구소"),
-	DEVELOPMENTPROJECTS("개발프로젝트"),
-	FIRSTFACTORY("제1공장");
+    현장1("FIRSTSITE"),
+    현장2("SECONDSITE"),
+    연구소("LABORATORY"),
+    개발프로젝트("DEVELOPMENTPROJECTS"),
+    제1공장("FIRSTFACTORY");
 	
     private final String project;
 

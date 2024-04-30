@@ -19,7 +19,7 @@ public class EmploymentStatusDAO {
         }
     }
 
-    //Create
+
     //Create
     public void addEmploymentStatus(EmploymentStatus employmentStatus) {
         try(Connection conn = DriverManager.getConnection(URL,USER,PASSWORD)){
