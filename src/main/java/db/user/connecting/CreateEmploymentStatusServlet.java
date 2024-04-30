@@ -34,6 +34,6 @@ public class CreateEmploymentStatusServlet extends HttpServlet {
         dao.addEmploymentStatus(employmentStatus);
 
         // 추가 후 리다이렉트
-        response.sendRedirect("ex01.jsp");
+        response.sendRedirect("/selectview01.jsp");
     }
 }
