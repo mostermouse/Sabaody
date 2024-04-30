@@ -1,5 +1,4 @@
 package db.user.enums;
-//TODO 근태항목 리스트 확인 후 수정 필요
 public enum AttendanceType {
 	연차("ANNUAL"),
 	반차("HALF"),
