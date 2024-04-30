@@ -1,9 +1,10 @@
 package db.user.enums;
+
 public enum Contract {
-    정규직(" FULLTIME"),
-    계약직("CONTRACTWORKER"),
-    일용직("DAYLABORER"),
-    임시직("TEMPORARYWORKER");
+    FULLTIME("FULLTIME"),
+    CONTRACTWORKER("CONTRACTWORKER"),
+    DAYLABORER("DAYLABORER"),
+    TEMPORARYWORKER("TEMPORARYWORKER");
 
     private final String description;
 

@@ -5,7 +5,7 @@ import db.user.enums.Contract;
 import java.util.Objects;
 //DTO　オブジェクト
 public class EmploymentStatus {
-    private Contract division; //区分
+    private String division; //区分
     private String id; //社員番号
     private String  name; //名前
     private String department; //部署
@@ -13,7 +13,7 @@ public class EmploymentStatus {
     private String attendanceRecord; //勤怠記録
 
     public EmploymentStatus(){}
-    public EmploymentStatus(String attendanceRecord, String department, Contract division, String id, String name, String position) {
+    public EmploymentStatus(String attendanceRecord, String department, String  division, String id, String name, String position) {
         this.attendanceRecord = attendanceRecord;
         this.department = department;
         this.division = division;
@@ -38,11 +38,11 @@ public class EmploymentStatus {
         this.department = department;
     }
 
-    public Contract getDivision() {
+    public String  getDivision() {
         return division;
     }
 
-    public void setDivision(Contract division) {
+    public void setDivision(String  division) {
         this.division = division;
     }
 

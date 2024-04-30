@@ -1,6 +1,5 @@
-package db.user.connecting;
+package org.sabaody.domain.user.controller;
 
-import db.user.enums.Contract;
 import org.sabaody.domain.user.model.attendancemanagement.EmploymentStatus;
 
 import java.sql.*;
@@ -25,7 +24,7 @@ public class EmploymentStatusDAO {
         try(Connection conn = DriverManager.getConnection(URL,USER,PASSWORD)){
             String sql = "INSERT INTO employmentstatus (division, id, name, department, position, attendancerecord) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, employmentStatus.getDivision().toString());
+            statement.setString(1, employmentStatus.getDivision());
             statement.setString(2, employmentStatus.getId());
             statement.setString(3, employmentStatus.getName());
             statement.setString(4, employmentStatus.getDepartment());
@@ -49,12 +48,12 @@ public class EmploymentStatusDAO {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 EmploymentStatus employmentStatus = new EmploymentStatus();
-                employmentStatus.setDivision(Contract.valueOf(rs.getString("division")));
+                employmentStatus.setDivision(rs.getString("division"));
                 employmentStatus.setId(rs.getString("id"));
                 employmentStatus.setName(rs.getString("name"));
                 employmentStatus.setDepartment(rs.getString("department"));
                 employmentStatus.setPosition(rs.getString("position"));
-                employmentStatus.setAttendanceRecord(rs.getString("attendance_record"));
+                employmentStatus.setAttendanceRecord(rs.getString("attendancerecord"));
                 employmentStatusList.add(employmentStatus);
 
             }
