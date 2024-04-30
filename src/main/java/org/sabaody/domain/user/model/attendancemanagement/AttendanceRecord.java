@@ -1,14 +1,14 @@
 package org.sabaody.domain.user.model.attendancemanagement;
 
-import db.user.enums.AttendanceType;
+
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class AttendanceRecord {
     private String id; //EmploymentStatusオブジェクトと関連付けるためのキー
-    private LocalDateTime inputDate; //입력일자
-    private AttendanceType attendanceType; //勤怠記録enumで分類
+    private LocalDateTime inputDate; //入力日
+    private String attendanceType; //勤怠記録enumで分類
     private String startDate; //期間はじめ
     private String endDate; //期間終わり
     private String attendanceDate; //勤務日数
@@ -18,7 +18,7 @@ public class AttendanceRecord {
 
     public AttendanceRecord(){}
 
-    public AttendanceRecord(Long amount, String attendanceDate, AttendanceType attendanceType, String endDate, String id, LocalDateTime inputDate, String startDate, String summary) {
+    public AttendanceRecord(Long amount, String attendanceDate, String attendanceType, String endDate, String id, LocalDateTime inputDate, String startDate, String summary) {
         this.amount = amount;
         this.attendanceDate = attendanceDate;
         this.attendanceType = attendanceType;
@@ -45,11 +45,11 @@ public class AttendanceRecord {
         this.attendanceDate = attendanceDate;
     }
 
-    public AttendanceType getAttendanceType() {
+    public String getAttendanceType() {
         return attendanceType;
     }
 
-    public void setAttendanceType(AttendanceType attendanceType) {
+    public void setAttendanceType(String attendanceType) {
         this.attendanceType = attendanceType;
     }
 

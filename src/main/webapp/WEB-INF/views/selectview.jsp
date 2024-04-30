@@ -15,7 +15,7 @@
         <th>名前</th>
         <th>部署</th>
         <th>役職</th>
-        <th>勤怠記録</th> <!-- Division 열 추가 -->
+        <th>勤怠記録</th>
     </tr>
     </thead>
     <tbody>
