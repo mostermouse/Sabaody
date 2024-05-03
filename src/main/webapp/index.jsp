@@ -149,8 +149,8 @@
             <ul class="navi_L_2017">
                 <li class="n01"><button onclick="location.href='/login'" title="[Shift + 1] HOME"><span id="SK01">HOME</span></button></li>
                 <li class="n02"><button onclick="location.href='/record'" title="[Shift + 2] 社員登録"><span id="SK02">社員登録</span></button></li>
-                <li class="n03"><button onclick="location.href='/index.jsp'" title="[Shift + 3] 社員現状"><span id="SK03">社員現状</span></button></li>
-                <li class="n05"><button onclick="location.href='/AttendanceManagement'" title="[Shift + 4] 勤怠記録/管理"><span id="SK04">勤怠記録/管理</span></button></li>
+                <li class="n03"><button onclick="location.href='/index.jsp'" title="[Shift + 3] 勤怠照会"><span id="SK03">勤怠照会</span></button></li>
+                <li class="n05"><button onclick="location.href='/AttendanceManagement'" title="[Shift + 4] 休暇照会"><span id="SK04">休暇照会</span></button></li>
             </ul>
         </div>
     </div>
