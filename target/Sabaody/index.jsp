@@ -315,7 +315,7 @@
 
         $("#frmDlsvDays").focus(function () {
             var thisVal = $(this).val();
-            if (thisVal == "근태일수" || thisVal == "근태시간") $(this).val("");
+            if (thisVal == "勤怠日数" || thisVal == "勤怠時間") $(this).val("");
             return;
         });
 
@@ -421,7 +421,7 @@
         });
 
         $("#frmDlsvSttd").change(function () {
-            alert("변경");
+            alert("変更");
         });
 
 //  alert(arrLeavItemSet[0].lvItCode);
@@ -431,17 +431,17 @@
             var selDlgnUnit = $('option:selected', this).attr('alt');
 
             // 2016-01-25 근태항목 단위에 따라 표기 달리 함
-            if (selDlgnUnit == "시간") {
-                $("#disDlgnDays").text("근태시간");
-                $("#frmDlsvDays").val("근태시간");
-                $("#disDlsvUnit").text("시간");
+            if (selDlgnUnit == "時間") {
+                $("#disDlgnDays").text("勤怠時間");
+                $("#frmDlsvDays").val("勤怠時間");
+                $("#disDlsvUnit").text("時間");
             } else { // `일` 기준
-                $("#disDlgnDays").text("근태일수");
-                $("#frmDlsvDays").val("근태일수");
-                $("#disDlsvUnit").text("일");
+                $("#disDlgnDays").text("勤怠日数");
+                $("#frmDlsvDays").val("勤怠日数");
+                $("#disDlsvUnit").text("仕事");
             }
-            $("#frmDlsvSttD").val("시작일");
-            $("#frmDlsvEndD").val("종료일");
+            $("#frmDlsvSttD").val("開始日");
+            $("#frmDlsvEndD").val("終了日");
 //console.log(selDlgnUnit);
 
             for (var i = 0; i < arrLeavItemSet.length; i++) {
@@ -466,12 +466,12 @@
 
             // 사원목록 체크 유무
             if ($("input:checkbox[name='grpEmployeeInfoId']").is(":checked") !== true) {
-                alert("휴가일수 현황을 확인할 사원을 선택해 주세요.   ");
+                alert("休暇日数の現状を確認する社員を選択してください。  ");
                 return false;
             }
             var getDlgnLeav = $("#frmDlgnCode option:selected").attr("dlgnLeav");
             if (getDlgnLeav == "" || getDlgnLeav == "000") {
-                alert("휴가항목에 연계된 근태항목이 아닙니다.   ");
+                alert("休暇項目に関連付けられている勤労項目ではありません。  ");
                 return;
             }
             $.fn.layerProcCreate("holidayTotal");
@@ -566,11 +566,11 @@
         $("#disLeavItemExpire").addClass("disHide");
 
         // 2016-01-25
-        $("#disDlgnDays").text("근태일수");
-        $("#frmDlsvDays").val("근태일수");
-        $("#disDlsvUnit").text("일");
-        $("#frmDlsvSttD").val("시작일");
-        $("#frmDlsvEndD").val("종료일");
+        $("#disDlgnDays").text("勤怠日数");
+        $("#frmDlsvDays").val("勤怠日数");
+        $("#disDlsvUnit").text("仕事");
+        $("#frmDlsvSttD").val("開始日");
+        $("#frmDlsvEndD").val("終了日");
         return;
     }
 
