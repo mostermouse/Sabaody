@@ -12,6 +12,13 @@ import java.io.IOException;
 public class CreateEmploymentStatusServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
+    private EmploymentStatusDAO dao;
+
+    public void init() throws ServletException {
+        super.init();
+        dao = new EmploymentStatusDAO();
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
@@ -31,10 +38,10 @@ public class CreateEmploymentStatusServlet extends HttpServlet {
         EmploymentStatus employmentStatus = new EmploymentStatus(attendanceRecord, department, division, id, name, position);
 
         // DAO를 사용하여 EmploymentStatus 추가
-        EmploymentStatusDAO dao = new EmploymentStatusDAO();
         dao.addEmploymentStatus(employmentStatus);
 
         // 추가 후 리다이렉트
         response.sendRedirect("SelectEmploymentStatusServlet");
     }
+
 }

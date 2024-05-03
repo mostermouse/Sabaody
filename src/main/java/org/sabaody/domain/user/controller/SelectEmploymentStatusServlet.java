@@ -4,6 +4,7 @@ package org.sabaody.domain.user.controller;
 import org.sabaody.domain.user.model.attendancemanagement.EmploymentStatus;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -15,10 +16,15 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/SelectEmploymentStatusServlet")
 public class SelectEmploymentStatusServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    private EmploymentStatusDAO dao;
+
+    public void init() throws ServletException {
+        super.init();
+        dao = new EmploymentStatusDAO();
+    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // DAO를 사용하여 모든 고용 상태 가져오기
-        EmploymentStatusDAO dao = new EmploymentStatusDAO();
         List<EmploymentStatus> employmentStatusList = dao.getAllEmploymentStatus();
 
         // 가져온 고용 상태 목록을 request에 설정
@@ -27,4 +33,6 @@ public class SelectEmploymentStatusServlet extends HttpServlet {
         // JSP로 포워딩
         request.getRequestDispatcher("/WEB-INF/views/selectview.jsp").forward(request, response);
     }
+
+
 }
