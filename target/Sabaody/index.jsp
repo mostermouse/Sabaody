@@ -18,7 +18,6 @@
     <link rel="shortcut icon" href="//img.payzon.co.kr/_commonImg/favicon.ico" type="image/x-icon">
 
 
-    <!-- 단축 키 설정 -->
     <script src="//www.payzon.co.kr/_commonJs/shortKey.js"></script>
 </head>
 <body>
@@ -94,40 +93,6 @@
             z-index: 1;
         }
     </style>
-    <script>
-        $(document).ready(function () {
-            if ($('.jbMenu').length > 0) {
-                var jbOffset = $('.jbMenu').offset();
-                $(window).scroll(function () {
-                    if ($(document).scrollTop() > jbOffset.top) {
-                        $('.jbMenu').addClass('jbFixed');
-                    } else {
-                        $('.jbMenu').removeClass('jbFixed');
-                    }
-                });
-            }
-
-        });
-
-
-        // 뷰어 다운
-        $.fn.getExcelViewer = function () {
-            var setUrl = "/pzServiceManual/php/inManualPdfDownProc.php";
-            setUrl += "?setManualCode=EXV";
-            setUrl += "&setChkMd5=" + setChkMd5;
-            $("#iFrmMulti").attr("src", setUrl);
-            return;
-        };
-        // 페이존 바로가기 다운
-        $.fn.getPayzonQuick = function () {
-            var setUrl = "/pzServiceManual/php/inManualPdfDownProc.php";
-            setUrl += "?setManualCode=QLK";
-            setUrl += "&setChkMd5=" + setChkMd5;
-            $("#iFrmMulti").attr("src", setUrl);
-            return;
-        };
-
-    </script>
 
     <div class="jbMenu" style="text-align:left;color:#FFFFFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2チーム　（조정인 , 최가람 , 장민수 ,
         김소연） <a href="/pzServiceGuide/php/inLogoutProc.php?ref=ExZon"><span style="color:#FFFFFF;"></span></a></div>
@@ -203,7 +168,7 @@
     "lvItDatE": "2017-12-31"
 }, {"lvItCode": "457870", "lvItDatS": "2017-01-01", "lvItDatE": "2017-12-31"}];</script>
 <script type="text/javascript">
-    <!--
+
 
     $(function () {
 
@@ -253,7 +218,7 @@
                 }
             },
             onClose: function (selectedDate) {
-//        $( "#frmDlsvEndD" ).datepicker( "option", "minDate", selectedDate );
+
             }
         });
         $("#frmDlsvEndD").datepicker({
@@ -298,7 +263,7 @@
             allowMinus: false,
             allowThouSep: true
         });
-        $("#frmDlsvDays").css("ime-mode", "disabled"); //한글사용 비활성화
+        $("#frmDlsvDays").css("ime-mode", "disabled");
 
         $("#frmDlsvDays").blur(function () {
             var rtnDlsvDays = Number($("#frmDlsvDays").val());
@@ -319,28 +284,13 @@
             return;
         });
 
-        /*
-            $("#frmDlsvDays").keyup(function(){
-              var rtnDlsvDays = $.setComma($("#frmDlsvDays").val());
-              $("#frmDlsvDays").val(rtnDlsvDays);
-              return;
-            });
-        */
-
         // 2016-10-07 금액(수당) 마이너스 입력 가능하게~
         $("#frmDlsvPays").numeric({
 //      allowMinus   : false,
             allowThouSep: true
         });
         $("#frmDlsvPays").css("ime-mode", "disabled"); //한글사용 비활성화
-        /*
-            $("#frmDlsvPays").keyup(function(){
-              var rtnDlsvPays = $.setComma($("#frmDlsvPays").val());
-              $("#frmDlsvPays").val(rtnDlsvPays);
-              return;
-            });
-        */
-        // END UI
+
         $("#frmDlsvPays").on("keyup", function () {
             var rtnDlsvPays = $.setComma($(this).val());
             $(this).val(rtnDlsvPays);
