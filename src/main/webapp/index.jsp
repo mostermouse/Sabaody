@@ -10,8 +10,6 @@
     <meta charset="UTF-8"/>
 
 
-
-
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <link rel="stylesheet" type="text/css" href="//www.payzon.co.kr/_commonCss/_ssl/style.css"/>
 
@@ -112,10 +110,22 @@
     <div id="top_gnb_2017">
         <div class="navi_2017">
             <ul class="navi_L_2017">
-                <li class="n01"><button onclick="location.href='/login'" title="[Shift + 1] HOME"><span id="SK01">HOME</span></button></li>
-                <li class="n02"><button onclick="location.href='/record'" title="[Shift + 2] 社員登録"><span id="SK02">社員登録</span></button></li>
-                <li class="n03"><button onclick="location.href='/index.jsp'" title="[Shift + 3] 勤怠照会"><span id="SK03">勤怠照会</span></button></li>
-                <li class="n05"><button onclick="location.href='/AttendanceManagement'" title="[Shift + 4] 休暇照会"><span id="SK04">休暇照会</span></button></li>
+                <li class="n01">
+                    <button onclick="location.href='/login'" title="[Shift + 1] HOME"><span id="SK01">HOME</span>
+                    </button>
+                </li>
+                <li class="n02">
+                    <button onclick="location.href='/record'" title="[Shift + 2] 社員登録"><span
+                            id="SK02">社員登録</span></button>
+                </li>
+                <li class="n03">
+                    <button onclick="location.href='/index.jsp'" title="[Shift + 3] 勤怠照会"><span
+                            id="SK03">勤怠照会</span></button>
+                </li>
+                <li class="n05">
+                    <button onclick="location.href='/AttendanceManagement'" title="[Shift + 4] 休暇照会"><span
+                            id="SK04">休暇照会</span></button>
+                </li>
             </ul>
         </div>
     </div>
@@ -130,8 +140,6 @@
 
     }
 </style>
-
-
 
 
 <style>
@@ -658,61 +666,47 @@
                                     <% } %>
                                 </div>
                             </div>
-                        </div>
+
+                                </div>
                     </div>
+
             </div>
+
 
             <!-- 근태 설정 리스트_설정 -->
             <div class='diligence_set'>
-                <form name="frmDlgnSave" id="frmDlgnSave" onsubmit="return false;">
-                    <input type="hidden" name="frmLeavItemChecking" id="frmLeavItemChecking" value="">
-                    <input type="hidden" name="frmCurrentId" id="frmCurrentId" value="">
-                    <input type="hidden" name="frmDlsvIndx" id="frmDlsvIndx" value="">
-                    <input type="hidden" name="frmMode" id="frmMode" value="ins">
-                    <ul class='aling_r'><span id="btnDiligenceHelpView" class="anchor"></span></ul>
+                <form action="/CreateAttRecordServlet" method="post">
                     <ul>
                         <div id='table0'>
                             <p class='caption'></p>
                             <ul>
                                 <li class='w_135 c'><strong>入力日</strong></li>
                                 <li class='con'>
-                                    <input name="frmDlsvInpD" id="frmDlsvInpD" type='text' value="" class='white' style="width:190px;">
+                                    <input name="inputdate" id="inputdate" type='text' value="" class='white'
+                                           style="width:190px;">
                                 </li>
                             </ul>
-                            <script>
-                                // 현재 날짜를 가져오는 함수
-                                function getCurrentDate() {
-                                    var today = new Date();
-                                    var year = today.getFullYear();
-                                    var month = today.getMonth() + 1; // 월은 0부터 시작하므로 1을 더해줍니다.
-                                    var day = today.getDate();
-
-                                    // 월과 일이 한 자리 수인 경우 두 자리로 표시되도록 조정합니다.
-                                    month = month < 10 ? '0' + month : month;
-                                    day = day < 10 ? '0' + day : day;
-
-                                    return year + '-' + month + '-' + day;
-                                }
-
-                                // 입력일자 input 요소에 현재 날짜를 설정합니다.
-                                document.getElementById('frmDlsvInpD').value = getCurrentDate();
-                            </script>
+                            <ul>
+                                <li class='w_135 c'><strong>社員番号</strong></li>
+                                <li class='con'>
+                                    <input name="employeeId" id="employeeId" type='text' value="" class='white'
+                                           style="width:190px;">
+                                </li>
+                            </ul>
                             <ul>
                                 <li class='w_135 c'><strong>勤怠項目</strong></li>
                                 <li class='con'>
-                                    <input type="hidden" name="frmDlgnCodeCheck" id="frmDlgnCodeCheck">
                                     <select name="frmDlgnCode" id="frmDlgnCode" style='width:190px;'>
-                                        <option value="" dlgnLeav="" alt="">選択してください。</option>
-                                        <option value="001" dlgnLeav="457869" alt="仕事">年次</option>
-                                        <option value="003" dlgnLeav="457869" alt="仕事">半分</option>
-                                        <option value="004" dlgnLeav="000" alt="時間">遅刻</option>
-                                        <option value="005" dlgnLeav="000" alt="時間">早退</option>
-                                        <option value="006" dlgnLeav="000" alt="時間">外勤</option>
-                                        <option value="009" dlgnLeav="000" alt="時間">休日勤務</option>
-                                        <option value="011" dlgnLeav="000" alt="時間">延長勤務</option>
-                                        <option value="012" dlgnLeav="457870" alt="仕事">賞の休暇</option>
-                                        <option value="013" dlgnLeav="000" alt="時間">夜勤</option>
-                                        <option value="014" dlgnLeav="000" alt="仕事">請願休暇</option>
+                                        <option value="年次">年次</option>
+                                        <option value="半分">半分</option>
+                                        <option value="遅刻">遅刻</option>
+                                        <option value="早退">早退</option>
+                                        <option value="外勤">外勤</option>
+                                        <option value="休日勤務">休日勤務</option>
+                                        <option value="延長勤務">延長勤務</option>
+                                        <option value="賞の休暇">賞の休暇</option>
+                                        <option value="夜勤">夜勤</option>
+                                        <option value="請願休暇">請願休暇</option>
                                     </select>
                                 </li>
                             </ul>
@@ -764,37 +758,67 @@
                                                        style='width:190px;'
                                                        placeholder="* 摘要がある場合は入力してください。"></li>
                             </ul>
-                    </ul>
                     <hr class='hr_5'></hr>
-
-                    <ul class='c'>
-                        <form id="frmDlgnSave" name="frmDlgnSave" onsubmit="javascript:$.fn.frmDlgnSaveInit();">
-                            <li id="grpBtn01">
-                                <button type="submit" name="btnDlgnSaveIns" id="btnDlgnSaveIns" class="anchor" alt="保存"
-                                        title="保存">
-                                    保存
-                                </button>
-                                <a href="#none" onclick="javascript:$.fn.frmDlgnSaveInit();">
-                                    <button type="button" class="p_l5" alt="内容を消去" title="内容を消去">内容を消去</button>
-                                </a>
-                            </li>
-                            <li id="grpBtn02" class="disHide">
-                                <button type="submit" name="btnDlgnSaveUpd" id="btnDlgnSaveUpd" alt="修正" title="修正">
-                                    修正
-                                </button>
-                                <span onclick="javascript:$.fn.frmDlgnSaveInit();" class="anchor">
-                <button type="button" alt='修正キャンセル' title='修正キャンセル' class='p_l5'>修正キャンセル</button>
-            </span>
-                            </li>
-                        </form>
+                    <ul class='c' id="btnGroup">
+                        <li id="grpBtn01">
+                            <button type="submit" alt="保存" title="保存">
+                                保存
+                            </button>
+                            <button type="button" class="p_l5" alt="内容を消去" title="内容を消去" onclick="clearForm()">
+                                内容を消去
+                            </button>
+                        </li>
+                        <li id="grpBtn02" class="disHide">
+                            <button type="submit" name="btnDlgnSaveUpd" id="btnDlgnSaveUpd" alt="修正" title="修正">
+                                修正
+                            </button>
+                            <button type="button" alt='修正キャンセル' title='修正キャンセル' class='p_l5' onclick="cancelUpdate()">
+                                修正キャンセル
+                            </button>
+                        </li>
                     </ul>
+                </form>
 
-            </div>
-            </form>
-        </div>
+                <script>
+                    // 내용을 삭제하는 함수
+                    function clearForm() {
+                        document.getElementById("attRecord").reset(); // 폼 초기화
+                        // 수정 버튼 그룹 숨기기, 저장 버튼 그룹 보이기
+                        document.getElementById("grpBtn02").classList.add("disHide");
+                        document.getElementById("grpBtn01").classList.remove("disHide");
+                    }
+
+                    // 수정 취소하는 함수
+                    function cancelUpdate() {
+                        // 폼 초기화
+                        document.getElementById("attRecord").reset();
+                        // 수정 버튼 그룹 숨기기, 저장 버튼 그룹 보이기
+                        document.getElementById("grpBtn02").classList.add("disHide");
+                        document.getElementById("grpBtn01").classList.remove("disHide");
+                    }
+                </script>
+                <script>
+                    // 현재 날짜를 가져오는 함수
+                    function getCurrentDate() {
+                        var today = new Date();
+                        var year = today.getFullYear();
+                        var month = today.getMonth() + 1; // 월은 0부터 시작하므로 1을 더해줍니다.
+                        var day = today.getDate();
+
+                        // 월과 일이 한 자리 수인 경우 두 자리로 표시되도록 조정합니다.
+                        month = month < 10 ? '0' + month : month;
+                        day = day < 10 ? '0' + day : day;
+
+                        return year + '-' + month + '-' + day;
+                    }
+
+                    // 입력일자 input 요소에 현재 날짜를 설정합니다.
+                    document.getElementById('inputdate').value = getCurrentDate();
+                </script>
 
 
-        <hr class='hr_50'></hr>
+
+                <hr class='hr_50'></hr>
 </section>
 
 <!-- footer -->

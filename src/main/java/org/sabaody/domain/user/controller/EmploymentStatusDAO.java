@@ -1,5 +1,6 @@
 package org.sabaody.domain.user.controller;
 
+import org.sabaody.domain.user.model.attendancemanagement.AttendanceRecord;
 import org.sabaody.domain.user.model.attendancemanagement.EmploymentStatus;
 
 import javax.naming.Context;
@@ -24,16 +25,20 @@ public class EmploymentStatusDAO {
     }
 
     //Create
-    public void addEmploymentStatus(EmploymentStatus employmentStatus) {
+    public void addAttendanceRecord(AttendanceRecord attendanceRecord) throws Exception {
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "INSERT INTO employmentstatus (division, id, name, department, position, attendancerecord) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO AttendanceRecord (inputDate,id, attendanceType, startDate, endDate, attendanceDate, amount, summary) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             try (PreparedStatement statement = conn.prepareStatement(sql)) {
-                statement.setString(1, employmentStatus.getDivision());
-                statement.setString(2, employmentStatus.getId());
-                statement.setString(3, employmentStatus.getName());
-                statement.setString(4, employmentStatus.getDepartment());
-                statement.setString(5, employmentStatus.getPosition());
-                statement.setString(6, employmentStatus.getAttendanceRecord());
+
+                statement.setDate(1, attendanceRecord.getInputDate());
+                statement.setString(2, attendanceRecord.getId());
+                statement.setString(3, attendanceRecord.getAttendanceType());
+                statement.setDate(4, attendanceRecord.getStartDate());
+                statement.setDate(5, attendanceRecord.getEndDate());
+                statement.setString(6, attendanceRecord.getAttendanceDate());
+                statement.setLong(7, attendanceRecord.getAmount());
+                statement.setString(8, attendanceRecord.getSummary());
+
 
                 // 쿼리 실행
                 statement.executeUpdate();
@@ -42,11 +47,13 @@ public class EmploymentStatusDAO {
             e.printStackTrace();
         }
     }
+
+
     //Read
     public List<EmploymentStatus> getAllEmploymentStatus() {
         List<EmploymentStatus> employmentStatusList = new ArrayList<>();
         try (Connection conn = dataSource.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM employmentstatus");
+             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM  employmentstatus");
              ResultSet rs = pstmt.executeQuery()) {
 
             while (rs.next()) {

@@ -2,28 +2,29 @@ package org.sabaody.domain.user.model.attendancemanagement;
 
 
 
-import java.time.LocalDateTime;
+import java.sql.Date;
 import java.util.Objects;
 
-public class AttendanceRecord {
-    private String id; //EmploymentStatusオブジェクトと関連付けるためのキー
-    private LocalDateTime inputDate; //入力日
-    private String attendanceType; //勤怠記録enumで分類
-    private String startDate; //期間はじめ
-    private String endDate; //期間終わり
-    private String attendanceDate; //勤務日数
+public class AttendanceRecord extends IdEntity {
+    private Date  inputDate; // 입력일
+    private String attendanceType; // 근태 기록
+    private Date startDate; // 시작일
+    private Date  endDate; // 종료일
+    private String  attendanceDate; // 근무일
 
-    private Long amount; //金額
-    private String summary; //摘要
+    private Long  amount; // 금액
+    private String summary; // 요약
 
-    public AttendanceRecord(){}
+    public AttendanceRecord() {
+        super(null);
+    }
 
-    public AttendanceRecord(Long amount, String attendanceDate, String attendanceType, String endDate, String id, LocalDateTime inputDate, String startDate, String summary) {
+    public AttendanceRecord(String id, Long amount, String attendanceDate, String attendanceType, Date endDate, Date inputDate, Date startDate, String summary) {
+        super(id);
         this.amount = amount;
         this.attendanceDate = attendanceDate;
         this.attendanceType = attendanceType;
         this.endDate = endDate;
-        this.id = id;
         this.inputDate = inputDate;
         this.startDate = startDate;
         this.summary = summary;
@@ -53,35 +54,27 @@ public class AttendanceRecord {
         this.attendanceType = attendanceType;
     }
 
-    public String getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public LocalDateTime getInputDate() {
+    public Date getInputDate() {
         return inputDate;
     }
 
-    public void setInputDate(LocalDateTime inputDate) {
+    public void setInputDate(Date inputDate) {
         this.inputDate = inputDate;
     }
 
-    public String getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
@@ -98,23 +91,22 @@ public class AttendanceRecord {
         if (this == o) return true;
         if (!(o instanceof AttendanceRecord)) return false;
         AttendanceRecord that = (AttendanceRecord) o;
-        return Objects.equals(id, that.id) && Objects.equals(inputDate, that.inputDate) && attendanceType == that.attendanceType && Objects.equals(startDate, that.startDate) && Objects.equals(endDate, that.endDate) && Objects.equals(attendanceDate, that.attendanceDate) && Objects.equals(amount, that.amount) && Objects.equals(summary, that.summary);
+        return Objects.equals(inputDate, that.inputDate) && Objects.equals(attendanceType, that.attendanceType) && Objects.equals(startDate, that.startDate) && Objects.equals(endDate, that.endDate) && Objects.equals(attendanceDate, that.attendanceDate) && Objects.equals(amount, that.amount) && Objects.equals(summary, that.summary);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, inputDate, attendanceType, startDate, endDate, attendanceDate, amount, summary);
+        return Objects.hash(inputDate, attendanceType, startDate, endDate, attendanceDate, amount, summary);
     }
 
     @Override
     public String toString() {
         return "AttendanceRecord{" +
                 "amount=" + amount +
-                ", id='" + id + '\'' +
                 ", inputDate=" + inputDate +
-                ", attendanceType=" + attendanceType +
-                ", startDate='" + startDate + '\'' +
-                ", endDate='" + endDate + '\'' +
+                ", attendanceType='" + attendanceType + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
                 ", attendanceDate='" + attendanceDate + '\'' +
                 ", summary='" + summary + '\'' +
                 '}';
