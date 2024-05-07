@@ -1,0 +1,27 @@
+create table EMPLOYMENTSTATUS
+(
+    ID               VARCHAR2(1000) not null
+        primary key,
+    DIVISION         VARCHAR2(1000) not null,
+    NAME             VARCHAR2(20)   not null,
+    DEPARTMENT       VARCHAR2(20)   not null,
+    POSITION         VARCHAR2(20)   not null,
+    ATTENDANCERECORD VARCHAR2(50)
+)
+
+CREATE TABLE attendancerecord (
+                                  id VARCHAR(255) NOT NULL PRIMARY KEY,
+                                  inputdate DATE,
+                                  attendancetype VARCHAR(255),
+                                  startdate DATE,
+                                  enddate DATE,
+                                  attendancedate VARCHAR(255),
+                                  amount Number,
+                                  summary VARCHAR(255)
+);
+
+ALTER TABLE ATTENDANCERECORD
+    ADD CONSTRAINT fk_emp_status_id
+        FOREIGN KEY (ID)
+            REFERENCES EMPLOYMENTSTATUS(ID);
+
