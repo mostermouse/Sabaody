@@ -1,5 +1,6 @@
 package org.sabaody.domain.user.controller;
 
+import org.sabaody.domain.login.model.Login;
 import org.sabaody.domain.user.model.attendancemanagement.AttendanceRecord;
 import org.sabaody.domain.user.model.attendancemanagement.EmploymentStatus;
 
@@ -72,6 +73,25 @@ public class EmploymentStatusDAO {
         }
         return employmentStatusList;
     }
+
+    public Login getUserByID(String userid){
+        Login user = null;
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM login WHERE userid = ?")) {
+            pstmt.setString(1, userid);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if(rs.next()){
+                    user = new Login();
+                    user.setUserid(rs.getString("userid"));
+                    user.setPassword(rs.getString("password"));
+                }
+            }
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return user;
+    }
+
     //Update
     public void updateEmploymentStatus(EmploymentStatus employmentStatus) {
         try (Connection conn = dataSource.getConnection()) {
