@@ -24,8 +24,23 @@ public class EmploymentStatusDAO {
             e.printStackTrace();
         }
     }
-
     //Create
+    public void addUser(String userid, String password) throws Exception {
+        try (Connection conn = dataSource.getConnection()) {
+            String sql = "INSERT INTO login (userid, password) VALUES (?, ?)";
+            try (PreparedStatement statement = conn.prepareStatement(sql)) {
+                statement.setString(1, userid);
+                statement.setString(2, password);
+
+                // 쿼리 실행
+                statement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public void addAttendanceRecord(AttendanceRecord attendanceRecord) throws Exception {
         try (Connection conn = dataSource.getConnection()) {
             String sql = "INSERT INTO AttendanceRecord (inputDate,id, attendanceType, startDate, endDate, attendanceDate, amount, summary) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -81,9 +96,7 @@ public class EmploymentStatusDAO {
             pstmt.setString(1, userid);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if(rs.next()){
-                    user = new Login();
-                    user.setUserid(rs.getString("userid"));
-                    user.setPassword(rs.getString("password"));
+                    user = new Login(rs.getString("userid"), rs.getString("password"));
                 }
             }
         } catch(SQLException e){

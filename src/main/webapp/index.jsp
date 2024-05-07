@@ -79,9 +79,9 @@
 <div class="login-container">
     <h2>Login</h2>
     <form id="loginForm" action="/LoginServlet" method="post" onsubmit="showModal();">
-        <label for="userid">Username:</label>
+        <label for="userid">ログイン:</label>
         <input type="text" id="userid" name="userid" required><br><br>
-        <label for="password">Password:</label>
+        <label for="password">パスワード:</label>
         <input type="password" id="password" name="password" required><br><br>
         <input type="submit" value="Login">
     </form>
