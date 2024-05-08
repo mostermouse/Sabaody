@@ -7,7 +7,10 @@ create table EMPLOYMENTSTATUS
     DEPARTMENT       VARCHAR2(20)   not null,
     POSITION         VARCHAR2(20)   not null,
     ATTENDANCERECORD VARCHAR2(50)
-)
+) //이거 제외 하고 전부 제작
+
+
+
 
 CREATE TABLE attendancerecord (
                                   id VARCHAR(255) NOT NULL PRIMARY KEY,
@@ -23,20 +26,20 @@ CREATE TABLE attendancerecord (
 ALTER TABLE ATTENDANCERECORD
     ADD CONSTRAINT fk_emp_status_id
         FOREIGN KEY (ID)
-            REFERENCES EMPLOYMENTSTATUS(ID);
+            REFERENCES employmentinfo(ID);
 
 
 
 create table login(
-    id varchar2(255) Not Null primary key,
-    userid  varchar2(50) ,
+   //아이디 쓰지 말기 id varchar2(255) Not Null primary key,
+    userid  varchar2(50) Not null primary key ,
     password varchar2(100)
 );
 
 ALTER TABLE login
 ADD CONSTRAINT fk_emp_status_id
 FOREIGN KEY (id)
-REFERENCES EMPLOYMENTSTATUS(ID);
+REFERENCES employmentinfo(ID); //안써도됨
 
 
 create table employmentinfo(
