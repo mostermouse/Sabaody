@@ -75,65 +75,6 @@
    </div>
 </nav>
 
-<section>
-   <div id="main_container">
-      <!-- 타이틀 이미지 -->
-      <div class='sub_titimg'>
-         <ul>
-            <li class='tit_img p_r7'><img
-               src='/_commonImg/dils_tit_img.gif' width='61' height='68'
-               alt='勤怠照会' title='勤怠照会'></li>
-            <li class='p_t10'><img src='/_commonImg/dils_tit_01.gif'
-               width='201' height='25' alt='勤怠照会' title='勤怠照会'></li>
-            <li class='p_t5'>社員別の勤怠状況を一度にご覧いただけます。月別、詳細勤務履歴も確認できます。</li>
-         </ul>
-      </div>
-      <hr>
-
-      <!-- 사원등록_좌측 -->
-      <div class='main_titimg'>
-         <!-- 탭 -->
-         <div class='search_box p_l5 '>
-            <ul>
-               <a href="/pzDiligence/diligenceSearchMonth.php"><img
-                  src='/_commonImg/dils_tab01_off.gif' width='122' height='37'
-                  class='p_l5' alt='月別照会' title='月別照会'></a>
-            </ul>
-            <ul>
-               <a href="/pzDiligence/diligenceSearchDetail.php"><img
-                  src='/_commonImg/dils_tab02_on.gif' width='122' height='37'
-                  class='p_l5' alt='詳細照会' title='詳細照会'></a>
-            </ul>
-         </div>
-         <Br>
-         <!-- 좌측 검색조건 -->
-         <form name="frmSearchDetail" id="frmSearchDetail" method="get"
-            onsubmit="return $.fn.frmSrchCheck();">
-            <div class='diligence_lt '>
-               <ul>
-                  <!-- Search criteria removed -->
-               </ul>
-               <hr class='hr_5'></hr>
-               <ul class='c'>
-                  <!-- Search buttons removed -->
-               </ul>
-            </div>
-         </form>
-
-         <!--  검색결과 -->
-         <div class='e_total'>
-            <div id='table1'>
-               <!-- Search result table removed -->
-            </div>
-         </div>
-         <hr class='hr_0'></hr>
-         <div class='height_137 wp_100'>
-            <!-- Print and Excel download buttons removed -->
-         </div>
-      </div>
-   </div>
-   <hr class='hr_50'></hr>
-</section>
 <div class="registration-container">
     <h2>社員登録</h2>
     <form name ="employee" action="/employeeRegistration.html" method="post">

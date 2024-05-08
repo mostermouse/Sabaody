@@ -671,7 +671,7 @@
             </div>
 
 
-            <!-- 근태 설정 리스트_설정 -->
+            <!-- 勤怠設定リスト -->
             <div class='diligence_set'>
                 <form action="/CreateAttRecordServlet" method="post">
                     <ul>
