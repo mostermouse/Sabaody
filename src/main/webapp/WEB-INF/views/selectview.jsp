@@ -244,7 +244,7 @@
                     $("#frmDlsvSttD").val(dateText);
                     $("#frmDlsvDays").val(4);  // 임의 3시간
                 } else {
-                    if ($("#frmDlsvSttD").val() == "시작일") $("#frmDlsvSttD").val(dateText);
+                    if ($("#frmDlsvSttD").val() == "開始日") $("#frmDlsvSttD").val(dateText);
                     if ($.isDateFormat10th($("#frmDlsvSttD").val()) !== null && $.isDateFormat10th($("#frmDlsvEndD").val()) !== null) {
                         var setDiff = 0;
                         setDiff = $.getDateDiff2($("#frmDlsvEndD").val(), $("#frmDlsvSttD").val());
@@ -292,12 +292,12 @@
             return;
         });
 
-        // 2016-10-07 금액(수당) 마이너스 입력 가능하게~
+
         $("#frmDlsvPays").numeric({
 //      allowMinus   : false,
             allowThouSep: true
         });
-        $("#frmDlsvPays").css("ime-mode", "disabled"); //한글사용 비활성화
+        $("#frmDlsvPays").css("ime-mode", "disabled");
 
         $("#frmDlsvPays").on("keyup", function () {
             var rtnDlsvPays = $.setComma($(this).val());
@@ -306,7 +306,7 @@
         });
 
 
-        // 검색 초기화/전체보기
+
         $("#btnSrchInit").click(function () {
             location.href = "/pzDiligence/diligenceMnt.php";
             return;
@@ -318,12 +318,10 @@
         });
         $.setupLabel();
 
-        // 2014-07-10 추가 기능
-        // 목록 레코드 선택 시 선택표시 및 체크박스 선택 기능
+
         $("#table_dil_data > ul").click(function () {
 
-            // 2016-01-25
-            // true: 저장버튼, false: 수정버튼
+
             var disSaveStat = $("#grpBtn02").hasClass("disHide").toString();
             if (disSaveStat == "false") {
                 $.fn.frmDlgnSaveInit();  // 입력폼 초기화
@@ -673,7 +671,7 @@
             </div>
 
 
-            <!-- 근태 설정 리스트_설정 -->
+            <!-- 勤怠設定リスト -->
             <div class='diligence_set'>
                 <form action="/CreateAttRecordServlet" method="post">
                     <ul>
