@@ -1,8 +1,8 @@
 create table EMPLOYMENTSTATUS
 (
-    ID               VARCHAR2(1000) not null
+    ID               VARCHAR2(255) not null
         primary key,
-    DIVISION         VARCHAR2(1000) not null,
+    DIVISION         VARCHAR2(20) not null,
     NAME             VARCHAR2(20)   not null,
     DEPARTMENT       VARCHAR2(20)   not null,
     POSITION         VARCHAR2(20)   not null,
@@ -37,3 +37,19 @@ ALTER TABLE login
 ADD CONSTRAINT fk_emp_status_id
 FOREIGN KEY (id)
 REFERENCES EMPLOYMENTSTATUS(ID);
+
+
+create table employmentinfo(
+ id varchar2(50) primary key not null,
+    division varchar2(20) not null ,
+    name varchar2(20) not null,
+    department varchar2(20) not null ,
+    position varchar2(20) not null,
+    attendancerecord varchar2(50),
+    dateofjoining Date,
+    address varchar2(100),
+    phonenumber varchar2(50),
+    email varchar2(50)
+
+
+);

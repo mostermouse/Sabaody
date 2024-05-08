@@ -77,11 +77,13 @@
 
 <div class="registration-container">
     <h2>社員登録</h2>
-    <form name ="employee" action="/employeeRegistration.html" method="post">
+    <form name ="employee" action="/employeeRegister" method="post">
         <label for="id">社員番号:</label>
         <input type="text" id="id" name="id" required><br><br>
         <label for="name">名前:</label>
         <input type="text" id="name" name="name" required><br><br>
+        <label for="division">区分:</label>
+        <input type="text" id="division" name="division" required><br><br>
         <label for="hireDate">入社日:</label>
         <input type="date" id="hireDate" name="hireDate" required><br><br>
         <label for="department">部署:</label>
@@ -90,8 +92,8 @@
         <input type="text" id="position" name="position" required><br><br>
         <label for="address">住所:</label>
         <input type="text" id="address" name="address" required><br><br>
-        <label for="mobilePhone">携帯電話:</label>
-        <input type="text" id="mobilePhone" name="mobilePhone" required><br><br>
+        <label for="phonenumber">携帯電話:</label>
+        <input type="text" id="phonenumber" name="phonenumber" required><br><br>
         <label for="email">メール:</label>
         <input type="email" id="email" name="email" required><br><br>
         <input type="submit" value="登録">

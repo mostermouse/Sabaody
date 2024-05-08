@@ -32,13 +32,36 @@ public class EmploymentStatusDAO {
                 statement.setString(1, userid);
                 statement.setString(2, password);
 
-                // 쿼리 실행
+
                 statement.executeUpdate();
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+    public void addEmployment(String id, String division, String name, String department, String position, String attendanceRecord, Date dateOfJoining, String address, String phoneNumber, String email) throws SQLException {
+        try (Connection conn = dataSource.getConnection()) {
+            String sql = "INSERT INTO employmentinfo(id, division, name, department, position, attendancerecord, dateofjoining, address, phonenumber, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement statement = conn.prepareStatement(sql)) {
+                statement.setString(1, id);
+                statement.setString(2, division);
+                statement.setString(3, name);
+                statement.setString(4, department);
+                statement.setString(5, position);
+                statement.setString(6, attendanceRecord);
+                statement.setDate(7, dateOfJoining);
+                statement.setString(8, address);
+                statement.setString(9, phoneNumber);
+                statement.setString(10, email);
+
+
+                statement.executeUpdate();
+            }
+        }
+    }
+
+
 
 
     public void addAttendanceRecord(AttendanceRecord attendanceRecord) throws Exception {
@@ -56,7 +79,7 @@ public class EmploymentStatusDAO {
                 statement.setString(8, attendanceRecord.getSummary());
 
 
-                // 쿼리 실행
+
                 statement.executeUpdate();
             }
         } catch (SQLException e) {

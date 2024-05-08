@@ -115,7 +115,7 @@
                     </button>
                 </li>
                 <li class="n02">
-                    <button onclick="location.href='/record'" title="[Shift + 2] 社員登録"><span
+                    <button onclick="location.href='/employee'" title="[Shift + 2] 社員登録"><span
                             id="SK02">社員登録</span></button>
                 </li>
                 <li class="n03">
