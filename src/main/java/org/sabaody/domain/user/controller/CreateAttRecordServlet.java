@@ -15,11 +15,11 @@ import java.sql.Date;
 public class CreateAttRecordServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    private EmploymentStatusDAO dao; // DAO 객체 생성
+    private EmploymentStatusDAO dao;
 
     public void init() throws ServletException {
         super.init();
-        dao = new EmploymentStatusDAO(); // DAO 인스턴스 생성
+        dao = new EmploymentStatusDAO();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -61,15 +61,9 @@ public class CreateAttRecordServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        try {
-            dao.addAttendanceRecord(attRecord);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
 
-        response.sendRedirect("/login");
+        response.sendRedirect("/kintaidetails");
     }
 
 }

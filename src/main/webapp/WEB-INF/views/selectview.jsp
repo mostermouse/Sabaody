@@ -123,7 +123,7 @@
                             id="SK03">勤怠照会</span></button>
                 </li>
                 <li class="n05">
-                    <button onclick="location.href='/kintaimonths'" title="[Shift + 4] 休暇照会"><span
+                    <button onclick="location.href='/vacation'" title="[Shift + 4] 休暇照会"><span
                             id="SK04">休暇照会</span></button>
                 </li>
             </ul>

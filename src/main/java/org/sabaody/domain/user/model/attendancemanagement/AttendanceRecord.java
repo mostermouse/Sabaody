@@ -3,7 +3,7 @@ package org.sabaody.domain.user.model.attendancemanagement;
 
 
 import java.sql.Date;
-import java.util.Objects;
+
 
 public class AttendanceRecord extends EmploymentStatus {
     private Date  inputDate; // 입력일

@@ -57,7 +57,14 @@
     <servlet-name>kintaidetails</servlet-name>
     <url-pattern>/kintaidetails</url-pattern>
   </servlet-mapping>
-
+  <servlet>
+    <servlet-name>vacation</servlet-name>
+    <jsp-file>/WEB-INF/views/vacation.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>vacation</servlet-name>
+    <url-pattern>/vacation</url-pattern>
+  </servlet-mapping>
   <filter>
     <filter-name>charConfig</filter-name>
     <filter-class>org.sabaody.filter.CharConfig</filter-class>
