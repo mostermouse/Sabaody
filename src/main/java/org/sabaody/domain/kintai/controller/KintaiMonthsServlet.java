@@ -31,7 +31,7 @@ class KintaiMonthsServlet extends HttpServlet {
 		request.setAttribute("kintaiMonthsList", kintaiMonthsList);
 
 		// JSP로 포워딩
-		request.getRequestDispatcher("/WEB-INF/views/kintaimonths.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/kintaidetails.jsp").forward(request, response);
 	}
 
 }

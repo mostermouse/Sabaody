@@ -123,7 +123,7 @@
 							title="[Shift + 2] 社員登録">
 							<span id="SK02">社員登録</span>
 						</button></li>
-					<li class="n03"><button onclick="location.href='kintaidetails'"
+					<li class="n03"><button onclick="location.href='/kintaidetails'"
 							title="[Shift + 3] 勤怠照会">
 							<span id="SK03">勤怠照会</span>
 						</button></li>
@@ -177,162 +177,137 @@ input[type=text]::-ms-clear {
 	<!--
 		$(function() {
 
-			// UI
-
-			// 선택상자
-			$(
-					"#setSearchYYYY,#setSearchMM,#selEmplEmpl,#selDprtCode,#selPstnCode,#selListItemLen, #selEmplStat")
-					.msDropDown();
-
-			$(".disContentList").mCustomScrollbar({
-				scrollButtons : {
-					enable : false,
-					scrollInertia : 150
-				},
-				theme : "dark-thin-current"
-			});
-
-			// 년.월 선택상자 - 이번달 버튼 노출 체킹
-			$("#setSearchMM").change(function() {
-
-				var setSearchMM = $("#setSearchMM").val();
-				var setSearchYYYY = $("#setSearchYYYY").val();
-
-				if (setSearchMM == '') {
-					$("#setSearchMM").focus();
-					return false;
-				}
-				if (setSearchYYYY == '') {
-					alert('연도를 선택해 주세요.   ');
-					$("#setSearchYYYY").focus();
-					return false;
-				}
-
-				var setUrl = "/pzDiligence/diligenceSearchMonth.php";
-				setUrl += "?setSearchYYYY=" + $("#setSearchYYYY").val();
-				setUrl += "&setSearchMM=" + $(this).val();
-				location.replace(setUrl);
+			$("input").click(function() {
+				$(this).select();
 				return;
 			});
 
-			$("#btnSearchYYYYMMInit").click(function() {
-				var setUrl = "/pzDiligence/diligenceSearchMonth.php";
-				location.replace(setUrl);
-			});
+			//UI
 
-			$("#selEmplEmpl, #selDprtCode, #selPstnCode, #selEmplStat")
-					.change(
-							function() {
-								var setUrl = "/pzDiligence/diligenceSearchMonth.php";
-								setUrl += "?setSearchYYYY="
-										+ $("#setSearchYYYY").val();
-								setUrl += "&setSearchMM="
-										+ $("#setSearchMM").val();
-								setUrl += "&setEmplStatNum="
-										+ $("#selEmplStat").val();
-								setUrl += "&" + $(this).attr("id") + "="
-										+ $(this).val();
-								location.replace(setUrl);
-								return;
-							});
+			// 선택상자
+			$("#frmDlgnCode,#frmDprtCode,#frmDlgrCode,#frmLvItCode")
+					.msDropDown();
+
+			// DATE 픽커
+			$("#frmDlsvInpD").datepicker({
+				//option
+				"showAnim" : "fadeIn",
+				"dateFormat" : "yy-mm-dd",
+				"showMonthAfterYear" : true,
+				"yearSuffix" : "년",
+				"changeYear" : true,
+				"yearRange" : "1950:+3"
+			//        "defaultDate": "-1d"
+			});
+			$("#frmDlgnStrt").datepicker(
+					{
+						//option
+						"showAnim" : "fadeIn",
+						"dateFormat" : "yy-mm-dd",
+						"showMonthAfterYear" : true,
+						"yearSuffix" : "년",
+						"changeYear" : true,
+						"yearRange" : "1950:+3",
+						//        defaultDate: "+0d",
+						onClose : function(selectedDate) {
+							$("#frmDlgnEndD").datepicker("option", "minDate",
+									selectedDate);
+						}
+					});
+			$("#frmDlgnEndD").datepicker(
+					{
+						//option
+						"showAnim" : "fadeIn",
+						"dateFormat" : "yy-mm-dd",
+						defaultDate : "+1d",
+						"showMonthAfterYear" : true,
+						"yearSuffix" : "년",
+						"changeYear" : true,
+						"yearRange" : "1950:+3",
+						onClose : function(selectedDate) {
+							$("#frmDlgnStrt").datepicker("option", "maxDate",
+									selectedDate);
+						}
+					});
+
+			$('body').addClass('has-js');
+			$('.label_check, .label_radio').click(function() {
+				$.setupLabel();
+			});
+			$.setupLabel();
+			// end UI
 
 			// E.F Print 버튼 클릭
 			$("#btnGetPrint").click(function() {
-				$.fn.layerProcCreate("diligenceSearchMonthPdf");
+				// 미리보기 할 대상 체크
+				var setDiligenceSearchCount = "30";
+				if (setDiligenceSearchCount == 0) {
+					alert("데이터가 없습니다.   ");
+					return;
+				}
+
+				$.fn.layerProcCreate("diligenceSearchDetailPdf");
 				return;
 			});
 
-			// 일용직 근무 조회 다운로드
-			$("#btnGetExcel")
-					.click(
-							function() {
-
-								urlSplit = window.location.href
-										.split("diligenceSearchMonth.php");
-								param = urlSplit[1];
-								if (param)
-									param += "&setChkMd5=" + setChkMd5;
-								else
-									param = "?setChkMd5=" + setChkMd5;
-
-								var urlSrc = "/pzDiligence/php/inDiligenceSearchMonthProcExcel.php";
-								urlSrc += param;
-								//      alert(urlSrc + " :: ");  return;
-								$("#iFrmMulti").attr("src", urlSrc);
-								//      location.replace(urlSrc);
-								return;
-							});
-
-			// 목록 정렬 설정
-			$("#btnSetSort").click(function() {
-				$.fn.layerProcCreate("sortDiligenceMnt");
-				return;
-			});
-
-			// 사원목록 마우스오버: 색상변경
-			$(".ulDiligenceList").hover(function() { // over
-				$(".ulDiligenceList").removeClass("cssOverColorSet");
-				$(this).addClass("cssOverColorSet");
-			}, function() { // out
-				$(".ulDiligenceList").removeClass("cssOverColorSet");
-			});
-
-			// 사원목록 클릭 시: 상세검색 이동
-			$(".ulDiligenceList").click(function() {
-				var setUrl = "/pzDiligence/diligenceSearchDetail.php";
-				var getSearchYYYY = $("#setSearchYYYY").val();
-				var getSearchMM = $("#setSearchMM").val();
-				var setDlgnStrt = getSearchYYYY + "-" + getSearchMM + "-01";
-				var setDlgnEndD = getSearchYYYY + "-" + getSearchMM + "-31";
-				var setEmplName = $(this).children().eq(2).text();
-				//      alert(setDlgnStrt + " :: "  + setDlgnEndD + " :: " + setEmplName);
-				setUrl += "?chkDlgnTerm=on";
-				setUrl += "&frmDlgnStrt=" + setDlgnStrt;
-				setUrl += "&frmDlgnEndD=" + setDlgnEndD;
-				setUrl += "&chkEmplName=on";
-				setUrl += "&frmEmplName=" + setEmplName;
-				location.href = setUrl;
-				return;
-			});
-
-			var aBSet = [];
-			var aRSet = [];
-			// 달력 토/일 체크
-			var aO = $(".date > .b_yellow > li");
-			aO
-					.each(function(i, e) {
-						if ($(this).children("span").length > 0) {
-							if ($(this).children("span").hasClass("c_blue") === true) {
-								aBSet.push(i);
-							} else if ($(this).children("span").hasClass(
-									"c_red") === true) {
-								aRSet.push(i);
-							} else {
-							}
-						}
+			// 버튼 근태 리스트 다운로드
+			$("#btnGetExcel").click(
+					function() {
+						var urlSplit = window.location.href
+								.split("diligenceSearchDetail.php");
+						var param = urlSplit[1];
+						if (param)
+							param += "&setChkMd5=" + setChkMd5;
+						else
+							param = "?setChkMd5=" + setChkMd5;
+						//      alert(param + " :: ");  return;
+						$("#iFrmMulti").attr(
+								"src",
+								"/pzDiligence/php/inDiligenceSearchDetailProcExcel.php"
+										+ param);
+						//      location.replace("/pzDiligence/php/inDiligenceSearchDetailProcExcel.php" + param);
+						return;
 					});
-			// 사원별 달력 토/일 표기
-			var aU = $(".clsCheck");
-			aU.each(function(i, e) {
-				$.each(aBSet, function(ii, e) {
-					$(".clsCheck:eq(" + i + ") ul li:eq(" + aBSet[ii] + ")")
-							.addClass("bb_blue");
-				});
-				$.each(aRSet, function(iii, e) {
-					$(".clsCheck:eq(" + i + ") ul li:eq(" + aRSet[iii] + ")")
-							.addClass("bb_red");
-				});
+
+			// 2014-12-15 추가
+			// 사원목록 마우스오버: 색상변경
+			$("#table1 .clsListingTable").hover(function() { // over
+				$("#table1 .clsListingTable").removeClass("cssOverColorSet");
+				if ($(this).hasClass("sell_bg") !== true)
+					$(this).addClass("cssOverColorSet");
+			}, function() { // out
+				$("#table1 .clsListingTable").removeClass("cssOverColorSet");
 			});
 
 		});
-		// End Function
-		// End Function
-	//-->
+		/* End Function */
+		/* End Function */
+
+		$.fn.frmSrchCheck = function() {
+			// 검색 조건 유무
+			if ($("input:checkbox").is(":checked") !== true) {
+				alert("선택된 검색 조건이 없습니다.   ");
+				return false;
+			}
+			// 2015-11-27 크롬에서 파라미터가 길 경우 인쇄가 되지 않는 현상 때문에 파라미터를 줄임
+			// 근본적인 문제 찾아야 함
+			if ($("input:checkbox[name='chkDlsvInpD']").is(":checked") === false) {
+				$("#frmDlsvInpD").val("");
+			}
+			if ($("input:checkbox[name='chkDlgnTerm']").is(":checked") === false) {
+				$("#frmDlgnStrt, #frmDlgnEndD").val("");
+			}
+			if ($("input:checkbox[name='chkEmplName']").is(":checked") === false) {
+				$("#frmEmplName").val("");
+			}
+			return;
+		}
+		-->
 	</script>
 
 	<section>
 		<div id="main_container">
-			<!-- タイトル -->
+			<!-- 타이틀 이미지 -->
 			<div class='sub_titimg'>
 				<ul>
 					<h2>勤怠照会</h2>
@@ -342,278 +317,238 @@ input[type=text]::-ms-clear {
 			</div>
 			<hr>
 
-			<div class='main_titimg wp_100'>
-				<!-- tab -->
+			<!-- 사원등록_좌측 -->
+			<div class='main_titimg'>
+				<!-- 탭 -->
 				<div class='search_box p_l5 '>
 					<ul>
 						<li class="months"><button
-								onclick="location.href='/kintaimonths'" title="月別照会">
+								onclick="location.href='/attmonths'" title="月別照会">
 								<span id="months">月別照会</span>
 							</button></li>
 					</ul>
 					<ul>
 						<li class="details"><button
-								onclick="location.href='/kintaidetails'" title="詳細照会">
+								onclick="location.href='/attmonths'" title="詳細照会">
 								<span id="details">詳細照会</span>
 							</button></li>
 					</ul>
 				</div>
-				<!-- 検索 & ソート順 -->
-				<div class='search_box p_b10 p_l10 '>
-					<ul class='p_t1'>
-						<select name="setSearchYYYY" id="setSearchYYYY"
-							style='width: 80px;'>
-							<option value="">選択</option>
-							<option value="2013">2013 年</option>
-							<option value="2014">2014 年</option>
-							<option value="2015">2015 年</option>
-							<option value="2016">2016 年</option>
-							<option value="2017">2017 年</option>
-							<option value="2018">2018 年</option>
-							<option value="2019">2019 年</option>
-							<option value="2020">2020 年</option>
-							<option value="2021">2021 年</option>
-							<option value="2022">2022 年</option>
-							<option value="2023">2023 年</option>
-							<option value="2024" SELECTED>2024 年</option>
-							<option value="2025">2025 年</option>
-						</select>
-					</ul>
-					<ul class='p_t1 p_l10'>
-						<select name="setSearchMM" id="setSearchMM" style='width: 60px;'>
-							<option value="">選択</option>
-							<option value="01">01 月</option>
-							<option value="02">02 月</option>
-							<option value="03">03 月</option>
-							<option value="04">04 月</option>
-							<option value="05" SELECTED>05 月</option>
-							<option value="06">06 月</option>
-							<option value="07">07 月</option>
-							<option value="08">08 月</option>
-							<option value="09">09 月</option>
-							<option value="10">10 月</option>
-							<option value="11">11 月</option>
-							<option value="12">12 月</option>
-						</select>
-						<button name="btnSearchYYYYMMInit" id="btnSearchYYYYMMInit"
-							class="disHide">今月</button>
-					</ul>
+				<Br>
+				<!-- 좌측 검색조건 -->
+				<form name="frmSearchDetail" id="frmSearchDetail" method="get"
+					onsubmit="return $.fn.frmSrchCheck();">
+					<div class='diligence_lt '>
+						<ul>
+							<div id='table0'>
+								<p class='caption'></p>
+								<ul>
+									<li class='w_100'><label class="label_check"
+										for="chkDlsvInpD"><input type="checkbox"
+											name="chkDlsvInpD" id="chkDlsvInpD"> <strong>入力日</strong></label></li>
+									<li class='con'><input name="frmDlsvInpD" id="frmDlsvInpD"
+										type='text' value="2024-05-06" class="text"
+										style="width: 157px;"></li>
+								</ul>
+								<ul>
+									<li class='w_100'><label class="label_check"
+										for="chkDlgnTerm"><input type="checkbox"
+											name="chkDlgnTerm" id="chkDlgnTerm"> <strong>勤怠期間</strong></label></li>
+									<li class='con'><input name="frmDlgnStrt" id="frmDlgnStrt"
+										type='text' value="2024-05-06" class='text'
+										style="width: 75px;"> ~ <input name="frmDlgnEndD"
+										id="frmDlgnEndD" type='text' value="2024-05-06" class='text'
+										style="width: 75px;"></li>
+								</ul>
+								<ul>
+									<li class='w_100'><label class="label_check"
+										for="chkDprtCode"><input type="checkbox"
+											name="chkDprtCode" id="chkDprtCode"> <strong>部署</strong></label></li>
+									<li class='con'><select name="frmDprtCode"
+										id="frmDprtCode" style="width: 130px;">
+											<option value="">選択してください。</option>
+											<option value="007">社長室</option>
+											<option value="003">開発部</option>
+											<option value="005">コンテンツ部</option>
+											<option value="004">業務サポート部</option>
+											<option value="001">デザイン部</option>
+											<option value="006">管理部</option>
+											<option value="002">企画戦略部</option>
+									</select></li>
+								</ul>
+								<ul>
+									<li class='w_100'><label class="label_check"
+										for="chkEmplName"><input type="checkbox"
+											name="chkEmplName" id="chkEmplName"> <strong>名前</strong></label></li>
+									<li class='con'><input name="frmEmplName" id="frmEmplName"
+										type='text' value="名前を入力してください。" class='text'
+										style='width: 157px;'></li>
+								</ul>
+								<ul>
+									<li class='w_100'><label class="label_check"
+										for="chkDlgrCode"><input type="checkbox"
+											name="chkDlgrCode" id="chkDlgrCode"> <strong>勤怠グループ</strong></label></li>
+									<li class='con'><select name="frmDlgrCode"
+										id="frmDlgrCode" style='width: 130px;'>
+											<option value="">選択してください。</option>
+											<option value="370602">休暇</option>
+											<option value="370605">延長勤務</option>
+											<option value="370603">遅刻早退</option>
+											<option value="370606">残業</option>
+											<option value="370604">その他</option>
+									</select></li>
+								</ul>
+								<ul>
+									<li class='w_100'><label class="label_check"
+										for="chkDlgnCode"><input type="checkbox"
+											name="chkDlgnCode" id="chkDlgnCode"> <strong>勤怠項目</strong></label></li>
+									<li class='con'><select name="frmDlgnCode"
+										id="frmDlgnCode" style='width: 130px;'>
+											<option value="">選択してください。</option>
+											<option value="001">有休</option>
+											<option value="003">半休</option>
+											<option value="004">遅刻</option>
+											<option value="005">早退</option>
+											<option value="006">外勤</option>
+											<option value="009">休日勤務</option>
+											<option value="011">延長勤務</option>
+											<option value="012">特別休暇</option>
+											<option value="013">夜勤</option>
+											<option value="014">請願休暇</option>
+									</select></li>
+								</ul>
+								<ul>
+									<li class='w_100'><label class="label_check"
+										for="chkLvItCode"><input type="checkbox"
+											name="chkLvItCode" id="chkLvItCode"> <strong>休暇項目</strong></label></li>
+									<li class='con'><select name="frmLvItCode"
+										id="frmLvItCode" style='width: 130px;'>
+											<option value="">選択してください。</option>
 
-					<ul class='right w_169 p_t1'>
-						<span name="btnSetSort" id="btnSetSort" class="anchor"><img
-							src='/_commonImg/btn_align_set.png' width='114' height='23'
-							class='p_l5' alt='ソート基準を設定する' title='ソート基準を設定する'></span>
-					</ul>
-					<ul class='right p_t1'>
-						<div>
-							<select name="selEmplStat" id="selEmplStat" style="width: 100px;">
-								<option value="2">状態別</option>
-								<option value="1" SELECTED>在職</option>
-								<option value="0">退職</option>
-							</select> <select name="selEmplEmpl" id="selEmplEmpl"
-								style='width: 100px;'>
-								<option value="">区分別</option>
-								<option value="정규직">正社員</option>
-								<option value="계약직">契約社員</option>
-								<option value="임시직">臨時社員</option>
-								<option value="파견직">派遣社員</option>
-								<option value="위촉직">嘱託社員</option>
-								<option value="일용직">パート/アルバイト</option>
-							</select> <select name="selDprtCode" id="selDprtCode"
-								style='width: 100px;'>
-								<option value="">部署別</option>
-								<option value="007">社長室</option>
-								<option value="003">開発部</option>
-								<option value="005">コンテンツ部</option>
-								<option value="004">業務サポート部</option>
-								<option value="001">デザイン部</option>
-								<option value="006">管理部</option>
-								<option value="002">企画戦略部</option>
-							</select> <select name="selPstnCode" id="selPstnCode"
-								style='width: 100px;'>
-								<option value="">役職別</option>
-								<option value="02">取締役</option>
-								<option value="04">部長</option>
-								<option value="01">社長</option>
-								<option value="03">本部長</option>
-								<option value="08">主任</option>
-								<option value="05">次長</option>
-								<option value="06">課長</option>
-								<option value="07">係長</option>
-								<option value="09">社員</option>
-							</select>
-							<!-- <select name="selListItemLen" id="selListItemLen">
-           <option value="">리스트 수</option>
-           <option value="">10개씩 보기</option>
-           <option value="">30개씩 보기</option>
-           <option value="">50개씩 보기</option> 
-           <option value="">100개씩 보기</option>
-          </select> -->
-						</div>
-					</ul>
-				</div>
+											<option value="458421">2014_有休</option>
+											<option value="458422">2015_特別休暇</option>
+											<option value="458423">2015_有休</option>
+											<option value="458424">2016_有休</option>
+											<option value="458425">2016_特別休暇</option>
+											<option value="458426">2017_有休</option>
+											<option value="458427">2017_特別休暇</option>
+									</select></li>
+								</ul>
 
-				<div class='e_total'>
-					<DIV id='table1'>
-						<p class='caption'></p>
-						<ul class='height_53'>
-							<li class='w_88 tit_53_col'>区分</li>
-							<li class='w_88 tit_53_col '><a
-								href="/pzDiligence/diligenceSearchMonth.php?setSortItem=emNo&setSortType=asc"
-								class='c_linkblue'><strong>社員番号</strong></a></li>
-							<li class='w_70 tit_53_col'><a
-								href="/pzDiligence/diligenceSearchMonth.php?setSortItem=emNm&setSortType=asc"
-								class='c_linkblue'><strong>名前</strong></a></li>
-							<li class='w_92 tit_53_col'><a
-								href="/pzDiligence/diligenceSearchMonth.php?setSortItem=dprt&setSortType=asc"
-								class='c_linkblue'><strong>部署</strong></a></li>
-							<li class='w_88 tit_53_col b_none'><a
-								href="/pzDiligence/diligenceSearchMonth.php?setSortItem=pstn&setSortType=asc"
-								class='c_linkblue'><strong>役職</strong></a></li>
-							<li style='padding-top: 0px;'>
-								<div class='date '>
-									<ul class='b_yellow'>
-										<li class="w_24 tit">1</li>
-										<li class="w_24 tit">2</li>
-										<li class="w_24 tit">3</li>
-										<li class="w_24 tit"><span class='c_blue bold'>4</span></li>
-										<li class="w_24 tit"><span class='c_red bold'>5</span></li>
-										<li class="w_24 tit">6</li>
-										<li class="w_24 tit">7</li>
-										<li class="w_24 tit">8</li>
-										<li class="w_24 tit">9</li>
-										<li class="w_24 tit">10</li>
-										<li class="w_24 tit"><span class='c_blue bold'>11</span></li>
-										<li class="w_24 tit"><span class='c_red bold'>12</span></li>
-										<li class="w_24 tit">13</li>
-										<li class="w_24 tit">14</li>
-										<li class="w_24 tit">15</li>
-										<li class="w_24 tit">16</li>
-									</ul>
-									<ul class="b_yellow">
-										<li class="w_24 tit">17</li>
-										<li class="w_24 tit"><span class='c_blue bold'>18</span></li>
-										<li class="w_24 tit"><span class='c_red bold'>19</span></li>
-										<li class="w_24 tit">20</li>
-										<li class="w_24 tit">21</li>
-										<li class="w_24 tit">22</li>
-										<li class="w_24 tit">23</li>
-										<li class="w_24 tit">24</li>
-										<li class="w_24 tit"><span class='c_blue bold'>25</span></li>
-										<li class="w_24 tit"><span class='c_red bold'>26</span></li>
-										<li class="w_24 tit">27</li>
-										<li class="w_24 tit">28</li>
-										<li class="w_24 tit">29</li>
-										<li class="w_24 tit">30</li>
-										<li class="w_24 tit">31</li>
-										<li class="w_24 tit"></li>
-									</ul>
-								</div>
-							</li>
-							<li class='w_199 tit_53_col '>合計</li>
-							<li class='w_100 tit_53_col'>休暇控除</li>
+								<ul>
+									<li class='w_100'><label class="label_check"
+										for="chkDlsvEtcs"><input type="checkbox"
+											name="chkDlsvEtcs" id="chkDlsvEtcs"> <strong>摘要</strong></label></li>
+									<li class='con '><input name="frmDlsvEtcs"
+										id="frmDlsvEtcs" type='text' value="" class='text'
+										style='width: 157px; color: #eb4e5d;'></li>
+								</ul>
+							</div>
+
 						</ul>
+						<hr class='hr_5'></hr>
+						<ul class='c'>
+							<input name="btnSearch" id="btnSearch" type='image' value='照会する'
+								width='100px' height='27px' hspace='5' alt='照会する' title='照会する'>
+							<input name="btnRefresh" id="btnRefresh" type='image'
+								value='全て見る' width='100px' height='27px' hspace='5' alt='全て見る'
+								title='全て見る'>
+						</ul>
+					</div>
+				</form>
 
-
-						<ul class="anchor ulDiligenceList">
-							<li class='w_88 con53_col' title="재직"><span class='top-10'>정규직</span></li>
-							<li class='w_88 con53_col'>No-140042</li>
-							<li class='w_70 con53_col'>홍길동</li>
-							<li class='w_92 con53_col'></li>
-							<li class='w_88 con53_col b_none'></li>
-							<li style='padding-top: 0px;'>
-								<div class="date clsCheck">
-									<ul>
-										<li class='w_24' title="1"></li>
-										<!-- 1 -->
-										<li class='w_24'></li>
-										<!-- 2 -->
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24' title="9"></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-									</ul>
-									<ul>
-										<li class='w_24' title="17"></li>
-										<!-- 17 -->
-										<li class='w_24'></li>
-										<!-- 18 -->
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24' title="25"></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-									</ul>
-								</div>
-							</li>
-							<li class='w_199 con48_col a_l '>
-								<div class="auto height_45 disContentList left-5"></div>
-							</li>
-							<li class='w_100 con53_col bold'>0</li>
+				<!--  검색결과 -->
+				<div class='e_total'>
+					<div id='table1'>
+						<p class='caption'></p>
+						<ul>
+							<li class='w_85 tit'><a
+								href="/pzDiligence/diligenceSearchDetail.php?setSortItem=insd&setSortType=asc"
+								class='c_linkblue'><strong>入力日</strong></a></li>
+							<li class='w_70 tit '>区分</li>
+							<!--<li  class='w_70 tit '><a href="/pzDiligence/diligenceSearchDetail.php?setSortItem=emNo&setSortType=asc" class='c_linkblue'><strong>사원번호</strong></a></li>-->
+							<li class='w_70 tit'><a
+								href="/pzDiligence/diligenceSearchDetail.php?setSortItem=emNm&setSortType=asc"
+								class='c_linkblue'><strong>名前</strong></a></li>
+							<li class='w_70 tit'><a
+								href="/pzDiligence/diligenceSearchDetail.php?setSortItem=dprt&setSortType=asc"
+								class='c_linkblue'><strong>部署</strong></a></li>
+							<li class='w_70 tit'><a
+								href="/pzDiligence/diligenceSearchDetail.php?setSortItem=pstn&setSortType=asc"
+								class='c_linkblue'><strong>役職</strong></a></li>
+							<li class='w_85 tit'>勤怠項目</li>
+							<li class='w_139 tit'>勤怠期間</li>
+							<li class='w_70 tit'>勤労日数</li>
+							<li class='w_85 tit'>金額</li>
+							<li class='w_85 tit'>摘要</li>
+						</ul>
+						<ul class="clsListingTable">
+							<li class='w_85 '>2017-12-20</li>
+							<li class='w_70 '>정규직</li>
+							<!--<li class='w_70 '>No-140032</li>-->
+							<li class='w_70 '>박치흥</li>
+							<li class='w_70 '>기획전략팀</li>
+							<li class='w_70 '>부장</li>
+							<li class='w_85 '>연차</li>
+							<li class='w_139 '>17-12-20 ~ 17-12-22</li>
+							<li class='w_70 '>3<span style="font-size: 10px;">(d)</span></li>
+							<!-- # 2017-05-16 근태일수 일/시간 표기 -->
+							<li class='w_85 a_r bold'>0&nbsp;&nbsp;</li>
+							<!-- &nbsp;&nbsp;(연차) -->
+							<li class='w_85 c'></li>
 						</ul>
 					</div>
 				</div>
+				<hr class='hr_0'></hr>
+
 				<!-- 페이지 인덱스 -->
-				<!-- <div class="paginate">
-        <a href="#" class="prev">이전페이지</a>
-        <a href="#">1</a>  
-        <a href="#" class="on" title="선택됨">2</a>  
-        <a href="#">3</a>  
-        <a href="#">4</a>  
-        <a href="#">5</a>  
-        <a href="#">6</a>  
-        <a href="#">7</a>  
-        <a href="#">8</a>  
-        <a href="#">9</a>  
-        <a href="#">10</a>  
-          <a href="#" class="next">다음페이지</a>        
-    </div> -->
+				<!-- <style>
+/*페이징*/
+.paging{display:block; position:relative; clear:both; width:100%; padding:10px 0; text-align:center;}
+/*
+.paging{display:block; position:relative; clear:both; width:100%; margin:0 0 48px 30px; _margin-bottom:0px; padding:15px 0; text-align:center;}
+*/
+.paging a,
+.paging strong{position:relative; display:inline-block; margin-right:1px; padding:3px 3px 5px 3px; color:#000; text-decoration:none; border:1px solid #ffffff; line-height:normal; font:bold 13px Verdana; _width:26px;}
+.paging strong{color:#f23219 !important; border:1px solid #d7d7d7;}
+.paging a:hover{background:#fff; text-decoration:underline; border:1px solid #249ede;line-height:normal;}
+.paging .pre, .paging .next{font-weight:normal; display:inline-block; color:#565656; border:1px solid #d7d7d7;_position:relative; _top:-1px; font:12px Gulim; _width:60px;}
+.paging .pre{margin-right:9px; padding:7px 6px 3px 16px; background:url(http://imgs.yesform.com/z_i/btn_arrow_left_on.gif) no-repeat 8px 9px !important;}
+.paging .next{margin-left:9px; padding:7px 16px 3px 6px; background:url(http://imgs.yesform.com/z_i/btn_arrow_right_on.gif) no-repeat 47px 9px !important;}
+.paging .line, .paging .line:visited{position:relative; display:inline-block; margin-right:1px; padding:3px 3px 5px 3px; color:#000; text-decoration:none; border:1px solid #d7d7d7; line-height:normal; font:bold 13px Verdana; _width:26px;}
+.paging .line:hover{background:#fff; text-decoration:underline; border:1px solid #249ede;padding:3px 3px 5px 3px;line-height:normal; font:bold 13px Verdana; _width:26px;}
+</style>
+ -->
 
-				<!-- 메인 버튼 사각형  빅사이즈
-    <div class='btn c'>
-    <li>
-    <input type='image' value='신규 사원등록' src='/_commonImg/btn_new_employee.gif'  width='100px' height='100px' alt='신규 사원등록'  title='신규 사원등록'>
-       <input type='image' value='선택 삭제' src='/_commonImg/btn_select_delete.gif'  width='100px' height='100px'  hspace='15' alt='선택 삭제' title='선택 삭제'>
-    <input type='image' value='엑셀로 다운로드' src='/_commonImg/btn_xls_down.gif'  width='100px' height='100px'  alt='엑셀로 다운로드' title='엑셀로 다운로드'>
-    <input type='image' value='sms보내기' src='/_commonImg/btn_sms.gif'  width='100px' height='100px' hspace='15'  alt='sms보내기' title='sms보내기'>
-    </li>
-    </div>-->
-
-				<div class='btn c'>
-					<li><input name="btnGetPrint" id="btnGetPrint" type='image'
-						value='印刷' alt='印刷' title='印刷'>
-						<input name="btnGetExcel" id="btnGetExcel" type='image'
-						value='エクセルでダウンロード'
-						hspace='15' alt='エクセルでダウンロード' title='エクセルでダウンロード'></li>
+				<!-- 페이지 링크 -->
+				<div class="paginate c">
+					<a href='#' onClick="msg_pagelink(''); return false;" class='prev'>前へ</a>
+					<a href="#現在" class="on"><strong>1</strong></a> 
+					<a href='/pzDiligence/diligenceSearchDetail.php?page=11&scale=30&chkDlsvInpD=&chkDlgnTerm=&chkDprtCode=&chkEmplName=&chkDlgrCode=&chkDlgnCode=&chkLvItCode=&chkDlsvEtcs='
+						class='next'>次へ</a>
 				</div>
-				<!-- 메인 버튼 사각형    <div class='btn c'>
-    <li>
-    <input type='image' value='신규 사원등록' src='/_commonImg/btn_new_employee01.gif'  width='139px' height='33px' alt='신규 사원등록'  title='신규 사원등록'>
-       <input type='image' value='선택 삭제' src='/_commonImg/btn_select_delete01.gif'  width='115px' height='33px'  hspace='15' alt='선택 삭제' title='선택 삭제'>
-    <input type='image' value='엑셀로 다운로드' src='/_commonImg/btn_xls_down01.gif'  width='139px' height='33px'  alt='엑셀로 다운로드' title='엑셀로 다운로드'></li>
-    </div>
--->
+				<!-- 페이지 링크 끝 -->
+				<script language='Javascript'>
+					function msg_pagelink(ptype) {
+						if (ptype)
+							;
+						else
+							alert('これ以上移動するページはありません。');
+					}
+				</script>
+
+				<hr class='hr_0'></hr>
+				<div class='height_137 wp_100'>
+					<li class='wp_100 c'><input name="btnGetPrint"
+						id="btnGetPrint" type='image' value='印刷' alt='印刷' title='印刷'>
+						<input name="btnGetExcel" id="btnGetExcel" type='image'
+						value='エクセルでダウンロード' hspace='15' alt='エクセルでダウンロード'
+						title='エクセルでダウンロード'></li>
+				</div>
 			</div>
 		</div>
+		</div>
+		<hr class='hr_50'></hr>
 	</section>
 
 	<!-- footer -->

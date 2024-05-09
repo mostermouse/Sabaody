@@ -5,7 +5,7 @@ package org.sabaody.domain.user.model.attendancemanagement;
 import java.sql.Date;
 import java.util.Objects;
 
-public class AttendanceRecord extends IdEntity {
+public class AttendanceRecord extends EmploymentStatus {
     private Date  inputDate; // 입력일
     private String attendanceType; // 근태 기록
     private Date startDate; // 시작일
@@ -14,13 +14,20 @@ public class AttendanceRecord extends IdEntity {
 
     private Long  amount; // 금액
     private String summary; // 요약
+    public AttendanceRecord(){}
 
-    public AttendanceRecord() {
-        super(null);
+    public AttendanceRecord(Long amount, String attendanceDate, String attendanceType, Date endDate, Date inputDate, Date startDate, String summary) {
+        this.amount = amount;
+        this.attendanceDate = attendanceDate;
+        this.attendanceType = attendanceType;
+        this.endDate = endDate;
+        this.inputDate = inputDate;
+        this.startDate = startDate;
+        this.summary = summary;
     }
 
-    public AttendanceRecord(String id, Long amount, String attendanceDate, String attendanceType, Date endDate, Date inputDate, Date startDate, String summary) {
-        super(id);
+    public AttendanceRecord(String id, String attendanceRecord, String department, String division, String name, String position, Long amount, String attendanceDate, String attendanceType, Date endDate, Date inputDate, Date startDate, String summary) {
+        super(id, attendanceRecord, department, division, name, position);
         this.amount = amount;
         this.attendanceDate = attendanceDate;
         this.attendanceType = attendanceType;
@@ -84,31 +91,5 @@ public class AttendanceRecord extends IdEntity {
 
     public void setSummary(String summary) {
         this.summary = summary;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof AttendanceRecord)) return false;
-        AttendanceRecord that = (AttendanceRecord) o;
-        return Objects.equals(inputDate, that.inputDate) && Objects.equals(attendanceType, that.attendanceType) && Objects.equals(startDate, that.startDate) && Objects.equals(endDate, that.endDate) && Objects.equals(attendanceDate, that.attendanceDate) && Objects.equals(amount, that.amount) && Objects.equals(summary, that.summary);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(inputDate, attendanceType, startDate, endDate, attendanceDate, amount, summary);
-    }
-
-    @Override
-    public String toString() {
-        return "AttendanceRecord{" +
-                "amount=" + amount +
-                ", inputDate=" + inputDate +
-                ", attendanceType='" + attendanceType + '\'' +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", attendanceDate='" + attendanceDate + '\'' +
-                ", summary='" + summary + '\'' +
-                '}';
     }
 }

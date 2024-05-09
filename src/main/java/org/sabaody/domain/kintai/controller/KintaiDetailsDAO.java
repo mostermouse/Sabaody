@@ -12,7 +12,8 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import org.sabaody.domain.login.model.Login;
-import org.sabaody.domain.kintai.model.KintaiDetails;
+import org.sabaody.domain.user.model.attendancemanagement.AttendanceRecord;
+import org.sabaody.domain.user.model.attendancemanagement.EmploymentStatus;
 
 public class KintaiDetailsDAO {
 	DataSource dataSource;
@@ -27,32 +28,32 @@ public class KintaiDetailsDAO {
     }
     
     //Read
-    public List<KintaiDetails> getAllKintaiDetails() {
-        List<KintaiDetails> kintaiDetailsList = new ArrayList<>();
+
+    public List<AttendanceRecord> getAllRecord() {
+        List<AttendanceRecord> attendanceRecords = new ArrayList<>();
         try (Connection conn = dataSource.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM ");
+             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM  employmentinfo");
              ResultSet rs = pstmt.executeQuery()) {
 
             while (rs.next()) {
-            	KintaiDetails kintaiDetails = new KintaiDetails();
-                kintaiDetails.setInputDate(rs.getDate("inputDate"));
-                kintaiDetails.setDivision(rs.getString("division"));
-                kintaiDetails.setName(rs.getString("name"));
-                kintaiDetails.setDepartment(rs.getString("department"));
-                kintaiDetails.setPosition(rs.getString("position"));
-                kintaiDetails.setAttendanceType(rs.getString("attendanceType"));
-                kintaiDetails.setStartDate(rs.getDate("startDate"));
-                kintaiDetails.setEndDate(rs.getDate("endDate"));
-                kintaiDetails.setAttendanceDate(rs.getString("attendanceDate"));
-                kintaiDetails.setAmount(rs.getLong("amount"));
-                kintaiDetails.setSummary(rs.getString("summary"));
-                kintaiDetailsList.add(kintaiDetails);
+                AttendanceRecord attendanceRecord = new AttendanceRecord();
+               attendanceRecord.setInputDate(rs.getDate("inputDate"));
+               attendanceRecord.setDivision(rs.getString("division"));
+               attendanceRecord.setName(rs.getString("name"));
+               attendanceRecord.setDepartment(rs.getString("department"));
+               attendanceRecord.setPosition(rs.getString("position"));
+               attendanceRecord.setAttendanceType(rs.getString("attendanceRecord"));
+               attendanceRecord.setStartDate(rs.getDate("startDate"));
+               attendanceRecord.setEndDate(rs.getDate("endDate"));
+               attendanceRecord.setAttendanceDate(rs.getString("attendanceDate"));
+               attendanceRecord.setAmount(rs.getLong("amount"));
+               attendanceRecord.setSummary(rs.getString("summary"));
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return kintaiDetailsList;
+        return attendanceRecords;
     }
 
     public Login getUserByID(String userid){
