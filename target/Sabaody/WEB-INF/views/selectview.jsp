@@ -759,7 +759,7 @@
                             <hr class='hr_5'></hr>
                             <ul class='c' id="btnGroup">
                                 <li id="grpBtn01">
-                                    <button type="submit" alt="保存" title="保存">
+                                    <button type="submit" alt="保存" title="保存" onclick="showModal();">
                                         保存
                                     </button>
                                     <button type="button" class="p_l5" alt="内容を消去" title="内容を消去" onclick="clearForm()">
@@ -770,33 +770,27 @@
                                     <button type="submit" name="btnDlgnSaveUpd" id="btnDlgnSaveUpd" alt="修正" title="修正">
                                         修正
                                     </button>
-                                    <button type="button" alt='修正キャンセル' title='修正キャンセル' class='p_l5' onclick="cancelUpdate()">
+                                    <button type="button" alt='修正キャンセル' title='修正キャンセル' class='p_l5' onclick="closeModal()">
                                         修正キャンセル
                                     </button>
                                 </li>
                             </ul>
+
                 </form>
 
+
+
                 <script>
-                    // 내용을 삭제하는 함수
+
                     function clearForm() {
-                        document.getElementById("attRecord").reset(); // 폼 초기화
-                        // 수정 버튼 그룹 숨기기, 저장 버튼 그룹 보이기
-                        document.getElementById("grpBtn02").classList.add("disHide");
-                        document.getElementById("grpBtn01").classList.remove("disHide");
+                        document.getElementById("p_l5").reset();
+                        document.getElementById("grpBtn01").classList.add("disHide");
+                        document.getElementById("grpBtn02").classList.remove("disHide");
                     }
 
-                    // 수정 취소하는 함수
-                    function cancelUpdate() {
-                        // 폼 초기화
-                        document.getElementById("attRecord").reset();
-                        // 수정 버튼 그룹 숨기기, 저장 버튼 그룹 보이기
-                        document.getElementById("grpBtn02").classList.add("disHide");
-                        document.getElementById("grpBtn01").classList.remove("disHide");
-                    }
                 </script>
                 <script>
-                    // 현재 날짜를 가져오는 함수
+
                     function getCurrentDate() {
                         var today = new Date();
                         var year = today.getFullYear();

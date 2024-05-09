@@ -92,7 +92,7 @@ public class EmploymentStatusDAO {
     public List<EmploymentStatus> getAllEmploymentStatus() {
         List<EmploymentStatus> employmentStatusList = new ArrayList<>();
         try (Connection conn = dataSource.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM  employmentstatus");
+             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM  employmentinfo");
              ResultSet rs = pstmt.executeQuery()) {
 
             while (rs.next()) {

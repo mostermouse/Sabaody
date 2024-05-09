@@ -28,9 +28,9 @@ public class LoginServlet extends HttpServlet {
         Login user = dao.getUserByID(userId);
         if (user != null && user.getPassword().equals(password)) {
             request.getSession().setAttribute("userid", userId);
-            response.sendRedirect("/selectview");
+            response.sendRedirect("/selectview?loginResult=success");
         } else {
-            response.sendRedirect("/");
+            response.sendRedirect("/?loginResult=fail");
         }
 
 

@@ -24,10 +24,7 @@ public class CreateAttRecordServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html; charset=UTF-8");
-
-
         request.setCharacterEncoding("UTF-8");
-
 
         String inputDateStr = request.getParameter("inputdate");
         String employeeId = request.getParameter("employeeId");
@@ -60,6 +57,15 @@ public class CreateAttRecordServlet extends HttpServlet {
 
         try {
             dao.addAttendanceRecord(attRecord);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            dao.addAttendanceRecord(attRecord);
+            // 등록이 성공하면 JavaScript로 팝업을 띄워줌
+            String popupScript = "<script>alert('등록이 완료되었습니다.');</script>";
+            response.getWriter().println(popupScript);
         } catch (Exception e) {
             e.printStackTrace();
         }

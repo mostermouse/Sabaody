@@ -78,7 +78,7 @@
 
 <div class="login-container">
     <h2>Login</h2>
-    <form id="loginForm" action="/LoginServlet" method="post" onsubmit="showModal();">
+    <form id="loginForm" action="/LoginServlet" method="post" >
         <label for="userid">ログイン:</label>
         <input type="text" id="userid" name="userid" required><br><br>
         <label for="password">パスワード:</label>
@@ -90,32 +90,5 @@
 </div>
 
 
-<div id="myModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <p>ログインに失敗しました</p>
-    </div>
-</div>
-
-<script>
-    function showModal() {
-        var modal = document.getElementById("myModal");
-        modal.style.display = "block";
-    }
-    function closeModal() {
-        var modal = document.getElementById("myModal");
-        modal.style.display = "none";
-    }
-    var closeBtn = document.getElementsByClassName("close")[0];
-    closeBtn.onclick = function() {
-        closeModal();
-    }
-    window.onclick = function(event) {
-        var modal = document.getElementById("myModal");
-        if (event.target == modal) {
-            closeModal();
-        }
-    }
-</script>
 </body>
 </html>
