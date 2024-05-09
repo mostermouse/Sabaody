@@ -2,6 +2,8 @@
 <%@ page
 	import="org.sabaody.domain.user.model.attendancemanagement.EmploymentStatus"%>
 <%@ page import="java.util.List"%>
+<%@ page import="org.sabaody.domain.kintai.controller.KintaiDetailsDAO" %>
+<%@ page import="org.sabaody.domain.user.model.attendancemanagement.AttendanceRecord" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 
 <!DOCTYPE HTML>
@@ -448,34 +450,26 @@ input[type=text]::-ms-clear {
 						</ul>
 						<hr class='hr_5'></hr>
 						<ul class='c'>
-							<input name="btnSearch" id="btnSearch" type='image' value='照会する'
+							<input name="btnSearch" id="btnSearch" type='submit' value='照会する'
 								width='100px' height='27px' hspace='5' alt='照会する' title='照会する'>
-							<input name="btnRefresh" id="btnRefresh" type='image'
+							<input name="btnRefresh" id="btnRefresh" type='submit'
 								value='全て見る' width='100px' height='27px' hspace='5' alt='全て見る'
 								title='全て見る'>
 						</ul>
 					</div>
 				</form>
 
-				<!--  검색결과 -->
+				<!--  検索結果 -->
 				<div class='e_total'>
 					<div id='table1'>
 						<p class='caption'></p>
 						<ul>
-							<li class='w_85 tit'><a
-								href="/pzDiligence/diligenceSearchDetail.php?setSortItem=insd&setSortType=asc"
-								class='c_linkblue'><strong>入力日</strong></a></li>
+							<li class='w_85 tit'><a href="/pzDiligence/diligenceSearchDetail.php?setSortItem=insd&setSortType=asc" class='c_linkblue'><strong>入力日</strong></a></li>
 							<li class='w_70 tit '>区分</li>
 							<!--<li  class='w_70 tit '><a href="/pzDiligence/diligenceSearchDetail.php?setSortItem=emNo&setSortType=asc" class='c_linkblue'><strong>사원번호</strong></a></li>-->
-							<li class='w_70 tit'><a
-								href="/pzDiligence/diligenceSearchDetail.php?setSortItem=emNm&setSortType=asc"
-								class='c_linkblue'><strong>名前</strong></a></li>
-							<li class='w_70 tit'><a
-								href="/pzDiligence/diligenceSearchDetail.php?setSortItem=dprt&setSortType=asc"
-								class='c_linkblue'><strong>部署</strong></a></li>
-							<li class='w_70 tit'><a
-								href="/pzDiligence/diligenceSearchDetail.php?setSortItem=pstn&setSortType=asc"
-								class='c_linkblue'><strong>役職</strong></a></li>
+							<li class='w_70 tit'><a href="/pzDiligence/diligenceSearchDetail.php?setSortItem=emNm&setSortType=asc" class='c_linkblue'><strong>名前</strong></a></li>
+							<li class='w_70 tit'><a href="/pzDiligence/diligenceSearchDetail.php?setSortItem=dprt&setSortType=asc" class='c_linkblue'><strong>部署</strong></a></li>
+							<li class='w_70 tit'><a href="/pzDiligence/diligenceSearchDetail.php?setSortItem=pstn&setSortType=asc" class='c_linkblue'><strong>役職</strong></a></li>
 							<li class='w_85 tit'>勤怠項目</li>
 							<li class='w_139 tit'>勤怠期間</li>
 							<li class='w_70 tit'>勤労日数</li>
@@ -483,19 +477,22 @@ input[type=text]::-ms-clear {
 							<li class='w_85 tit'>摘要</li>
 						</ul>
 						<ul class="clsListingTable">
-							<li class='w_85 '>2017-12-20</li>
-							<li class='w_70 '>정규직</li>
-							<!--<li class='w_70 '>No-140032</li>-->
-							<li class='w_70 '>박치흥</li>
-							<li class='w_70 '>기획전략팀</li>
-							<li class='w_70 '>부장</li>
-							<li class='w_85 '>연차</li>
-							<li class='w_139 '>17-12-20 ~ 17-12-22</li>
-							<li class='w_70 '>3<span style="font-size: 10px;">(d)</span></li>
-							<!-- # 2017-05-16 근태일수 일/시간 표기 -->
-							<li class='w_85 a_r bold'>0&nbsp;&nbsp;</li>
-							<!-- &nbsp;&nbsp;(연차) -->
-							<li class='w_85 c'></li>
+							<% KintaiDetailsDAO kintaiDetailsDAO  = new KintaiDetailsDAO();
+								List<AttendanceRecord> kintaiDetailsList = kintaiDetailsDAO.getAllRecord();
+								if(kintaiDetailsList != null && !kintaiDetailsList.isEmpty()){
+									for(AttendanceRecord record : kintaiDetailsList){ %>
+							<li class='w_85'><%= record.getInputDate() %></li>
+							<li class='w_70'><%= record.getDivision() %></li>
+							<li class='w_70'><%= record.getName() %></li>
+							<li class='w_70'><%= record.getDepartment() %></li>
+							<li class='w_70'><%= record.getPosition() %></li>
+							<li class='w_85'><%= record.getAttendanceType() %></li>
+							<li class='w_139'><%= record.getStartDate() %> ~ <%= record.getEndDate() %></li>
+							<li class='w_70'><%= record.getAttendanceDate() %></li>
+							<li class='w_85'><%= record.getAmount() %></li>
+							<li class='w_85'><%= record.getSummary() %></li>
+							<% }
+							} %>
 						</ul>
 					</div>
 				</div>
@@ -538,13 +535,7 @@ input[type=text]::-ms-clear {
 				</script>
 
 				<hr class='hr_0'></hr>
-				<div class='height_137 wp_100'>
-					<li class='wp_100 c'><input name="btnGetPrint"
-						id="btnGetPrint" type='image' value='印刷' alt='印刷' title='印刷'>
-						<input name="btnGetExcel" id="btnGetExcel" type='image'
-						value='エクセルでダウンロード' hspace='15' alt='エクセルでダウンロード'
-						title='エクセルでダウンロード'></li>
-				</div>
+
 			</div>
 		</div>
 		</div>

@@ -32,22 +32,23 @@ public class KintaiDetailsDAO {
     public List<AttendanceRecord> getAllRecord() {
         List<AttendanceRecord> attendanceRecords = new ArrayList<>();
         try (Connection conn = dataSource.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM  employmentinfo");
+             PreparedStatement pstmt = conn.prepareStatement("SELECT ar.inputdate, ei.division, ei.name, ei.department, ei.position, ar.attendancetype, ar.startdate, ar.enddate, ar.attendancedate, ar.amount, ar.summary FROM attendancerecord ar JOIN employmentinfo ei ON ar.id = ei.id");
              ResultSet rs = pstmt.executeQuery()) {
 
             while (rs.next()) {
                 AttendanceRecord attendanceRecord = new AttendanceRecord();
-               attendanceRecord.setInputDate(rs.getDate("inputDate"));
-               attendanceRecord.setDivision(rs.getString("division"));
-               attendanceRecord.setName(rs.getString("name"));
-               attendanceRecord.setDepartment(rs.getString("department"));
-               attendanceRecord.setPosition(rs.getString("position"));
-               attendanceRecord.setAttendanceType(rs.getString("attendanceRecord"));
-               attendanceRecord.setStartDate(rs.getDate("startDate"));
-               attendanceRecord.setEndDate(rs.getDate("endDate"));
-               attendanceRecord.setAttendanceDate(rs.getString("attendanceDate"));
-               attendanceRecord.setAmount(rs.getLong("amount"));
-               attendanceRecord.setSummary(rs.getString("summary"));
+                attendanceRecord.setInputDate(rs.getDate("inputdate"));
+                attendanceRecord.setDivision(rs.getString("division"));
+                attendanceRecord.setName(rs.getString("name"));
+                attendanceRecord.setDepartment(rs.getString("department"));
+                attendanceRecord.setPosition(rs.getString("position"));
+                attendanceRecord.setAttendanceType(rs.getString("attendancetype"));
+                attendanceRecord.setStartDate(rs.getDate("startdate"));
+                attendanceRecord.setEndDate(rs.getDate("enddate"));
+                attendanceRecord.setAttendanceDate(rs.getString("attendancedate"));
+                attendanceRecord.setAmount(rs.getLong("amount"));
+                attendanceRecord.setSummary(rs.getString("summary"));
+                attendanceRecords.add(attendanceRecord);
             }
 
         } catch (SQLException e) {
@@ -55,6 +56,7 @@ public class KintaiDetailsDAO {
         }
         return attendanceRecords;
     }
+
 
     public Login getUserByID(String userid){
         Login user = null;

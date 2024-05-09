@@ -43,3 +43,18 @@ create table employmentinfo(
 
 
 );
+
+//근태조회 조인 셀렉트
+SELECT ar.inputdate,
+       ei.division,
+       ei.name,
+       ei.department,
+       ei.position,
+       ar.attendancetype,
+       ar.startdate,
+       ar.enddate,
+       ar.attendancedate,
+       ar.amount,
+       ar.summary
+FROM attendancerecord ar
+JOIN employmentinfo ei ON ar.id = ei.id;
