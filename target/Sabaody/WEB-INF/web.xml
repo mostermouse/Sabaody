@@ -41,6 +41,22 @@
     <servlet-name>employee</servlet-name>
     <url-pattern>/employee</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>kintaimonths</servlet-name>
+    <jsp-file>/WEB-INF/views/kintaimonths.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>kintaimonths</servlet-name>
+    <url-pattern>/kintaimonths</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>kintaidetails</servlet-name>
+    <jsp-file>/WEB-INF/views/kintaidetails.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>kintaidetails</servlet-name>
+    <url-pattern>/kintaidetails</url-pattern>
+  </servlet-mapping>
 
   <filter>
     <filter-name>charConfig</filter-name>

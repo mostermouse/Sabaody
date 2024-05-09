@@ -53,20 +53,20 @@
    <div id="top_gnb_2017">
       <div class="navi_2017">
          <ul class="navi_L_2017">
-            <li class="n01"><button onclick="location.href='/login'"
+            <li class="n01"><button onclick="location.href='/selectview'"
                   title="[Shift + 1] HOME">
                   <span id="SK01">HOME</span>
                </button></li>
-            <li class="n02"><button onclick="location.href='/record'"
+            <li class="n02"><button onclick="location.href='/employee'"
                   title="[Shift + 2] 社員登録">
                   <span id="SK02">社員登録</span>
                </button></li>
-            <li class="n03"><button onclick="location.href='/index.jsp'"
+            <li class="n03"><button onclick="location.href='/kintaidetails'"
                   title="[Shift + 3] 勤怠照会">
                   <span id="SK03">勤怠照会</span>
                </button></li>
             <li class="n05"><button
-                  onclick="location.href='/AttendanceManagement'"
+                  onclick="location.href='/kintaimonths'"
                   title="[Shift + 4] 休暇照会">
                   <span id="SK04">休暇照会</span>
                </button></li>

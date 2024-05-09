@@ -63,9 +63,7 @@ public class CreateAttRecordServlet extends HttpServlet {
 
         try {
             dao.addAttendanceRecord(attRecord);
-            // 등록이 성공하면 JavaScript로 팝업을 띄워줌
-            String popupScript = "<script>alert('등록이 완료되었습니다.');</script>";
-            response.getWriter().println(popupScript);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

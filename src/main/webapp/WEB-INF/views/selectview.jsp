@@ -111,7 +111,7 @@
         <div class="navi_2017">
             <ul class="navi_L_2017">
                 <li class="n01">
-                    <button onclick="location.href='/login'" title="[Shift + 1] HOME"><span id="SK01">HOME</span>
+                    <button onclick="location.href='/selectview'" title="[Shift + 1] HOME"><span id="SK01">HOME</span>
                     </button>
                 </li>
                 <li class="n02">
@@ -119,11 +119,11 @@
                             id="SK02">社員登録</span></button>
                 </li>
                 <li class="n03">
-                    <button onclick="location.href='/index.jsp'" title="[Shift + 3] 勤怠照会"><span
+                    <button onclick="location.href='/kintaidetails'" title="[Shift + 3] 勤怠照会"><span
                             id="SK03">勤怠照会</span></button>
                 </li>
                 <li class="n05">
-                    <button onclick="location.href='/AttendanceManagement'" title="[Shift + 4] 休暇照会"><span
+                    <button onclick="location.href='/kintaimonths'" title="[Shift + 4] 休暇照会"><span
                             id="SK04">休暇照会</span></button>
                 </li>
             </ul>
@@ -759,7 +759,7 @@
                             <hr class='hr_5'></hr>
                             <ul class='c' id="btnGroup">
                                 <li id="grpBtn01">
-                                    <button type="submit" alt="保存" title="保存" onclick="showModal();">
+                                    <button type="submit" alt="保存" title="保存">
                                         保存
                                     </button>
                                     <button type="button" class="p_l5" alt="内容を消去" title="内容を消去" onclick="clearForm()">
