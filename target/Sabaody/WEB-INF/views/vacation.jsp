@@ -364,15 +364,13 @@
                         <input name="srchAllKwrd" id="srchAllKwrd" type="text" value="検索キーワード入力" class="border w_170 height_22 p_l5" onfocus="this.value = (this.value == '検索キーワード入力')?'':this.value;">
                     </ul>
                     <ul class="p_t1">
-                        <input type="image" value="検索" src="/_commonImg/btn_s_search.png" width="25px" height="23px" alt="検索" title="検索" class="p_l5 ">
+                        <input type="submit" value="検索" src="/_commonImg/btn_s_search.png" width="25px" height="23px" alt="検索" title="検索" class="p_l5 ">
                     </ul>
                 </form>
-                <a href="/pzDiligence/holidaysSearchResult.php?selLvItCode=">
-                    <img name="btnSrchInit" id="btnSrchInit" type="image" value="全体表示" src="/_commonImg/btn_list_all01.png" width="74px" height="23px" alt="全体表示" title="全体表示" class="p_l5">
-                </a>
+
                 <ul class="right w_169 p_t1">
         <span name="btnSetSort" id="btnSetSort" class="anchor">
-            <img src="/_commonImg/btn_align_set.png" width="114" height="23" class="p_l5" alt="整列基準 設定する" title="整列基準 設定する">
+
         </span>
                 </ul>
                 <ul class="right p_t1">
@@ -667,29 +665,9 @@
             </script>
 
 
-            <!-- 메인 버튼 사각형  빅사이즈
-                <div class='btn c'>
-                <li>
-                <input type='image' value='신규 社員등록' src='/_commonImg/btn_new_employee.gif'  width='100px' height='100px' alt='신규 社員등록'  title='신규 社員등록'>
-                   <input type='image' value='선택 삭제' src='/_commonImg/btn_select_delete.gif'  width='100px' height='100px'  hspace='15' alt='선택 삭제' title='선택 삭제'>
-                <input type='image' value='엑셀로 다운로드' src='/_commonImg/btn_xls_down.gif'  width='100px' height='100px'  alt='엑셀로 다운로드' title='엑셀로 다운로드'>
-                <input type='image' value='sms보내기' src='/_commonImg/btn_sms.gif'  width='100px' height='100px' hspace='15'  alt='sms보내기' title='sms보내기'>
-                </li>
-                </div>-->
 
-            <div class="btn c">
-                <li>
-                    <input name="btnGetPrint" id="btnGetPrint" type="image" value="印刷" src="/_commonImg/btn_print_s.png" alt="印刷" title="印刷">
-                    <input name="btnGetExcel" id="btnGetExcel" type="image" value="エクセルでダウンロード" src="/_commonImg/btn_xls_down_s.png" hspace="15" alt="エクセルでダウンロード" title="エクセルでダウンロード">
-                </li>
-            </div>
-            <!-- 메인 버튼 사각형    <div class='btn c'>
-              <li>
-              <input type='image' value='신규 社員등록' src='/_commonImg/btn_new_employee01.gif'  width='139px' height='33px' alt='신규 社員등록'  title='신규 社員등록'>
-                 <input type='image' value='선택 삭제' src='/_commonImg/btn_select_delete01.gif'  width='115px' height='33px'  hspace='15' alt='선택 삭제' title='선택 삭제'>
-              <input type='image' value='엑셀로 다운로드' src='/_commonImg/btn_xls_down01.gif'  width='139px' height='33px'  alt='엑셀로 다운로드' title='엑셀로 다운로드'></li>
-              </div>
-          -->
+
+
         </div>
     </div>
 </section>
