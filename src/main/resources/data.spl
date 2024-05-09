@@ -47,6 +47,7 @@ create table employmentinfo(
 //휴가조회 테이블
 create table vacationinquiry(
   id varchar2(50) primary key not null,
+  vacation_items varchar2(50),
   vacation_types Number ,
   used_vacationdays Number,
   remaining_vacationdays Number
@@ -58,7 +59,7 @@ ADD CONSTRAINT fk_vacation_id
 FOREIGN KEY (id)
 REFERENCES employmentinfo(ID);
 //휴가조회 조인 셀렉트
-SELECT ei.division, ei.id, ei.name, ei.department, ei.position, ar.attendancetype
+SELECT ei.division, ei.id, ei.name, ei.department, ei.position, ei.vacation_items, ar.attendancetype
 FROM attendancerecord ar
 JOIN employmentinfo ei ON ar.id = ei.id;
 

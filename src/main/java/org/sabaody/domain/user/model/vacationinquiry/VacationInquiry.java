@@ -9,7 +9,7 @@ import org.sabaody.domain.user.model.attendancemanagement.EmploymentStatus;
 
 public class VacationInquiry extends EmploymentStatus {
 
-
+    private String vacationItems; //휴가항목
     private Long vacationTypes; // 休暇全体
     private Long usedVacationDays; // 使用した休暇
     private Long remainingVacationDays; // 残余休暇数
