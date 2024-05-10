@@ -32,20 +32,20 @@ public class KintaiDetailsDAO {
     public List<AttendanceRecord> getAllRecord() {
         List<AttendanceRecord> attendanceRecords = new ArrayList<>();
         try (Connection conn = dataSource.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement("SELECT ar.inputdate, ei.division, ei.name, ei.department, ei.position, ar.attendancetype, ar.startdate, ar.enddate, ar.attendancedate, ar.amount, ar.summary FROM attendancerecord ar JOIN employmentinfo ei ON ar.id = ei.id");
+             PreparedStatement pstmt = conn.prepareStatement("SELECT ar.input_date, ei.division, ei.name, ei.department, ei.position, ar.attendance_type, ar.start_date, ar.end_date, ar.attendance_date, ar.amount, ar.summary FROM attendancerecord ar JOIN employmentinfo ei ON ar.id = ei.id");
              ResultSet rs = pstmt.executeQuery()) {
 
             while (rs.next()) {
                 AttendanceRecord attendanceRecord = new AttendanceRecord();
-                attendanceRecord.setInputDate(rs.getDate("inputdate"));
+                attendanceRecord.setInputDate(rs.getDate("input_date"));
                 attendanceRecord.setDivision(rs.getString("division"));
                 attendanceRecord.setName(rs.getString("name"));
                 attendanceRecord.setDepartment(rs.getString("department"));
                 attendanceRecord.setPosition(rs.getString("position"));
-                attendanceRecord.setAttendanceType(rs.getString("attendancetype"));
-                attendanceRecord.setStartDate(rs.getDate("startdate"));
-                attendanceRecord.setEndDate(rs.getDate("enddate"));
-                attendanceRecord.setAttendanceDate(rs.getString("attendancedate"));
+                attendanceRecord.setAttendanceType(rs.getString("attendance_type"));
+                attendanceRecord.setStartDate(rs.getDate("start_date"));
+                attendanceRecord.setEndDate(rs.getDate("end_date"));
+                attendanceRecord.setAttendanceDate(rs.getString("attendance_date"));
                 attendanceRecord.setAmount(rs.getLong("amount"));
                 attendanceRecord.setSummary(rs.getString("summary"));
                 attendanceRecords.add(attendanceRecord);

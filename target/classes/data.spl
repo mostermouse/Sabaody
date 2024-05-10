@@ -1,11 +1,11 @@
 
 CREATE TABLE attendancerecord (
                                   id VARCHAR(255) NOT NULL PRIMARY KEY,
-                                  inputdate DATE,
-                                  attendancetype VARCHAR(255),
-                                  startdate DATE,
-                                  enddate DATE,
-                                  attendancedate VARCHAR(255),
+                                  input_date DATE,
+                                  attendance_type VARCHAR(255),
+                                  start_date DATE,
+                                  end_date DATE,
+                                  attendance_date VARCHAR(255),
                                   amount Number,
                                   summary VARCHAR(255)
 );
@@ -35,10 +35,10 @@ create table employmentinfo(
     name varchar2(20) not null,
     department varchar2(20) not null ,
     position varchar2(20) not null,
-    attendancerecord varchar2(50),
-    dateofjoining Date,
+    attendance_record varchar2(50),
+    date_of_joining Date,
     address varchar2(100),
-    phonenumber varchar2(50),
+    phone_number varchar2(50),
     email varchar2(50)
 
 
@@ -47,9 +47,10 @@ create table employmentinfo(
 //휴가조회 테이블
 create table vacationinquiry(
   id varchar2(50) primary key not null,
+  vacation_items varchar2(50),
   vacation_types Number ,
-  used_vacationdays Number,
-  remaining_vacationdays Number
+  used_vacation_days Number,
+  remaining_vacation_days Number
 
 );
 
@@ -58,7 +59,7 @@ ADD CONSTRAINT fk_vacation_id
 FOREIGN KEY (id)
 REFERENCES employmentinfo(ID);
 //휴가조회 조인 셀렉트
-SELECT ei.division, ei.id, ei.name, ei.department, ei.position, ar.attendancetype
+SELECT ei.division, ei.id, ei.name, ei.department, ei.position, ei.vacation_items, ar.attendancetype
 FROM attendancerecord ar
 JOIN employmentinfo ei ON ar.id = ei.id;
 

@@ -42,7 +42,7 @@ public class EmploymentStatusDAO {
 
     public void addEmployment(String id, String division, String name, String department, String position, String attendanceRecord, Date dateOfJoining, String address, String phoneNumber, String email) throws SQLException {
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "INSERT INTO employmentinfo(id, division, name, department, position, attendancerecord, dateofjoining, address, phonenumber, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO employmentinfo(id, division, name, department, position, attendance_record, date_of_joining, address, phone_number, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             try (PreparedStatement statement = conn.prepareStatement(sql)) {
                 statement.setString(1, id);
                 statement.setString(2, division);
@@ -66,7 +66,7 @@ public class EmploymentStatusDAO {
 
     public void addAttendanceRecord(AttendanceRecord attendanceRecord) throws Exception {
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "INSERT INTO AttendanceRecord (inputDate,id, attendanceType, startDate, endDate, attendanceDate, amount, summary) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO AttendanceRecord (input_date,id, attendance_type, start_date, end_date, attendance_date, amount, summary) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             try (PreparedStatement statement = conn.prepareStatement(sql)) {
 
                 statement.setDate(1, attendanceRecord.getInputDate());
@@ -102,7 +102,7 @@ public class EmploymentStatusDAO {
                 employmentStatus.setName(rs.getString("name"));
                 employmentStatus.setDepartment(rs.getString("department"));
                 employmentStatus.setPosition(rs.getString("position"));
-                employmentStatus.setAttendanceRecord(rs.getString("attendancerecord"));
+                employmentStatus.setAttendanceRecord(rs.getString("attendance_record"));
                 employmentStatusList.add(employmentStatus);
             }
 
@@ -131,7 +131,7 @@ public class EmploymentStatusDAO {
     //Update
     public void updateEmploymentStatus(EmploymentStatus employmentStatus) {
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "UPDATE employmentstatus SET name = ?, department = ?, position = ?, attendancerecord = ? WHERE id = ?";
+            String sql = "UPDATE employmentstatus SET name = ?, department = ?, position = ?, attendance_record = ? WHERE id = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, employmentStatus.getName());
             statement.setString(2, employmentStatus.getDepartment());
