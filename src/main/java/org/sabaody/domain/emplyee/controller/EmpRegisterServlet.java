@@ -1,10 +1,14 @@
 package org.sabaody.domain.emplyee.controller;
 
 import org.sabaody.domain.user.controller.EmploymentStatusDAO;
+import org.sabaody.domain.user.model.attendancemanagement.AttendanceRecord;
+import org.sabaody.domain.user.model.attendancemanagement.EmploymentInfo;
+import org.sabaody.domain.user.model.attendancemanagement.EmploymentStatus;
 
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,31 +28,29 @@ public class EmpRegisterServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Retrieve parameters from the request
-        String id = request.getParameter("id");
-        String division = request.getParameter("division");
-        String name = request.getParameter("name");
-        String department = request.getParameter("department");
-        String position = request.getParameter("position");
-        String attendanceRecord = request.getParameter("attendanceRecord");
-        String dateOfJoiningStr = request.getParameter("hireDate");
-        String address = request.getParameter("address");
-        String phoneNumber = request.getParameter("phonenumber");
-        String email = request.getParameter("email");
+        response.setContentType("text/html; charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
 
-        Date dateOfJoining = Date.valueOf(dateOfJoiningStr);
+        String idStr = request.getParameter("id");
+        String divisionStr = request.getParameter("division");
+        String nameStr = request.getParameter("name");
+        String departmentStr = request.getParameter("department");
+        String positionStr = request.getParameter("position");
+        String phoneNumberStr = request.getParameter("phoneNumber");
+        String addressStr = request.getParameter("address");
+        String emailStr = request.getParameter("email");
+        Date joinStr = Date.valueOf(request.getParameter("hireDate"));
+
 
         try {
-
-            dao.addEmployment(id, division, name, department, position, attendanceRecord, dateOfJoining, address, phoneNumber, email);
-
-
-            response.sendRedirect("/selectview");
+            dao.addEmployment(idStr, divisionStr, nameStr, departmentStr, positionStr, joinStr, addressStr, phoneNumberStr, emailStr);
         } catch (SQLException e) {
-
-            response.sendRedirect("error.jsp");
-            e.printStackTrace();
+            e.printStackTrace(); // 또는 적절한 예외 처리를 수행하세요.
         }
+
+        response.sendRedirect("/selectview");
     }
 
+
 }
+

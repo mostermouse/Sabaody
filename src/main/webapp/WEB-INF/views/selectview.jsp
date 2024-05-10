@@ -6,7 +6,7 @@
 <!DOCTYPE HTML>
 <html lang="UTF-8">
 <head>
-    <title>2チーム　（조정인 , 최가람 , 장민수 , 김소연）</title>
+    <title>2チーム</title>
     <meta charset="UTF-8"/>
 
 
@@ -92,15 +92,14 @@
         }
     </style>
 
-    <div class="jbMenu" style="text-align:left;color:#FFFFFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2チーム　（조정인 , 최가람 , 장민수 ,
-        김소연） <a href="/pzServiceGuide/php/inLogoutProc.php?ref=ExZon"><span style="color:#FFFFFF;"></span></a></div>
+    <div class="jbMenu" style="text-align:left;color:#FFFFFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2チーム <a href="/pzServiceGuide/php/inLogoutProc.php?ref=ExZon"><span style="color:#FFFFFF;"></span></a></div>
     <div id="main_header">
         <div class="header">
-            <ul class='logo p_t10'>
+           <%-- <ul class='logo p_t10'>
                 <button onclick="location.href='/'">人事管理</button>
-            </ul>
+            </ul>--%>
 
-            <ul class="logInfo">공부하자</ul>
+
 
         </div>
     </div>
@@ -601,13 +600,7 @@
                                             width='74px'
                                             height='23px' alt='全て見る' title='全て見る' class='p_l5'></ul>
                     <ul class='p_t5 p_l10 c_red'>* 複数選択時に勤怠記録を一括適用できます。</ul>
-                    <ul style="float:right;padding-top:5px;padding-right:25px;">
-                        <select name="selEmplStat" id="selEmplStat" style="width:80px;">
-                            <option value="2">状態別</option><!-- 전체 -->
-                            <option value="1" SELECTED>在職</option>
-                            <option value="0">退職</option>
-                        </select>
-                    </ul>
+
                 </div>
                 <ul>
                     <div class='dil_w_list'>
@@ -621,7 +614,7 @@
                                 <li class='w_100 tit'><strong>名前</strong></li>
                                 <li class='w_120 tit'><strong>部署</strong></li>
                                 <li class='w_120 tit'><strong>役職</strong></li>
-                                <li class='w_119 tit'><strong>勤怠記録</strong></li>
+                                <li class='w_119 tit'><strong>マザーフレイム</strong></li>
                             </ul>
                             <div id="disContentList" class="disContentList" style="width:710px;">
                                 <div id="table_dil_data">
@@ -648,11 +641,12 @@
                                         </li>
                                         <li class='w_120 c'><%= employmentStatus.getPosition() %>
                                         </li>
+
                                         <li class='w_119 c'>
-                                            <button type="submit" name="btnDiliMnt" id="btnDiliMnt" class="anchor"
-                                                    onclick="$.fn.employeeDiliList('<%= employmentStatus.getId() %>');">
-                                                管理
-                                            </button>
+                                            <form action="/deleteEmployee" method="post">
+                                                <input type="hidden" name="employeeId" value="<%= employmentStatus.getId() %>">
+                                                <button type="submit" alt="削除" title="削除">削除</button>
+                                            </form>
                                         </li>
 
                                     </ul>

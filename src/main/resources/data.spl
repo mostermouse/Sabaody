@@ -1,14 +1,14 @@
 create table employmentinfo(  //사원 정보 등록 테이블
  id varchar2(50) primary key not null,
     division varchar2(20) not null ,
-    name varchar2(20) not null,
-    department varchar2(20) not null ,
-    position varchar2(20) not null,
+    name varchar2(100) not null,
+    department varchar2(60) not null ,
+    position varchar2(100) not null,
     attendance_record varchar2(50),
     date_of_joining Date,
-    address varchar2(100),
+    address varchar2(200),
     phone_number varchar2(50),
-    email varchar2(50)
+    email varchar2(100)
 
 );
 
@@ -27,16 +27,10 @@ create table ATTENDANCERECORD  //사원 상세정보 등록 테이블
     SUMMARY         VARCHAR2(255)
 );
 
-create table login(  //로그인 테이블
-   id varchar2(50) Not Null primary key,
-    userid  varchar2(50) Not null primary key ,
-    password varchar2(100)
+create table login(
+    userid  varchar2(50) Not null primary key,
+    password varchar2(100)not null
 );
-
-ALTER TABLE login
-ADD CONSTRAINT fk_login_id
-FOREIGN KEY (id)
-REFERENCES employmentinfo(ID);
 
 create table VACATIONINQUIRY   //휴가 조회 테이블
 (
@@ -50,8 +44,47 @@ create table VACATIONINQUIRY   //휴가 조회 테이블
     REMAINING_VACATION_DAYS NUMBER
 );
 
+//휴가 월별 조회
+create table kintaimonths(
+    id varchar2(50) not null primary key ,
+    sum  Number ,
+    deduction number
+);
+ALTER TABLE KINTAIMONTHS
+    ADD CONSTRAINT fk_kin_id
+        FOREIGN KEY (id)
+            REFERENCES ATTENDANCERECORD(ID);
 
 
+
+
+
+//아이디삭제시 외래 참조되어있는거 연쇄 삭제 시킴
+
+ALTER TABLE login  //안씀
+    ADD CONSTRAINT fk_login_id
+        FOREIGN KEY (id)
+            REFERENCES employmentinfo(id)
+                ON DELETE CASCADE;
+
+
+ALTER TABLE ATTENDANCERECORD
+    ADD CONSTRAINT FK_EMP_STATUS_ID
+        FOREIGN KEY (ID)
+            REFERENCES EMPLOYMENTINFO(id)
+                ON DELETE CASCADE;
+
+ALTER TABLE VACATIONINQUIRY
+    ADD CONSTRAINT FK_VACATION_ID
+        FOREIGN KEY (ID)
+            REFERENCES EMPLOYMENTINFO(id)
+                ON DELETE CASCADE;
+
+ALTER TABLE KINTAIMONTHS
+    ADD CONSTRAINT fk_kin_id
+        FOREIGN KEY (id)
+            REFERENCES ATTENDANCERECORD(ID)
+                ON DELETE CASCADE;
 
 ----------------------------------------------------------
 
@@ -71,9 +104,11 @@ FROM attendancerecord ar
 JOIN employmentinfo ei ON ar.id = ei.id;
 
 
-
 //휴가조회 조인 셀렉트
 SELECT ei.id, ei.division, ei.name, ei.department, ei.position, ar.vacation_items,
  ar.vacation_types, ar.used_vacation_days, ar.remaining_vacation_days FROM
  vacationinquiry ar JOIN employmentinfo ei ON ar.id = ei.id;
 
+//휴가 월별 조회 셀렉트
+select ar.DIVISION , ar.id , ar.name , ar.department , ar.position ,sr.sum , sr.deduction
+from EMPLOYMENTINFO ar JOIN kintaimonths sr On ar.ID = sr.ID;

@@ -8,6 +8,7 @@ public class EmploymentInfo extends EmploymentStatus {
     private String address;
     private String phonenumber;
     private String email;
+    public EmploymentInfo(){}
 
         public EmploymentInfo(String address, String dateofjoining, String email, String phonenumber) {
                 this.address = address;

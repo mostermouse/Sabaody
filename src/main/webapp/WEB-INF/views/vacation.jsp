@@ -2,12 +2,15 @@
 <%@ page
         import="org.sabaody.domain.user.model.attendancemanagement.EmploymentStatus"%>
 <%@ page import="java.util.List"%>
+<%@ page import="org.sabaody.domain.vacationInquiry.controller.VacationInquiryDAO"%>
+<%@ page import="org.sabaody.domain.vacationInquiry.model.vacationinquiry.VacationInquiry"%>
+<%@ page import="org.sabaody.domain.user.model.attendancemanagement.AttendanceRecord"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 
 <!DOCTYPE HTML>
 <html lang="UTF-8">
 <head>
-    <title>2チーム （조정인 , 최가람 , 장민수 , 김소연）</title>
+    <title>2チーム</title>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" type="text/css"
@@ -93,20 +96,12 @@
         }
     </style>
     <div class="jbMenu" style="text-align: left; color: #FFFFFF;">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2チーム （조정인 , 최가람 , 장민수 , 김소연） <a
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2チーム <a
             href="/pzServiceGuide/php/inLogoutProc.php?ref=ExZon"><span
             style="color: #FFFFFF;"></span></a>
     </div>
     <div id="main_header">
-        <div class="header">
-            <ul class='logo p_t10'>
-                <button onclick="location.href='/'">人事管理</button>
-            </ul>
 
-            <ul class="logInfo">팀장님 도와주세요
-            </ul>
-
-        </div>
     </div>
 </header>
 
@@ -356,8 +351,8 @@
                     <ul class="p_t1">
                         <select name="selLvItCode" id="selLvItCode" style="width:130px;" class="goSelect">
                             <option value="goLeaveSet">休暇設定する</option>
-                            <option value="458597" selected="">2017_有給休暇</option>
-                            <option value="458598">2017_報奨休暇</option>
+                            <option value="458597" selected="">2024_有給休暇</option>
+                            <option value="458598">2024_報奨休暇</option>
                         </select>
                     </ul>
                     <ul class="p_l5">
@@ -437,195 +432,41 @@
                 <div id="table1">
                     <p class="caption"></p>
                     <ul>
-                        <li class="w_105 tit ">区分</li>
-                        <li class="w_105 tit "><a href="/pzDiligence/holidaysSearchResult.php?selLvItCode=458597&amp;setEmplStatNum=1&amp;selPstnCode=&amp;setSortItem=emNo&amp;setSortType=asc" class="c_linkblue"><strong>社員番号</strong></a></li>
-                        <li class="w_100 tit"><a href="/pzDiligence/holidaysSearchResult.php?selLvItCode=458597&amp;setEmplStatNum=1&amp;selPstnCode=&amp;setSortItem=emNm&amp;setSortType=asc" class="c_linkblue"><strong>姓名</strong></a></li>
-                        <li class="w_120 tit"><a href="/pzDiligence/holidaysSearchResult.php?selLvItCode=458597&amp;setEmplStatNum=1&amp;selPstnCode=&amp;setSortItem=dprt&amp;setSortType=asc" class="c_linkblue"><strong>部署</strong></a></li>
-                        <li class="w_120 tit"><a href="/pzDiligence/holidaysSearchResult.php?selLvItCode=458597&amp;setEmplStatNum=1&amp;selPstnCode=&amp;setSortItem=pstn&amp;setSortType=asc" class="c_linkblue"><strong>職位</strong></a></li>
+                        <li class="w_105 tit">区分</li>
+                        <li class="w_105 tit">社員番号</li>
+                        <li class="w_100 tit">姓名</li>
+                        <li class="w_120 tit">部署</li>
+                        <li class="w_120 tit">職位</li>
                         <li class="w_170 tit">休暇項目</li>
                         <li class="w_140 tit">全体</li>
                         <li class="w_140 tit">使用</li>
                         <li class="w_140 tit">残余</li>
                     </ul>
+                    <ul class="vacationinquiryTable">
+                        <%
+                            VacationInquiryDAO vacationInquiryDAO = new VacationInquiryDAO();
+                            List<VacationInquiry> vacationInquiryList = vacationInquiryDAO.getAllVacationInquiries();
+                            if (vacationInquiryList != null && !vacationInquiryList.isEmpty()) {
+                                for (VacationInquiry record : vacationInquiryList) {
+                        %>
+                        <li class='w_105'><%=record.getDivision()%></li>
+                        <li class='w_105'><%=record.getId()%></li>
+                        <li class='w_100'><%=record.getName()%></li>
+                        <li class='w_120'><%=record.getDepartment()%></li>
+                        <li class='w_120'><%=record.getPosition()%></li>
+                        <li class='w_170'><%=record.getVacationItems()%></li>
+                        <li class='w_140'><%=record.getVacationTypes()%></li>
+                        <li class='w_140'><%=record.getUsedVacationDays()%></li>
+                        <li class='w_140'><%=record.getRemainingVacationDays()%></li>
 
-
-
-                    <ul name="LILE1202620" id="LILE1202620" onclick="$.fn.viewLeavItemListInEmployee('1202620');" title="김웅 休暇使用 状況(No.1)" class="anchor clsListingTable sell_bg"> <!-- style="cursor:pointer;" -->
-                        <li class="w_105  c_white">正規職</li>
-                        <li class="w_105  c_white">No-140001</li>
-                        <li class="w_100  c_white">김웅</li>
-                        <li class="w_120  c_white">コンテンツチーム</li>
-                        <li class="w_120  c_white">社員</li>
-                        <li class="w_170  c_white">2017_有休</li>
-                        <li class="w_140 bold c_white">19</li>
-                        <li class="w_140 bold c_white">18</li>
-                        <li class="w_140 bold c_white">1</li>
+                        <%
+                                }
+                            }
+                        %>
                     </ul>
 
-                    <!-- <li class='w_140  bold c_blue'>18.0</li>
-                    <li class='w_140  bold c_red'>1.0</li> -->
 
-                    <ul name="LILE1202622" id="LILE1202622" onclick="$.fn.viewLeavItemListInEmployee('1202622');" title="함서운 休暇使用 状況(No.2)" class="anchor clsListingTable"> <!-- style="cursor:pointer;" -->
-                        <li class="w_105 ">正規職</li>
-                        <li class="w_105 ">No-140031</li>
-                        <li class="w_100 ">함서운</li>
-                        <li class="w_120 ">管理チーム</li>
-                        <li class="w_120 ">部長</li>
-                        <li class="w_170 ">2017_有休</li>
-                        <li class="w_140 bold">19</li>
-                        <li class="w_140 bold c_blue">0</li>
-                        <li class="w_140 bold c_red">19</li>
-                    </ul>
 
-                    <!-- <li class='w_140  bold c_blue'>0.0</li>
-                    <li class='w_140  bold c_red'>19.0</li> -->
-
-                    <ul name="LILE1202623" id="LILE1202623" onclick="$.fn.viewLeavItemListInEmployee('1202623');" title="박치흥 休暇使用 状況(No.3)" class="anchor clsListingTable"> <!-- style="cursor:pointer;" -->
-                        <li class="w_105 ">正規職</li>
-                        <li class="w_105 ">No-140032</li>
-                        <li class="w_100 ">박치흥</li>
-                        <li class="w_120 ">戦略計画チーム</li>
-                        <li class="w_120 ">部長</li>
-                        <li class="w_170 ">2017_有休</li>
-                        <li class="w_140 bold">19</li>
-                        <li class="w_140 bold c_blue">21.5</li>
-                        <li class="w_140 bold c_red">-2.5</li>
-                    </ul>
-
-                    <!-- <li class='w_140  bold c_blue'>21.5</li>
-                    <li class='w_140  bold c_red'>-2.5</li> -->
-
-                    <ul name="LILE1202625" id="LILE1202625" onclick="$.fn.viewLeavItemListInEmployee('1202625');" title="이응열 休暇使用 状況(No.4)" class="anchor clsListingTable"> <!-- style="cursor:pointer;" -->
-                        <li class="w_105 ">正規職</li>
-                        <li class="w_105 ">No-140034</li>
-                        <li class="w_100 ">이응열</li>
-                        <li class="w_120 ">社長室</li>
-                        <li class="w_120 ">社長</li>
-                        <li class="w_170 ">2017_有休</li>
-                        <li class="w_140 bold">22</li>
-                        <li class="w_140 bold c_blue">0</li>
-                        <li class="w_140 bold c_red">22</li>
-                    </ul>
-
-                    <!-- <li class='w_140  bold c_blue'>0.0</li>
-                    <li class='w_140  bold c_red'>22.0</li> -->
-
-                    <ul name="LILE1202626" id="LILE1202626" onclick="$.fn.viewLeavItemListInEmployee('1202626');" title="이수잔 休暇使用 状況(No.5)" class="anchor clsListingTable"> <!-- style="cursor:pointer;" -->
-                        <li class="w_105 ">正規職</li>
-                        <li class="w_105 ">No-140035</li>
-                        <li class="w_100 ">이수잔</li>
-                        <li class="w_120 ">デザインチーム</li>
-                        <li class="w_120 ">代理</li>
-                        <li class="w_170 ">2017_有休</li>
-                        <li class="w_140 bold">20</li>
-                        <li class="w_140 bold c_blue">9.5</li>
-                        <li class="w_140 bold c_red">10.5</li>
-                    </ul>
-
-                    <!-- <li class='w_140  bold c_blue'>9.5</li>
-                    <li class='w_140  bold c_red'>10.5</li> -->
-
-                    <ul name="LILE1202627" id="LILE1202627" onclick="$.fn.viewLeavItemListInEmployee('1202627');" title="이영희 休暇使用 状況(No.6)" class="anchor clsListingTable"> <!-- style="cursor:pointer;" -->
-                        <li class="w_105 ">계약직</li>
-                        <li class="w_105 ">No-140036</li>
-                        <li class="w_100 ">이영희</li>
-                        <li class="w_120 ">コンテンツチーム</li>
-                        <li class="w_120 ">社員</li>
-                        <li class="w_170 ">2017_有休</li>
-                        <li class="w_140 bold">17</li>
-                        <li class="w_140 bold c_blue">9</li>
-                        <li class="w_140 bold c_red">8</li>
-                    </ul>
-
-                    <!-- <li class='w_140  bold c_blue'>9.0</li>
-                    <li class='w_140  bold c_red'>8.0</li> -->
-
-                    <ul name="LILE1202628" id="LILE1202628" onclick="$.fn.viewLeavItemListInEmployee('1202628');" title="박철수 休暇使用 状況(No.7)" class="anchor clsListingTable"> <!-- style="cursor:pointer;" -->
-                        <li class="w_105 ">임시직</li>
-                        <li class="w_105 ">No-140037</li>
-                        <li class="w_100 ">박철수</li>
-                        <li class="w_120 ">デザインチーム</li>
-                        <li class="w_120 ">社員</li>
-                        <li class="w_170 ">2017_有休</li>
-                        <li class="w_140 bold">15</li>
-                        <li class="w_140 bold c_blue">0</li>
-                        <li class="w_140 bold c_red">15</li>
-                    </ul>
-
-                    <!-- <li class='w_140  bold c_blue'>0.0</li>
-                    <li class='w_140  bold c_red'>15.0</li> -->
-
-                    <ul name="LILE1202629" id="LILE1202629" onclick="$.fn.viewLeavItemListInEmployee('1202629');" title="김동현 休暇使用 状況(No.8)" class="anchor clsListingTable"> <!-- style="cursor:pointer;" -->
-                        <li class="w_105 ">正規職</li>
-                        <li class="w_105 ">No-140038</li>
-                        <li class="w_100 ">김동현</li>
-                        <li class="w_120 ">管理チーム</li>
-                        <li class="w_120 ">社員</li>
-                        <li class="w_170 ">2017_有休</li>
-                        <li class="w_140 bold">15</li>
-                        <li class="w_140 bold c_blue">21</li>
-                        <li class="w_140 bold c_red">-6</li>
-                    </ul>
-
-                    <!-- <li class='w_140  bold c_blue'>21.0</li>
-                    <li class='w_140  bold c_red'>-6.0</li> -->
-
-                    <ul name="LILE1202630" id="LILE1202630" onclick="$.fn.viewLeavItemListInEmployee('1202630');" title="이기훈 休暇使用 状況(No.9)" class="anchor clsListingTable"> <!-- style="cursor:pointer;" -->
-                        <li class="w_105 ">日傭職</li>
-                        <li class="w_105 ">No-140039</li>
-                        <li class="w_100 ">이기훈</li>
-                        <li class="w_120 ">管理チーム</li>
-                        <li class="w_120 ">社員</li>
-                        <li class="w_170 ">2017_有休</li>
-                        <li class="w_140 bold">16</li>
-                        <li class="w_140 bold c_blue">0</li>
-                        <li class="w_140 bold c_red">16</li>
-                    </ul>
-
-                    <!-- <li class='w_140  bold c_blue'>0.0</li>
-                    <li class='w_140  bold c_red'>16.0</li> -->
-
-                    <ul name="LILE1202631" id="LILE1202631" onclick="$.fn.viewLeavItemListInEmployee('1202631');" title="임형규 休暇使用 状況(No.10)" class="anchor clsListingTable"> <!-- style="cursor:pointer;" -->
-                        <li class="w_105 ">日傭職</li>
-                        <li class="w_105 ">No-140040</li>
-                        <li class="w_100 ">임형규</li>
-                        <li class="w_120 ">管理チーム</li>
-                        <li class="w_120 ">社員</li>
-                        <li class="w_170 ">2017_有休</li>
-                        <li class="w_140 bold">17</li>
-                        <li class="w_140 bold c_blue">0</li>
-                        <li class="w_140 bold c_red">17</li>
-                    </ul>
-
-                    <!-- <li class='w_140  bold c_blue'>0.0</li>
-                    <li class='w_140  bold c_red'>17.0</li> -->
-
-                    <ul name="LILE1202632" id="LILE1202632" onclick="$.fn.viewLeavItemListInEmployee('1202632');" title="김광민 休暇使用 状況(No.11)" class="anchor clsListingTable"> <!-- style="cursor:pointer;" -->
-                        <li class="w_105 ">日傭職</li>
-                        <li class="w_105 ">No-140041</li>
-                        <li class="w_100 ">김광민</li>
-                        <li class="w_120 ">管理チーム</li>
-                        <li class="w_120 ">社員</li>
-                        <li class="w_170 ">2017_有休</li>
-                        <li class="w_140 bold">16</li>
-                        <li class="w_140 bold c_blue">0</li>
-                        <li class="w_140 bold c_red">16</li>
-                    </ul>
-
-                    <!-- <li class='w_140  bold c_blue'>0.0</li>
-                    <li class='w_140  bold c_red'>16.0</li> -->
-
-                    <ul name="LILE1202633" id="LILE1202633" onclick="$.fn.viewLeavItemListInEmployee('1202633');" title="홍길동 休暇使用 状況(No.12)" class="anchor clsListingTable"> <!-- style="cursor:pointer;" -->
-                        <li class="w_105 ">正規職</li>
-                        <li class="w_105 ">No-140042</li>
-                        <li class="w_100 ">홍길동</li>
-                        <li class="w_120 "></li>
-                        <li class="w_120 "></li>
-                        <li class="w_170 ">2017_有休</li>
-                        <li class="w_140 bold">18</li>
-                        <li class="w_140 bold c_blue">0</li>
-                        <li class="w_140 bold c_red">18</li>
-                    </ul>
 
                     <!-- <li class='w_140  bold c_blue'>0.0</li>
                     <li class='w_140  bold c_red'>18.0</li> -->

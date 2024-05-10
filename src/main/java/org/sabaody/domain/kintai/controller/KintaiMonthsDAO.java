@@ -30,7 +30,7 @@ public class KintaiMonthsDAO {
     public List<KintaiMonths> getAllKintaiMonths() {
         List<KintaiMonths> kintaiMonthsList = new ArrayList<>();
         try (Connection conn = dataSource.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM ");
+             PreparedStatement pstmt = conn.prepareStatement("select ar.DIVISION , ar.id , ar.name , ar.department , ar.position ,sr.sum , sr.deduction from EMPLOYMENTINFO ar JOIN kintaimonths sr On ar.ID = sr.ID");
              ResultSet rs = pstmt.executeQuery()) {
 
             while (rs.next()) {
@@ -51,19 +51,5 @@ public class KintaiMonthsDAO {
         return kintaiMonthsList;
     }
 
-    public Login getUserByID(String userid){
-        Login user = null;
-        try (Connection conn = dataSource.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM login WHERE userid = ?")) {
-            pstmt.setString(1, userid);
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if(rs.next()){
-                    user = new Login(rs.getString("userid"), rs.getString("password"));
-                }
-            }
-        } catch(SQLException e){
-            e.printStackTrace();
-        }
-        return user;
-    }
+
 }

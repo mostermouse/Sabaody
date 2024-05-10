@@ -2,6 +2,10 @@
 <%@ page
 	import="org.sabaody.domain.user.model.attendancemanagement.EmploymentStatus"%>
 <%@ page import="java.util.List"%>
+<%@ page import="org.sabaody.domain.user.model.attendancemanagement.AttendanceRecord" %>
+<%@ page import="org.sabaody.domain.kintai.controller.KintaiDetailsDAO" %>
+<%@ page import="org.sabaody.domain.kintai.controller.KintaiMonthsDAO" %>
+<%@ page import="org.sabaody.domain.kintai.model.KintaiMonths" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 
 <!DOCTYPE HTML>
@@ -399,11 +403,7 @@ input[type=text]::-ms-clear {
 							class="disHide">今月</button>
 					</ul>
 
-					<ul class='right w_169 p_t1'>
-						<span name="btnSetSort" id="btnSetSort" class="anchor"><img
-							src='/_commonImg/btn_align_set.png' width='114' height='23'
-							class='p_l5' alt='ソート基準を設定する' title='ソート基準を設定する'></span>
-					</ul>
+
 					<ul class='right p_t1'>
 						<div>
 							<select name="selEmplStat" id="selEmplStat" style="width: 100px;">
@@ -471,44 +471,7 @@ input[type=text]::-ms-clear {
 								href="/pzDiligence/diligenceSearchMonth.php?setSortItem=pstn&setSortType=asc"
 								class='c_linkblue'><strong>役職</strong></a></li>
 							<li style='padding-top: 0px;'>
-								<div class='date '>
-									<ul class='b_yellow'>
-										<li class="w_24 tit">1</li>
-										<li class="w_24 tit">2</li>
-										<li class="w_24 tit">3</li>
-										<li class="w_24 tit"><span class='c_blue bold'>4</span></li>
-										<li class="w_24 tit"><span class='c_red bold'>5</span></li>
-										<li class="w_24 tit">6</li>
-										<li class="w_24 tit">7</li>
-										<li class="w_24 tit">8</li>
-										<li class="w_24 tit">9</li>
-										<li class="w_24 tit">10</li>
-										<li class="w_24 tit"><span class='c_blue bold'>11</span></li>
-										<li class="w_24 tit"><span class='c_red bold'>12</span></li>
-										<li class="w_24 tit">13</li>
-										<li class="w_24 tit">14</li>
-										<li class="w_24 tit">15</li>
-										<li class="w_24 tit">16</li>
-									</ul>
-									<ul class="b_yellow">
-										<li class="w_24 tit">17</li>
-										<li class="w_24 tit"><span class='c_blue bold'>18</span></li>
-										<li class="w_24 tit"><span class='c_red bold'>19</span></li>
-										<li class="w_24 tit">20</li>
-										<li class="w_24 tit">21</li>
-										<li class="w_24 tit">22</li>
-										<li class="w_24 tit">23</li>
-										<li class="w_24 tit">24</li>
-										<li class="w_24 tit"><span class='c_blue bold'>25</span></li>
-										<li class="w_24 tit"><span class='c_red bold'>26</span></li>
-										<li class="w_24 tit">27</li>
-										<li class="w_24 tit">28</li>
-										<li class="w_24 tit">29</li>
-										<li class="w_24 tit">30</li>
-										<li class="w_24 tit">31</li>
-										<li class="w_24 tit"></li>
-									</ul>
-								</div>
+
 							</li>
 							<li class='w_199 tit_53_col '>合計</li>
 							<li class='w_100 tit_53_col'>休暇控除</li>
@@ -516,76 +479,45 @@ input[type=text]::-ms-clear {
 
 
 						<ul class="anchor ulDiligenceList">
-							<li class='w_88 con53_col' title="재직"><span class='top-10'>정규직</span></li>
-							<li class='w_88 con53_col'>No-140042</li>
-							<li class='w_70 con53_col'>홍길동</li>
-							<li class='w_92 con53_col'></li>
-							<li class='w_88 con53_col b_none'></li>
+							<%
+								KintaiMonthsDAO kintaimonthsDAO = new KintaiMonthsDAO();
+								List<KintaiMonths> kintaiMonthsList = kintaimonthsDAO.getAllKintaiMonths();
+								if (kintaiMonthsList != null && !kintaiMonthsList.isEmpty()) {
+									for (KintaiMonths record : kintaiMonthsList) {
+							%>
+							<li class='w_88 con53_col' title="在職"><span class="top-10"><%=record.getDivision()%></li>
+							<li class='w_88'><%=record.getId()%></li>
+							<li class='w_70 con53_col'><%=record.getName()%></li>
+							<li class='w_92 con53_col'><%=record.getDepartment()%></li>
+							<li class='w_88 con53_col b_none'><%=record.getPosition()%></li>
+							<li class='w_199 tit_53_col '><%=record.getSum()%></li>
+							<li class='w_100 tit_53_col'><%=record.getDeduction()%></li>
 							<li style='padding-top: 0px;'>
-								<div class="date clsCheck">
-									<ul>
-										<li class='w_24' title="1"></li>
-										<!-- 1 -->
-										<li class='w_24'></li>
-										<!-- 2 -->
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24' title="9"></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-									</ul>
-									<ul>
-										<li class='w_24' title="17"></li>
-										<!-- 17 -->
-										<li class='w_24'></li>
-										<!-- 18 -->
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24' title="25"></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-										<li class='w_24'></li>
-									</ul>
-								</div>
+							<%
+									}
+								}
+							%>
+
 							</li>
-							<li class='w_199 con48_col a_l '>
-								<div class="auto height_45 disContentList left-5"></div>
-							</li>
-							<li class='w_100 con53_col bold'>0</li>
+
+
 						</ul>
 					</div>
 				</div>
 				<!-- 페이지 인덱스 -->
 				<!-- <div class="paginate">
         <a href="#" class="prev">이전페이지</a>
-        <a href="#">1</a>  
-        <a href="#" class="on" title="선택됨">2</a>  
-        <a href="#">3</a>  
-        <a href="#">4</a>  
-        <a href="#">5</a>  
-        <a href="#">6</a>  
-        <a href="#">7</a>  
-        <a href="#">8</a>  
-        <a href="#">9</a>  
-        <a href="#">10</a>  
-          <a href="#" class="next">다음페이지</a>        
+        <a href="#">1</a>
+        <a href="#" class="on" title="선택됨">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">6</a>
+        <a href="#">7</a>
+        <a href="#">8</a>
+        <a href="#">9</a>
+        <a href="#">10</a>
+          <a href="#" class="next">다음페이지</a>
     </div> -->
 
 				<!-- 메인 버튼 사각형  빅사이즈
@@ -598,13 +530,7 @@ input[type=text]::-ms-clear {
     </li>
     </div>-->
 
-				<div class='btn c'>
-					<li><input name="btnGetPrint" id="btnGetPrint" type='image'
-						value='印刷' alt='印刷' title='印刷'>
-						<input name="btnGetExcel" id="btnGetExcel" type='image'
-						value='エクセルでダウンロード'
-						hspace='15' alt='エクセルでダウンロード' title='エクセルでダウンロード'></li>
-				</div>
+
 				<!-- 메인 버튼 사각형    <div class='btn c'>
     <li>
     <input type='image' value='신규 사원등록' src='/_commonImg/btn_new_employee01.gif'  width='139px' height='33px' alt='신규 사원등록'  title='신규 사원등록'>

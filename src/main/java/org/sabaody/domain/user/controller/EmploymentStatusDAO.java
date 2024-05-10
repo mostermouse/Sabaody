@@ -40,23 +40,24 @@ public class EmploymentStatusDAO {
         }
     }
 
-    public void addEmployment(String id, String division, String name, String department, String position, String attendanceRecord, Date dateOfJoining, String address, String phoneNumber, String email) throws SQLException {
+    public void addEmployment(String id, String division, String name, String department, String position, Date dateOfJoining, String address, String phoneNumber, String email) throws SQLException {
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "INSERT INTO employmentinfo(id, division, name, department, position, attendance_record, date_of_joining, address, phone_number, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO employmentinfo(id, division, name, department, position,  date_of_joining, address, phone_number, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             try (PreparedStatement statement = conn.prepareStatement(sql)) {
                 statement.setString(1, id);
                 statement.setString(2, division);
                 statement.setString(3, name);
                 statement.setString(4, department);
                 statement.setString(5, position);
-                statement.setString(6, attendanceRecord);
-                statement.setDate(7, dateOfJoining);
-                statement.setString(8, address);
-                statement.setString(9, phoneNumber);
-                statement.setString(10, email);
+                statement.setDate(6, dateOfJoining);
+                statement.setString(7, address);
+                statement.setString(8, phoneNumber);
+                statement.setString(9, email);
 
 
                 statement.executeUpdate();
+            }catch (SQLException e){
+                e.printStackTrace();
             }
         }
     }
@@ -146,7 +147,7 @@ public class EmploymentStatusDAO {
 
     public void deleteEmploymentStatus(String id) {
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "DELETE FROM employmentstatus WHERE id = ?";
+            String sql = "DELETE FROM employmentinfo WHERE id = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, id);
             statement.executeUpdate();

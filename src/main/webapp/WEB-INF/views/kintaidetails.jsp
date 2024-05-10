@@ -10,7 +10,7 @@
 <!DOCTYPE HTML>
 <html lang="UTF-8">
 <head>
-	<title>2チーム （조정인 , 최가람 , 장민수 , 김소연）</title>
+	<title>2チーム</title>
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<link rel="stylesheet" type="text/css"
@@ -96,20 +96,12 @@
 		}
 	</style>
 	<div class="jbMenu" style="text-align: left; color: #FFFFFF;">
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2チーム （조정인 , 최가람 , 장민수 , 김소연） <a
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2チーム<a
 			href="/pzServiceGuide/php/inLogoutProc.php?ref=ExZon"><span
 			style="color: #FFFFFF;"></span></a>
 	</div>
 	<div id="main_header">
-		<div class="header">
-			<ul class='logo p_t10'>
-				<button onclick="location.href='/'">人事管理</button>
-			</ul>
 
-			<ul class="logInfo">踏ん張れ
-			</ul>
-
-		</div>
 	</div>
 </header>
 
@@ -324,16 +316,16 @@
 			<!-- 탭 -->
 			<div class='search_box p_l5 '>
 				<ul>
-					<li class="months"><button
+					<%--<li class="months"><button
 							onclick="location.href='/kintaimonths'" title="月別照会">
 						<span id="months">月別照会</span>
-					</button></li>
+					</button></li>--%>
 				</ul>
 				<ul>
-					<li class="details"><button
+					<%--<li class="details"><button
 							onclick="location.href='/kintaidetails'" title="詳細照会">
 						<span id="details">詳細照会</span>
-					</button></li>
+					</button></li>--%>
 				</ul>
 			</div>
 			<Br>
@@ -427,13 +419,13 @@
 														id="frmLvItCode" style='width: 130px;'>
 									<option value="">選択してください。</option>
 
-									<option value="458421">2014_有休</option>
-									<option value="458422">2015_特別休暇</option>
-									<option value="458423">2015_有休</option>
-									<option value="458424">2016_有休</option>
-									<option value="458425">2016_特別休暇</option>
-									<option value="458426">2017_有休</option>
-									<option value="458427">2017_特別休暇</option>
+									<option value="458421">2020_有休</option>
+									<option value="458422">2021_特別休暇</option>
+									<option value="458423">2022_有休</option>
+									<option value="458424">2023_有休</option>
+									<option value="458425">2024_特別休暇</option>
+									<option value="458426">2025_有休</option>
+									<option value="458427">2026_特別休暇</option>
 								</select></li>
 							</ul>
 
@@ -478,11 +470,11 @@
 						<li class='w_65 tit'><a
 								href="/pzDiligence/diligenceSearchDetail.php?setSortItem=pstn&setSortType=asc"
 								class='c_linkblue'><strong>役職</strong></a></li>
-						<li class='w_85 tit'>勤怠項目</li>
-						<li class='w_154 tit'>勤怠期間</li>
+						<li class='w_80 tit'>勤怠項目</li>
+						<li class='w_159 tit'>勤怠期間</li>
 						<li class='w_70 tit'>勤労日数</li>
 						<li class='w_85 tit'>金額</li>
-						<li class='w_90 tit' style='white-space: pre-wrap;'>摘要</li>
+						<li class='w_90 tit'>摘要</li>
 					</ul>
 					<ul class="clsListingTable">
 						<%
@@ -496,11 +488,11 @@
 						<li class='w_65'><%=record.getName()%></li>
 						<li class='w_65'><%=record.getDepartment()%></li>
 						<li class='w_65'><%=record.getPosition()%></li>
-						<li class='w_85'><%=record.getAttendanceType()%></li>
-						<li class='w_154'><%=record.getStartDate()%> ~ <%=record.getEndDate()%></li>
+						<li class='w_80'><%=record.getAttendanceType()%></li>
+						<li class='w_159'><%=record.getStartDate()%> ~ <%=record.getEndDate()%></li>
 						<li class='w_70'><%=record.getAttendanceDate()%></li>
 						<li class='w_85'><%=record.getAmount()%></li>
-						<li class='w_90'><%=record.getSummary()%></li>
+						<li class='w_90' style='word-wrap: break-word;'><%=record.getSummary()%></li>
 						<%
 								}
 							}
@@ -544,10 +536,16 @@
 						alert('これ以上移動するページはありません。');
 				}
 			</script>
+
 			<script>
 				function showAll() {
+					// 데이터가 들어있는 요소를 선택합니다.
+					var table = document.getElementById('table1');
+					// 해당 요소를 화면에 보이도록 설정합니다.
+					table.style.display = 'block';
 				}
 			</script>
+
 			<script>
 				function getCurrentDate() {
 					var today = new Date();
