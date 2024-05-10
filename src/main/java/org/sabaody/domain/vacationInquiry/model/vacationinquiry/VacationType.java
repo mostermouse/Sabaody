@@ -1,4 +1,4 @@
-package org.sabaody.domain.user.model.vacationinquiry;
+package org.sabaody.domain.vacationInquiry.model.vacationinquiry;
 
 import java.util.Objects;
 

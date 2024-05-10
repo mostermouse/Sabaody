@@ -467,22 +467,22 @@
 						<li class='w_85 tit'><a
 								href="/pzDiligence/diligenceSearchDetail.php?setSortItem=insd&setSortType=asc"
 								class='c_linkblue'><strong>入力日</strong></a></li>
-						<li class='w_70 tit '>区分</li>
+						<li class='w_65 tit '>区分</li>
 						<!--<li  class='w_70 tit '><a href="/pzDiligence/diligenceSearchDetail.php?setSortItem=emNo&setSortType=asc" class='c_linkblue'><strong>사원번호</strong></a></li>-->
-						<li class='w_70 tit'><a
+						<li class='w_65 tit'><a
 								href="/pzDiligence/diligenceSearchDetail.php?setSortItem=emNm&setSortType=asc"
 								class='c_linkblue'><strong>名前</strong></a></li>
-						<li class='w_70 tit'><a
+						<li class='w_65 tit'><a
 								href="/pzDiligence/diligenceSearchDetail.php?setSortItem=dprt&setSortType=asc"
 								class='c_linkblue'><strong>部署</strong></a></li>
-						<li class='w_70 tit'><a
+						<li class='w_65 tit'><a
 								href="/pzDiligence/diligenceSearchDetail.php?setSortItem=pstn&setSortType=asc"
 								class='c_linkblue'><strong>役職</strong></a></li>
 						<li class='w_85 tit'>勤怠項目</li>
-						<li class='w_180 tit'>勤怠期間</li>
+						<li class='w_154 tit'>勤怠期間</li>
 						<li class='w_70 tit'>勤労日数</li>
 						<li class='w_85 tit'>金額</li>
-						<li class='w_180 tit' style='white-space: pre-wrap;'>摘要</li>
+						<li class='w_90 tit' style='white-space: pre-wrap;'>摘要</li>
 					</ul>
 					<ul class="clsListingTable">
 						<%
@@ -492,15 +492,15 @@
 								for (AttendanceRecord record : kintaiDetailsList) {
 						%>
 						<li class='w_85'><%=record.getInputDate()%></li>
-						<li class='w_70'><%=record.getDivision()%></li>
-						<li class='w_70'><%=record.getName()%></li>
-						<li class='w_70'><%=record.getDepartment()%></li>
-						<li class='w_70'><%=record.getPosition()%></li>
+						<li class='w_65'><%=record.getDivision()%></li>
+						<li class='w_65'><%=record.getName()%></li>
+						<li class='w_65'><%=record.getDepartment()%></li>
+						<li class='w_65'><%=record.getPosition()%></li>
 						<li class='w_85'><%=record.getAttendanceType()%></li>
-						<li class='w_139'><%=record.getStartDate()%> ~ <%=record.getEndDate()%></li>
+						<li class='w_154'><%=record.getStartDate()%> ~ <%=record.getEndDate()%></li>
 						<li class='w_70'><%=record.getAttendanceDate()%></li>
 						<li class='w_85'><%=record.getAmount()%></li>
-						<li class='w_85'><%=record.getSummary()%></li>
+						<li class='w_90'><%=record.getSummary()%></li>
 						<%
 								}
 							}

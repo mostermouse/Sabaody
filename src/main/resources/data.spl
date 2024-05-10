@@ -1,35 +1,4 @@
-
-CREATE TABLE attendancerecord (
-                                  id VARCHAR(255) NOT NULL PRIMARY KEY,
-                                  input_date DATE,
-                                  attendance_type VARCHAR(255),
-                                  start_date DATE,
-                                  end_date DATE,
-                                  attendance_date VARCHAR(255),
-                                  amount Number,
-                                  summary VARCHAR(255)
-);
-
-ALTER TABLE ATTENDANCERECORD
-    ADD CONSTRAINT fk_emp_status_id
-        FOREIGN KEY (ID)
-            REFERENCES employmentinfo(ID);
-
-
-
-create table login(
-   //아이디 쓰지 말기 id varchar2(255) Not Null primary key,
-    userid  varchar2(50) Not null primary key ,
-    password varchar2(100)
-);
-
-ALTER TABLE login
-ADD CONSTRAINT fk_emp_status_id
-FOREIGN KEY (id)
-REFERENCES employmentinfo(ID); //안써도됨
-
-
-create table employmentinfo(
+create table employmentinfo(  //사원 정보 등록 테이블
  id varchar2(50) primary key not null,
     division varchar2(20) not null ,
     name varchar2(20) not null,
@@ -41,29 +10,50 @@ create table employmentinfo(
     phone_number varchar2(50),
     email varchar2(50)
 
-
 );
 
-//휴가조회 테이블
-create table vacationinquiry(
-  id varchar2(50) primary key not null,
-  vacation_items varchar2(50),
-  vacation_types Number ,
-  used_vacation_days Number,
-  remaining_vacation_days Number
-
+create table ATTENDANCERECORD  //사원 상세정보 등록 테이블
+(
+    ID              VARCHAR2(50) not null
+        primary key
+        constraint FK_EMP_STATUS_ID
+            references EMPLOYMENTINFO,
+    INPUT_DATE      DATE,
+    ATTENDANCE_TYPE VARCHAR2(255),
+    START_DATE      DATE,
+    END_DATE        DATE,
+    ATTENDANCE_DATE VARCHAR2(255),
+    AMOUNT          NUMBER,
+    SUMMARY         VARCHAR2(255)
 );
 
-ALTER TABLE vacationinquiry
-ADD CONSTRAINT fk_vacation_id
+create table login(  //로그인 테이블
+   id varchar2(50) Not Null primary key,
+    userid  varchar2(50) Not null primary key ,
+    password varchar2(100)
+);
+
+ALTER TABLE login
+ADD CONSTRAINT fk_login_id
 FOREIGN KEY (id)
 REFERENCES employmentinfo(ID);
-//휴가조회 조인 셀렉트
-SELECT ei.division, ei.id, ei.name, ei.department, ei.position, ei.vacation_items, ar.attendancetype
-FROM attendancerecord ar
-JOIN employmentinfo ei ON ar.id = ei.id;
+
+create table VACATIONINQUIRY   //휴가 조회 테이블
+(
+    ID                      VARCHAR2(50) not null
+        primary key
+        constraint FK_VACATION_ID
+            references EMPLOYMENTINFO,
+    VACATION_ITEMS          VARCHAR2(50),
+    VACATION_TYPES          NUMBER,
+    USED_VACATION_DAYS      NUMBER,
+    REMAINING_VACATION_DAYS NUMBER
+);
 
 
+
+
+----------------------------------------------------------
 
 //근태조회 조인 셀렉트
 SELECT ar.inputdate,
@@ -79,3 +69,11 @@ SELECT ar.inputdate,
        ar.summary
 FROM attendancerecord ar
 JOIN employmentinfo ei ON ar.id = ei.id;
+
+
+
+//휴가조회 조인 셀렉트
+SELECT ei.id, ei.division, ei.name, ei.department, ei.position, ar.vacation_items,
+ ar.vacation_types, ar.used_vacation_days, ar.remaining_vacation_days FROM
+ vacationinquiry ar JOIN employmentinfo ei ON ar.id = ei.id;
+
