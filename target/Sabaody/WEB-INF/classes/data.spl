@@ -104,7 +104,6 @@ FROM attendancerecord ar
 JOIN employmentinfo ei ON ar.id = ei.id;
 
 
-
 //휴가조회 조인 셀렉트
 SELECT ei.id, ei.division, ei.name, ei.department, ei.position, ar.vacation_items,
  ar.vacation_types, ar.used_vacation_days, ar.remaining_vacation_days FROM

@@ -18,13 +18,13 @@ public class Connect {
             conn = DriverManager.getConnection(URL, USER, PASSWORD);
 
             if (conn != null) {
-                System.out.println("Oracle 접속에 성공했습니다.");
+                System.out.println("Oracle 接触に成功しました。");
             }
         } catch (ClassNotFoundException e) { // Corrected exception handling
-            System.out.println("JDBC 드라이버를 찾을 수 없습니다.");
+            System.out.println("JDBC ドライバを見つからないです。");
             e.printStackTrace();
         } catch (SQLException e) {
-            System.out.println("데이터베이스 연결 중 오류가 발생했습니다.");
+            System.out.println("DBに連結されないんです。");
             e.printStackTrace();
         } finally {
             try {
@@ -32,7 +32,7 @@ public class Connect {
                     conn.close();
                 }
             } catch (SQLException e) {
-                System.out.println("데이터베이스 연결 닫는 중 오류가 발생했습니다.");
+                System.out.println("DB連結途中でエラー発生");
                 e.printStackTrace();
             }
         }

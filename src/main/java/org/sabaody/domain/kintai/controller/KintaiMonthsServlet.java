@@ -24,13 +24,13 @@ class KintaiMonthsServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// DAO를 사용하여 모든 고용 상태 가져오기
+
 		List<KintaiMonths> kintaiMonthsList = dao.getAllKintaiMonths();
 
-		// 가져온 고용 상태 목록을 request에 설정
+
 		request.setAttribute("kintaiMonthsList", kintaiMonthsList);
 
-		// JSP로 포워딩
+
 		request.getRequestDispatcher("/WEB-INF/views/kintaidetails.jsp").forward(request, response);
 	}
 

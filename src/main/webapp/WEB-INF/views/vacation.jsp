@@ -122,10 +122,15 @@
                                         title="[Shift + 3] 勤怠照会">
                     <span id="SK03">勤怠照会</span>
                 </button></li>
+                <li class = "no04"><button
+                    onclick="location.href='/vacationRegister'"
+                    title="[Shift +4] 休暇登録">
+                    <span id="SK04">休暇登録</span>
+                </button></li>
                 <li class="n05"><button
                         onclick="location.href='/vacation'"
-                        title="[Shift + 4] 休暇照会">
-                    <span id="SK04">休暇照会</span>
+                        title="[Shift + 5] 休暇照会">
+                    <span id="SK05">休暇照会</span>
                 </button></li>
             </ul>
         </div>

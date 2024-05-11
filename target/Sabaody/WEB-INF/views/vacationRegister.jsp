@@ -98,7 +98,7 @@
 
 <div class="registration-container">
     <h2>社員登録</h2>
-    <form name="employee" action="/employeeRegister" method="post">
+    <form name="vacationregister" action="/vacationServlet" method="post">
         <form>
             <table>
                 <tr>
@@ -107,63 +107,27 @@
                 <tr>
                     <td class="highlight">社員番号:</td>
                     <td><input type="text" id="id" name="id"></td>
-                    <td class="highlight">雇用形態:</td>
-                    <td class="highlight"><select id="division"
-                                                  name="division">
-                        <option value="">選択してください</option>
-                        <option value="正社員">正社員</option>
-                        <option value="契約職">契約職</option>
-                        <option value="臨時職">臨時職</option>
-                        <option value="派遣職">派遣職</option>
-                        <option value="委嘱職">委嘱職</option>
-                        <option value="日雇い">日雇い</option>
-                    </select></td>
+
+                </tr>
+
+                <tr>
+                    <td class="highlight">休暇項目:</td>
+                    <td> <input type="text" id="vacationtype" name="vacationtype"
+                                placeholder="">
                 </tr>
                 <tr>
-                    <td class="highlight">名前:</td>
-                    <td><input type="text" id="name" name="name"></td>
-                    <td class="highlight">入社日:</td>
-                    <td><input type="text" id="hireDate" name="hireDate"></td>
+                    <td class="highlight">全体休暇数:</td>
+                    <td colspan="3"><input type="number" id="vacationcnt"
+                                           name="vacationcnt"></td>
                 </tr>
                 <tr>
-                    <td class="highlight">部署:</td>
-                    <td><select id="department" name="department">
-                        <option value="">選択してください</option>
-                        <option value="社長室">社長室</option>
-                        <option value="開発チーム">開発チーム</option>
-                        <option value="コンテンツチーム">コンテンツチーム</option>
-                        <option value="業務支援チーム">業務支援チーム</option>
-                        <option value="デザインチーム">デザインチーム</option>
-                        <option value="管理チーム">管理チーム</option>
-                        <option value="企画戦略チーム">企画戦略チーム</option>
-                    </select></td>
-                    <td class="highlight">職位:</td>
-                    <td><select id="position" name="position">
-                        <option value="">選択してください</option>
-                        <option value="引越">引越</option>
-                        <option value="車掌">車掌</option>
-                        <option value="社長">社長</option>
-                        <option value="部長">部長</option>
-                        <option value="課長">課長</option>
-                        <option value="代理">代理</option>
-                        <option value="主任">主任</option>
-                        <option value="社員">社員</option>
-                        <option value="室長">室長</option>
-                    </select></td>
+                    <td class="highlight">使用した休暇:</td>
+                    <td><input type="number" id="vacationnum2" name="vacationnum2"></td>
+
                 </tr>
                 <tr>
-                    <td class="highlight">携帯電話:</td>
-                    <td> <input type="text" id="phoneNumber" name="phoneNumber"
-                                     placeholder="">
-                </tr>
-                <tr>
-                    <td class="highlight">住所:</td>
-                    <td colspan="3"><input type="text" id="address"
-                                           name="address"></td>
-                </tr>
-                <tr>
-                    <td class="highlight">Eメール:</td>
-                    <td><input type="text" id="email" name="email"></td>
+                    <td class="highlight">残り残余:</td>
+                    <td><input type="number" id="vacationnum3" name="vacationnum3"></td>
 
                 </tr>
                 <tr>

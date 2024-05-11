@@ -52,6 +52,24 @@ public class VacationInquiryDAO {
         }
         return inquiries;
     }
+    public void addVacationRecord(VacationInquiry vacationInquiry)throws Exception{
+        try(Connection conn = dataSource.getConnection()){
+            String sql = "INSERT INTO vacationinquiry (id , vacation_items , vacation_types , used_vacation_days,remaining_vacation_days) VALUES(?,?,?,?,?)";
+            try(PreparedStatement statement = conn.prepareStatement(sql)){
 
+                statement.setString(1, vacationInquiry.getId());
+                statement.setString(2,vacationInquiry.getVacationItems());
+                statement.setLong(3, vacationInquiry.getVacationTypes());
+                statement.setLong(4, vacationInquiry.getUsedVacationDays());
+                statement.setLong(5, vacationInquiry.getRemainingVacationDays());
+
+
+                statement.executeQuery();
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+    }
 
 }

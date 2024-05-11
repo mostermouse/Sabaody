@@ -65,6 +65,14 @@
     <servlet-name>vacation</servlet-name>
     <url-pattern>/vacation</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>vacationRegister</servlet-name>
+    <jsp-file>/WEB-INF/views/vacationRegister.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>vacationRegister</servlet-name>
+    <url-pattern>/vacationRegister</url-pattern>
+  </servlet-mapping>
   <filter>
     <filter-name>charConfig</filter-name>
     <filter-class>org.sabaody.filter.CharConfig</filter-class>
