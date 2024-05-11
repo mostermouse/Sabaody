@@ -73,6 +73,22 @@
     <servlet-name>vacationRegister</servlet-name>
     <url-pattern>/vacationRegister</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>employeeupdate</servlet-name>
+    <jsp-file>/WEB-INF/views/employeeupdate.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>employeeupdate</servlet-name>
+    <url-pattern>/employeeupdate</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>vacationupdate</servlet-name>
+    <jsp-file>/WEB-INF/views/vacationupdate.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>vacationupdate</servlet-name>
+    <url-pattern>/vacationupdate</url-pattern>
+  </servlet-mapping>
   <filter>
     <filter-name>charConfig</filter-name>
     <filter-class>org.sabaody.filter.CharConfig</filter-class>

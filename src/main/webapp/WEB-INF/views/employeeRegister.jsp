@@ -68,19 +68,28 @@
                                         title="[Shift + 2] 社員登録">
                     <span id="SK02">社員登録</span>
                 </button></li>
-                <li class="n03"><button onclick="location.href='/kintaidetails'"
-                                        title="[Shift + 3] 勤怠照会">
-                    <span id="SK03">勤怠照会</span>
+                <li class="n03"><button onclick="location.href='/employeeupdate'"
+                                        title="[Shift + 3] 社員情報修正">
+                    <span id="SK03">社員情報修正</span>
                 </button></li>
-                <li class = "no04"><button
+                <li class="n04"><button onclick="location.href='/kintaidetails'"
+                                        title="[Shift + 4] 勤怠照会">
+                    <span id="SK04">勤怠照会</span>
+                </button></li>
+                <li class = "no05"><button
                         onclick="location.href='/vacationRegister'"
-                        title="[Shift +4] 休暇登録">
-                    <span id="SK04">休暇登録</span>
+                        title="[Shift +5] 休暇登録">
+                    <span id="SK05">休暇登録</span>
                 </button></li>
-                <li class="n05"><button
+                <li class="n06"><button
                         onclick="location.href='/vacation'"
-                        title="[Shift + 4] 休暇照会">
-                    <span id="SK05">休暇照会</span>
+                        title="[Shift + 6] 休暇照会">
+                    <span id="SK06">休暇照会</span>
+                </button></li>
+                <li class="n07"><button
+                        onclick="location.href='/vacationupdate'"
+                        title="[Shift + 7] 休暇修正">
+                    <span id="SK07">休暇修正</span>
                 </button></li>
             </ul>
         </div>
