@@ -1,6 +1,8 @@
 package org.sabaody.domain.daylaborer.controller;
 
 import org.sabaody.domain.daylaborer.model.DayLaborerManagement;
+import org.sabaody.domain.user.model.attendancemanagement.AttendanceRecord;
+import org.sabaody.domain.user.model.attendancemanagement.EmploymentInfo;
 import org.sabaody.domain.user.model.attendancemanagement.EmploymentStatus;
 
 import javax.naming.Context;
@@ -73,6 +75,49 @@ public class DayLaborerDAO {
         }
     }
 
+
+    public List<DayLaborerManagement> getAllDay() {
+        List<DayLaborerManagement> dayLaborerList = new ArrayList<>();
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement("SELECT sr.start_days,sr.id, ar.name,ar.DEPARTMENT, sr.project, sr.daily_rate, sr.income_tax, sr.local_income_tax, sr.net_pay FROM EMPLOYMENTINFO ar JOIN DAYLABORER sr ON ar.ID = sr.ID");
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                DayLaborerManagement dayLaborerRecord = new DayLaborerManagement();
+                dayLaborerRecord.setStartDate(rs.getDate("start_days"));
+                dayLaborerRecord.setId(rs.getString("id"));
+                dayLaborerRecord.setName(rs.getString("name"));
+                dayLaborerRecord.setDepartment(rs.getString("department"));
+                dayLaborerRecord.setProject(rs.getString("project"));
+                dayLaborerRecord.setDailyRate(rs.getDouble("daily_rate"));
+                dayLaborerRecord.setIncomeTax(rs.getDouble("income_tax"));
+                dayLaborerRecord.setLocalIncomeTax(rs.getDouble("local_income_tax"));
+                dayLaborerRecord.setNetPay(rs.getDouble("net_pay"));
+
+                dayLaborerList.add(dayLaborerRecord);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return dayLaborerList;
+    }
+
+    public void updatedayStatus(DayLaborerManagement dayLaborerManagement) {
+        try (Connection conn = dataSource.getConnection()) {
+            String sql = "UPDATE DAYLABORER SET daily_rate = ? , income_tax =? , local_income_tax = ? , net_pay =?  WHERE id = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setDouble(1, dayLaborerManagement.getDailyRate());
+            statement.setDouble(2, dayLaborerManagement.getIncomeTax());
+            statement.setDouble(3, dayLaborerManagement.getLocalIncomeTax());
+            statement.setDouble(4, dayLaborerManagement.getNetPay());
+            statement.setString(5, dayLaborerManagement.getId());
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 

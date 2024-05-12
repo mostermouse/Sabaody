@@ -23,7 +23,7 @@ public class DayLaborerServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //근무일 , 사원번호 , 현장 프로젝트, 소득세 , 지방소득세 , 총지급비
+
 
         String startDateStr = request.getParameter("inputdate");
         String id = request.getParameter("employeeId");
@@ -59,7 +59,7 @@ public class DayLaborerServlet extends HttpServlet {
 
 
 
-        response.sendRedirect("/daylaborer");
+        response.sendRedirect("/daylaborerdetails");
     }
 
 

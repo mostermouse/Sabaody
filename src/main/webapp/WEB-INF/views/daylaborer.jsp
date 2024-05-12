@@ -705,7 +705,7 @@
                             <ul>
                                 <li class='w_135 c'><strong>勤務日</strong></li>
                                 <li class='con'>
-                                    <input name="inputdate" id="inputdate" type='text' value="" class='white'
+                                    <input name="inputdate" id="inputdate" type='date' value="" class='white'
                                            style="width:190px;">
                                 </li>
                             </ul>

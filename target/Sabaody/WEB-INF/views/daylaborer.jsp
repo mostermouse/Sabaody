@@ -147,12 +147,12 @@
                     <span id="SK08">日雇い管理</span>
                 </button></li>
                 <li class="n09"><button
-                        onclick="location.href='/daylaborer'"
+                        onclick="location.href='/daylaborerdetails'"
                         title="[Shift + 9] 休暇修正">
                     <span id="SK09">日雇い照会</span>
                 </button></li>
                 <li class="n00"><button
-                        onclick="location.href='/daylaborer'"
+                        onclick="location.href='/daylaboreerupdate'"
                         title="[Shift + 0] 休暇修正">
                     <span id="SK00">日雇い修正</span>
                 </button></li>
@@ -705,7 +705,7 @@
                             <ul>
                                 <li class='w_135 c'><strong>勤務日</strong></li>
                                 <li class='con'>
-                                    <input name="inputdate" id="inputdate" type='text' value="" class='white'
+                                    <input name="inputdate" id="inputdate" type='date' value="" class='white'
                                            style="width:190px;">
                                 </li>
                             </ul>
