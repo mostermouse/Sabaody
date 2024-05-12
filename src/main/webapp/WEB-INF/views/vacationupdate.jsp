@@ -72,7 +72,7 @@
                 <ul class="navi_L_2017">
                     <li class="n01"><button onclick="location.href='/selectview'"
                                             title="[Shift + 1] HOME">
-                        <span id="SK01">HOME</span>
+                        <span id="SK01">勤怠管理</span>
                     </button></li>
                     <li class="n02"><button onclick="location.href='/employee'"
                                             title="[Shift + 2] 社員登録">
@@ -101,6 +101,21 @@
                             title="[Shift + 7] 休暇照会">
                         <span id="SK07">休暇修正</span>
                     </button></li>
+                    <li class="n08"><button
+                            onclick="location.href='/daylaborer'"
+                            title="[Shift + 8] 休暇修正">
+                        <span id="SK08">日雇い管理</span>
+                    </button></li>
+                    <li class="n09"><button
+                            onclick="location.href='/daylaborerdetails'"
+                            title="[Shift + 9] 休暇修正">
+                        <span id="SK09">日雇い照会</span>
+                    </button></li>
+                    <li class="n00"><button
+                            onclick="location.href='/daylaboreerupdate'"
+                            title="[Shift + 0] 休暇修正">
+                        <span id="SK00">日雇い修正</span>
+                    </button></li>
                 </ul>
             </div>
         </div>
@@ -116,73 +131,33 @@
 
 
     <div class="registration-container">
-        <h2>社員登録</h2>
-        <form name="employee" action="/employeeRegister" method="post">
+        <h2>休暇情報変更</h2>
+        <form name="employee" action="/vacupdate" method="post">
             <form>
                 <table>
                     <tr>
                         <th colspan="2">基本情報</th>
                     </tr>
+
                     <tr>
                         <td class="highlight">社員番号:</td>
                         <td><input type="text" id="id" name="id"></td>
-                        <td class="highlight">雇用形態:</td>
-                        <td class="highlight"><select id="division"
-                                                      name="division">
-                            <option value="">選択してください</option>
-                            <option value="正社員">正社員</option>
-                            <option value="契約職">契約職</option>
-                            <option value="臨時職">臨時職</option>
-                            <option value="派遣職">派遣職</option>
-                            <option value="委嘱職">委嘱職</option>
-                            <option value="日雇い">日雇い</option>
-                        </select></td>
+                        <td class="highlight">休暇種類:</td>
+                        <td><input type="text" id="vacationitem" name="vacationitem"></td>
                     </tr>
                     <tr>
-                        <td class="highlight">名前:</td>
-                        <td><input type="text" id="name" name="name"></td>
-                        <td class="highlight">入社日:</td>
-                        <td><input type="text" id="hireDate" name="hireDate"></td>
-                    </tr>
-                    <tr>
-                        <td class="highlight">部署:</td>
-                        <td><select id="department" name="department">
-                            <option value="">選択してください</option>
-                            <option value="社長室">社長室</option>
-                            <option value="開発チーム">開発チーム</option>
-                            <option value="コンテンツチーム">コンテンツチーム</option>
-                            <option value="業務支援チーム">業務支援チーム</option>
-                            <option value="デザインチーム">デザインチーム</option>
-                            <option value="管理チーム">管理チーム</option>
-                            <option value="企画戦略チーム">企画戦略チーム</option>
-                        </select></td>
-                        <td class="highlight">職位:</td>
-                        <td><select id="position" name="position">
-                            <option value="">選択してください</option>
-                            <option value="引越">引越</option>
-                            <option value="車掌">車掌</option>
-                            <option value="社長">社長</option>
-                            <option value="部長">部長</option>
-                            <option value="課長">課長</option>
-                            <option value="代理">代理</option>
-                            <option value="主任">主任</option>
-                            <option value="社員">社員</option>
-                            <option value="室長">室長</option>
-                        </select></td>
-                    </tr>
-                    <tr>
-                        <td class="highlight">携帯電話:</td>
-                        <td> <input type="text" id="phoneNumber" name="phoneNumber"
+                        <td class="highlight">休暇全体日数:</td>
+                        <td> <input type="number" id="vacationtype" name="vacationtype"
                                     placeholder="">
                     </tr>
                     <tr>
-                        <td class="highlight">住所:</td>
-                        <td colspan="3"><input type="text" id="address"
-                                               name="address"></td>
+                        <td class="highlight">使用した休暇:</td>
+                        <td colspan="3"><input type="number" id="usedvacation"
+                                               name="usedvacation"></td>
                     </tr>
                     <tr>
-                        <td class="highlight">Eメール:</td>
-                        <td><input type="text" id="email" name="email"></td>
+                        <td class="highlight">残り休暇残余:</td>
+                        <td><input type="number" id="remaining" name="remaining"></td>
 
                     </tr>
                     <tr>

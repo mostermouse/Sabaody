@@ -1,14 +1,8 @@
-package org.sabaody.domain.emplyee.controller;
-
-import org.sabaody.domain.user.controller.EmploymentStatusDAO;
-import org.sabaody.domain.user.model.attendancemanagement.AttendanceRecord;
-import org.sabaody.domain.user.model.attendancemanagement.EmploymentInfo;
-import org.sabaody.domain.user.model.attendancemanagement.EmploymentStatus;
+package org.sabaody.domain.user.controller;
 
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

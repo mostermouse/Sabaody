@@ -2,6 +2,7 @@ package org.sabaody.domain.user.controller;
 
 import org.sabaody.domain.login.model.Login;
 import org.sabaody.domain.user.model.attendancemanagement.AttendanceRecord;
+import org.sabaody.domain.user.model.attendancemanagement.EmploymentInfo;
 import org.sabaody.domain.user.model.attendancemanagement.EmploymentStatus;
 
 import javax.naming.Context;
@@ -130,15 +131,18 @@ public class EmploymentStatusDAO {
     }
 
     //Update
-    public void updateEmploymentStatus(EmploymentStatus employmentStatus) {
+    public void updateEmploymentStatus(EmploymentInfo employmentInfo) {
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "UPDATE employmentstatus SET name = ?, department = ?, position = ?, attendance_record = ? WHERE id = ?";
+            String sql = "UPDATE EMPLOYMENTINFO SET division = ?,name = ?,date_of_joining = ?, department = ?, position = ?,phone_number=? ,email=? WHERE id = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, employmentStatus.getName());
-            statement.setString(2, employmentStatus.getDepartment());
-            statement.setString(3, employmentStatus.getPosition());
-            statement.setString(4, employmentStatus.getAttendanceRecord());
-            statement.setString(5, employmentStatus.getId());
+            statement.setString(1, employmentInfo.getDivision());
+            statement.setString(2, employmentInfo.getName());
+            statement.setString(3, employmentInfo.getDateofjoining());
+            statement.setString(4, employmentInfo.getDepartment());
+            statement.setString(5, employmentInfo.getPosition());
+            statement.setString(6, employmentInfo.getPhonenumber());
+            statement.setString(7,employmentInfo.getEmail());
+            statement.setString(8, employmentInfo.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

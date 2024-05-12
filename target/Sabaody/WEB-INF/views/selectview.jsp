@@ -111,7 +111,7 @@
             <ul class="navi_L_2017">
                 <li class="n01"><button onclick="location.href='/selectview'"
                                         title="[Shift + 1] HOME">
-                    <span id="SK01">HOME</span>
+                    <span id="SK01">勤怠管理</span>
                 </button></li>
                 <li class="n02"><button onclick="location.href='/employee'"
                                         title="[Shift + 2] 社員登録">
@@ -139,6 +139,21 @@
                         onclick="location.href='/vacationupdate'"
                         title="[Shift + 7] 休暇修正">
                     <span id="SK07">休暇修正</span>
+                </button></li>
+                <li class="n08"><button
+                        onclick="location.href='/daylaborer'"
+                        title="[Shift + 8] 休暇修正">
+                    <span id="SK08">日雇い管理</span>
+                </button></li>
+                <li class="n09"><button
+                        onclick="location.href='/daylaborer'"
+                        title="[Shift + 9] 休暇修正">
+                    <span id="SK09">日雇い照会</span>
+                </button></li>
+                <li class="n00"><button
+                        onclick="location.href='/daylaborer'"
+                        title="[Shift + 0] 休暇修正">
+                    <span id="SK00">日雇い修正</span>
                 </button></li>
             </ul>
         </div>
@@ -629,7 +644,7 @@
                                 <li class='w_100 tit'><strong>名前</strong></li>
                                 <li class='w_120 tit'><strong>部署</strong></li>
                                 <li class='w_120 tit'><strong>役職</strong></li>
-                                <li class='w_119 tit'><strong>マザーフレイム</strong></li>
+                                <li class='w_119 tit'><strong>全体削除</strong></li>
                             </ul>
                             <div id="disContentList" class="disContentList" style="width:710px;">
                                 <div id="table_dil_data">
@@ -753,7 +768,7 @@
                             <ul>
                                 <li class='w_135 c'><strong>金額（手当）</strong></li>
                                 <li class='con'><input name="frmDlsvPays" id="frmDlsvPays" type='text'
-                                                       value='* 勤怠分類が支払手当に該当する場合'
+                                                       value=''
                                                        class='white clsAmount'
                                                        style='width:210px;color:#eb4e5d;text-align:right;'
                                                        placeholder="* 勤怠分類が支払手当に該当する場合"></li>
@@ -761,7 +776,7 @@
                             <ul>
                                 <li class='w_135 c'><strong>摘要</strong></li>
                                 <li class='con'><input name="frmDlsvEtcs" id="frmDlsvEtcs" type='text'
-                                                       value='* 摘要がある場合は入力してください。' class='white'
+                                                       value='' class='white'
                                                        style='width:190px;'
                                                        placeholder="* 摘要がある場合は入力してください。"></li>
                             </ul>

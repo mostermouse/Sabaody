@@ -1,6 +1,6 @@
 package org.sabaody.domain.vacationInquiry.controller;
 
-import org.sabaody.domain.login.model.Login;
+
 import org.sabaody.domain.vacationInquiry.model.vacationinquiry.VacationInquiry;
 
 import javax.naming.Context;
@@ -70,6 +70,22 @@ public class VacationInquiryDAO {
             e.printStackTrace();
         }
 
+    }
+
+    public void updateVacation(VacationInquiry vacationInquiry) {
+        try (Connection conn = dataSource.getConnection()) {
+            String sql = "UPDATE VACATIONINQUIRY SET vacation_items =? , vacation_types =? , used_vacation_days=? , remaining_vacation_days =? WHERE id = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, vacationInquiry.getVacationItems());
+            statement.setLong(2, vacationInquiry.getVacationTypes());
+            statement.setLong(3, vacationInquiry.getUsedVacationDays());
+            statement.setLong(4, vacationInquiry.getRemainingVacationDays());
+            statement.setString(5, vacationInquiry.getId());
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

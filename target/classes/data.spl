@@ -55,8 +55,18 @@ ALTER TABLE KINTAIMONTHS
         FOREIGN KEY (id)
             REFERENCES ATTENDANCERECORD(ID);
 
-
-
+//일용직 관리 테이블
+CREATE TABLE daylaborer(
+                           ID VARCHAR2(50) not null,
+                           project varchar2(50) not null,
+                           start_days varchar2(50) not null,
+                           daily_rate number,
+                           income_tax number,
+                           local_income_tax number,
+                           net_pay number,
+                           CONSTRAINT PK_daylaborer_ID PRIMARY KEY (ID),
+                           CONSTRAINT FK_daylaborer_ID FOREIGN KEY (ID) REFERENCES EMPLOYMENTINFO(id) ON DELETE CASCADE
+);
 
 
 //아이디삭제시 외래 참조되어있는거 연쇄 삭제 시킴

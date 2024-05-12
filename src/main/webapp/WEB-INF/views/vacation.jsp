@@ -112,7 +112,7 @@
             <ul class="navi_L_2017">
                 <li class="n01"><button onclick="location.href='/selectview'"
                                         title="[Shift + 1] HOME">
-                    <span id="SK01">HOME</span>
+                    <span id="SK01">勤怠管理</span>
                 </button></li>
                 <li class="n02"><button onclick="location.href='/employee'"
                                         title="[Shift + 2] 社員登録">
@@ -140,6 +140,21 @@
                         onclick="location.href='/vacationupdate'"
                         title="[Shift + 7] 休暇修正">
                     <span id="SK07">休暇修正</span>
+                </button></li>
+                <li class="n08"><button
+                        onclick="location.href='/daylaborer'"
+                        title="[Shift + 8] 休暇修正">
+                    <span id="SK08">日雇い管理</span>
+                </button></li>
+                <li class="n09"><button
+                        onclick="location.href='/daylaborerdetails'"
+                        title="[Shift + 9] 休暇修正">
+                    <span id="SK09">日雇い照会</span>
+                </button></li>
+                <li class="n00"><button
+                        onclick="location.href='/daylaboreerupdate'"
+                        title="[Shift + 0] 休暇修正">
+                    <span id="SK00">日雇い修正</span>
                 </button></li>
             </ul>
         </div>

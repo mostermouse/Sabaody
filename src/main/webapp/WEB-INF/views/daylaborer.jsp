@@ -1,6 +1,7 @@
 <%@ page import="org.sabaody.domain.user.controller.EmploymentStatusDAO" %>
 <%@ page import="org.sabaody.domain.user.model.attendancemanagement.EmploymentStatus" %>
 <%@ page import="java.util.List" %>
+<%@ page import="org.sabaody.domain.daylaborer.controller.DayLaborerDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE HTML>
@@ -95,9 +96,9 @@
     <div class="jbMenu" style="text-align:left;color:#FFFFFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2チーム <a href="/pzServiceGuide/php/inLogoutProc.php?ref=ExZon"><span style="color:#FFFFFF;"></span></a></div>
     <div id="main_header">
         <div class="header">
-           <%-- <ul class='logo p_t10'>
-                <button onclick="location.href='/'">人事管理</button>
-            </ul>--%>
+            <%-- <ul class='logo p_t10'>
+                 <button onclick="location.href='/'">人事管理</button>
+             </ul>--%>
 
 
 
@@ -241,8 +242,8 @@
                 // 2016-01-25
                 if ($("#disDlsvUnit").text() == "시간") {
                     $("#frmDlsvEndD").val(dateText);
-                    //$("#frmDlsvDays").val(4);  // 임의 3시간
-                    $("#frmDlsvDays").val('');  // 기본값 제거 2020-08-03 유기원
+                    //$("#frmDlsvDays").val(4);
+                    $("#frmDlsvDays").val('');
                 } else {
                     if ($("#frmDlsvEndD").val() == "종료일") $("#frmDlsvEndD").val(dateText);
                     if ($.isDateFormat10th($("#frmDlsvSttD").val()) !== null && $.isDateFormat10th($("#frmDlsvEndD").val()) !== null) {
@@ -601,10 +602,10 @@
         <div class='sub_titimg'>
             <ul>
 
-                <li class='p_t10' style="font-size: 30px;">勤怠記録＆管理</li>
+                <li class='p_t10' style="font-size: 30px;">日雇い管理</li>
 
                 <li class='p_t5' style="font-size: 20px;">
-                    給与に関連する勤怠記録を管理するメニューです。社員別勤務履歴を管理できます。
+                    給与に関連する日雇い管理するメニューです。社員別勤務履歴を管理できます。
                 </li>
             </ul>
 
@@ -650,8 +651,8 @@
                                 <div id="table_dil_data">
                                     <%-- DAO에서 가져온 고용 상태 정보를 표시합니다 --%>
                                     <%
-                                        EmploymentStatusDAO employmentStatusDAO = new EmploymentStatusDAO();
-                                        List<EmploymentStatus> employmentStatusList = employmentStatusDAO.getAllEmploymentStatus();
+                                        DayLaborerDAO dayStatusDAO = new DayLaborerDAO();
+                                        List<EmploymentStatus> employmentStatusList = dayStatusDAO.getDayStatus();
                                         if (employmentStatusList != null && !employmentStatusList.isEmpty()) {
                                             int employeeNo = 0;
                                             for (EmploymentStatus employmentStatus : employmentStatusList) { %>
@@ -697,12 +698,12 @@
 
             <!-- 勤怠設定リスト -->
             <div class='diligence_set'>
-                <form action="/CreateAttRecordServlet" method="post">
+                <form action="/daylaborerservlet" method="post">
                     <ul>
                         <div id='table0'>
                             <p class='caption'></p>
                             <ul>
-                                <li class='w_135 c'><strong>入力日</strong></li>
+                                <li class='w_135 c'><strong>勤務日</strong></li>
                                 <li class='con'>
                                     <input name="inputdate" id="inputdate" type='text' value="" class='white'
                                            style="width:190px;">
@@ -716,69 +717,51 @@
                                 </li>
                             </ul>
                             <ul>
-                                <li class='w_135 c'><strong>勤怠項目</strong></li>
+                                <li class='w_135 c'><strong>現場プロジェクト</strong></li>
                                 <li class='con'>
                                     <select name="frmDlgnCode" id="frmDlgnCode" style='width:190px;'>
-                                        <option value="年次">年次</option>
-                                        <option value="半分">半分</option>
-                                        <option value="遅刻">遅刻</option>
-                                        <option value="早退">早退</option>
-                                        <option value="外勤">外勤</option>
-                                        <option value="休日勤務">休日勤務</option>
-                                        <option value="延長勤務">延長勤務</option>
-                                        <option value="賞の休暇">賞の休暇</option>
-                                        <option value="夜勤">夜勤</option>
-                                        <option value="請願休暇">請願休暇</option>
+                                        <option value="現場1">現場1</option>
+                                        <option value="現場2">現場2</option>
+                                        <option value="現場3">現場3</option>
+                                        <option value="現場4">現場4</option>
+                                        <option value="現場5">現場5</option>
+                                        <option value="現場6">現場6</option>
+                                        <option value="現場7">現場7</option>
+                                        <option value="現場8">現場8</option>
+                                        <option value="現場9">現場9</option>
+                                        <option value="現場10">現場10</option>
                                     </select>
                                 </li>
                             </ul>
-                            <ul id="disLeavItemExpire" class="disHide">
-                                <li class='w_135 c' style="color:#eb4e5d;"><strong>休暇適用期間</strong></li>
-                                <li class='con'><input name="frmDlsvSttDExpire" id="frmDlsvSttDExpire" type="text"
-                                                       value="" class="white" style="width:80px;color:#eb4e5d;"
-                                                       READONLY> ~ <input name="frmDlsvEndDExpire"
-                                                                          id="frmDlsvEndDExpire" type="text" value=""
-                                                                          class="white"
-                                                                          style="width:80px;color:#eb4e5d;" READONLY>
+                            <ul>
+                                <li class='w_135 c'><strong>日給</strong></li>
+                                <li class='con'>
+                                    <input name="daliyrate" id="daliyrate" type='number' value="" class='white'
+                                           style="width:190px;">
+                                </li>
+                            </ul>
+
+                            <ul>
+                                <li class='w_135 c'><strong>所得税</strong></li>
+                                <li class='con'>
+                                    <input name="incomtax" id="incomtax" type='number' value="" class='white'
+                                           style="width:190px;">
                                 </li>
                             </ul>
                             <ul>
-                                <li class='w_135 c'><strong>期間</strong></li>
-                                <li class='con'><input name="frmDlsvSttD" id="frmDlsvSttD" type='text'
-                                                       placeholder='開始日'
-                                                       class='text' style="width:80px;" maxlength="10"> ~ <input
-                                        name="frmDlsvEndD" id="frmDlsvEndD" type='text' placeholder='終了日'
-                                        class='text'
-                                        style="width:80px;" maxlength="10"></li>
-                            </ul>
-                            <ul>
-                                <li class='w_135 c'><strong><span id="disDlgnDays">勤労日数</span></strong></li>
-                                <li class='con'><input name="frmDlsvDays" id="frmDlsvDays" type='text'
-                                                       placeholder='勤労日数' class='text' style='width:80px;'
-                                                       maxlength="5"> <span id="disDlsvUnit">仕事</span>&nbsp;&nbsp;
-                                    <div class='p_t3 f_right'>
-                                        <form name="btnHolidayTotalForm" id="btnHolidayTotalForm" method="post"
-                                              action="your_action_url">
-                                            <input type="submit" name="btnHolidayTotal" id="btnHolidayTotal"
-                                                   value="休暇日数の現状" class="anchor">
-                                        </form>
-                                    </div>
-                                </li>
-                            </ul>
-                            <ul>
-                                <li class='w_135 c'><strong>金額（手当）</strong></li>
-                                <li class='con'><input name="frmDlsvPays" id="frmDlsvPays" type='text'
+                                <li class='w_135 c'><strong>地方所得税</strong></li>
+                                <li class='con'><input name="localincom" id="localincom" type='number'
                                                        value=''
                                                        class='white clsAmount'
                                                        style='width:210px;color:#eb4e5d;text-align:right;'
-                                                       placeholder="* 勤怠分類が支払手当に該当する場合"></li>
+                                                       placeholder=""></li>
                             </ul>
                             <ul>
-                                <li class='w_135 c'><strong>摘要</strong></li>
-                                <li class='con'><input name="frmDlsvEtcs" id="frmDlsvEtcs" type='text'
+                                <li class='w_135 c'><strong>実支給額</strong></li>
+                                <li class='con'><input name="netpay" id="netpay" type='number'
                                                        value='' class='white'
                                                        style='width:190px;'
-                                                       placeholder="* 摘要がある場合は入力してください。"></li>
+                                                       placeholder=""></li>
                             </ul>
                             <hr class='hr_5'></hr>
                             <ul class='c' id="btnGroup">

@@ -89,6 +89,14 @@
     <servlet-name>vacationupdate</servlet-name>
     <url-pattern>/vacationupdate</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>daylaborer</servlet-name>
+    <jsp-file>/WEB-INF/views/daylaborer.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>daylaborer</servlet-name>
+    <url-pattern>/daylaborer</url-pattern>
+  </servlet-mapping>
   <filter>
     <filter-name>charConfig</filter-name>
     <filter-class>org.sabaody.filter.CharConfig</filter-class>
