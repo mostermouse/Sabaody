@@ -26,15 +26,11 @@ public class SignUpServlet extends HttpServlet {
 
             dao.addUser(userid, password);
 
-            // 팝업 창 띄우기
-            String script = "<script>alert('회원가입에 성공하였습니다.');</script>";
-            response.getWriter().write(script);
 
-            // 리다이렉트
             response.sendRedirect("/");
         } catch (Exception e) {
             e.printStackTrace();
-            // 예외 처리
+
         }
     }
 }

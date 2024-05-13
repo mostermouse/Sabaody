@@ -87,6 +87,14 @@
     </form>
     <br>
     <button onclick="window.location.href='/signup'">会員登録</button>
+    <%
+        String loginResult = request.getParameter("loginResult");
+        if ("fail".equals(loginResult)) {
+    %>
+    <script>alert("ログインに失敗しました。");</script>
+    <%
+        }
+    %>
 </div>
 
 

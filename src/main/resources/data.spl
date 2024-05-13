@@ -9,7 +9,6 @@ create table employmentinfo(  //사원 정보 등록 테이블
     address varchar2(200),
     phone_number varchar2(50),
     email varchar2(100)
-
 );
 
 create table ATTENDANCERECORD  //사원 상세정보 등록 테이블
@@ -27,9 +26,11 @@ create table ATTENDANCERECORD  //사원 상세정보 등록 테이블
     SUMMARY         VARCHAR2(255)
 );
 
-create table login(
-    userid  varchar2(50) Not null primary key,
-    password varchar2(100)not null
+create table LOGIN
+(
+    USERID   VARCHAR2(15)  not null
+        primary key,
+    PASSWORD VARCHAR2(20) not null
 );
 
 create table VACATIONINQUIRY   //휴가 조회 테이블

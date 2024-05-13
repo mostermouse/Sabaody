@@ -61,10 +61,12 @@
     <h2>会員登録</h2>
     <form action="/SignUpServlet" method="post">
         <label for="userid">ユーザーID:</label>
-        <input type="text" id="userid" name="userid" required>
+        <input type="text" id="userid" name="userid" required maxlength="15">
+        <span style="font-size: smaller;">(最大15文字)</span><br>
 
         <label for="password">パスワード:</label>
-        <input type="password" id="password" name="password" required>
+        <input type="password" id="password" name="password" required maxlength="20">
+        <span style="font-size: smaller;">(最大20文字)</span><br>
 
         <button type="submit">登録</button>
     </form>
