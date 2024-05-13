@@ -1,8 +1,7 @@
 package org.sabaody.domain.login.controller;
 
 import org.sabaody.domain.login.model.Login;
-import org.sabaody.domain.user.controller.EmploymentStatusDAO;
-import org.sabaody.domain.user.model.attendancemanagement.EmploymentStatus;
+import org.sabaody.domain.user.model.attendancemanagement.EmploymentStatusDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

@@ -2,9 +2,9 @@ package org.sabaody.domain.user.controller;
 
 
 import org.sabaody.domain.user.model.attendancemanagement.EmploymentStatus;
+import org.sabaody.domain.user.model.attendancemanagement.EmploymentStatusDAO;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;

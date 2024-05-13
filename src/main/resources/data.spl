@@ -119,3 +119,7 @@ from EMPLOYMENTINFO ar JOIN kintaimonths sr On ar.ID = sr.ID;
 
 //일용직 월별 조회 셀렉트
 SELECT sr.start_days,sr.id, ar.name,ar.DEPARTMENT, sr.project, sr.daily_rate, sr.income_tax, sr.local_income_tax, sr.net_pay FROM EMPLOYMENTINFO ar JOIN DAYLABORER sr ON ar.ID = sr.ID;
+
+
+
+

@@ -1,7 +1,5 @@
-package org.sabaody.domain.vacationInquiry.controller;
+package org.sabaody.domain.vacationInquiry.model.vacationinquiry;
 
-
-import org.sabaody.domain.vacationInquiry.model.vacationinquiry.VacationInquiry;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;

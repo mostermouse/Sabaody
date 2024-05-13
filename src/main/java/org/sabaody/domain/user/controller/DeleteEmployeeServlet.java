@@ -1,5 +1,7 @@
 package org.sabaody.domain.user.controller;
 
+import org.sabaody.domain.user.model.attendancemanagement.EmploymentStatusDAO;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -7,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 
 @WebServlet("/deleteEmployee")
 public class DeleteEmployeeServlet extends HttpServlet {

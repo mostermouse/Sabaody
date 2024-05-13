@@ -1,4 +1,4 @@
-<%@ page import="org.sabaody.domain.user.controller.EmploymentStatusDAO"%>
+<%@ page import="org.sabaody.domain.user.model.attendancemanagement.EmploymentStatusDAO"%>
 <%@ page
         import="org.sabaody.domain.user.model.attendancemanagement.EmploymentStatus"%>
 <%@ page import="java.util.List"%>

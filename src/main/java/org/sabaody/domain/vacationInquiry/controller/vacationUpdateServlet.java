@@ -1,8 +1,7 @@
 package org.sabaody.domain.vacationInquiry.controller;
 
-import org.sabaody.domain.user.controller.EmploymentStatusDAO;
-import org.sabaody.domain.user.model.attendancemanagement.EmploymentInfo;
 import org.sabaody.domain.vacationInquiry.model.vacationinquiry.VacationInquiry;
+import org.sabaody.domain.vacationInquiry.model.vacationinquiry.VacationInquiryDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

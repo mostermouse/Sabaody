@@ -1,8 +1,8 @@
-<%@ page import="org.sabaody.domain.user.controller.EmploymentStatusDAO"%>
+<%@ page import="org.sabaody.domain.user.model.attendancemanagement.EmploymentStatusDAO"%>
 <%@ page
 		import="org.sabaody.domain.user.model.attendancemanagement.EmploymentStatus"%>
 <%@ page import="java.util.List"%>
-<%@ page import="org.sabaody.domain.kintai.controller.KintaiDetailsDAO"%>
+<%@ page import="org.sabaody.domain.kintai.model.KintaiDetailsDAO"%>
 <%@ page
 		import="org.sabaody.domain.user.model.attendancemanagement.AttendanceRecord"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>

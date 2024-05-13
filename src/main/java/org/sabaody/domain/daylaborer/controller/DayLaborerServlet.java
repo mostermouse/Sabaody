@@ -1,8 +1,7 @@
 package org.sabaody.domain.daylaborer.controller;
 
+import org.sabaody.domain.daylaborer.model.DayLaborerDAO;
 import org.sabaody.domain.daylaborer.model.DayLaborerManagement;
-import org.sabaody.domain.user.controller.EmploymentStatusDAO;
-import org.sabaody.domain.user.model.attendancemanagement.AttendanceRecord;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

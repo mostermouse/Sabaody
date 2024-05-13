@@ -1,7 +1,7 @@
-<%@ page import="org.sabaody.domain.user.controller.EmploymentStatusDAO" %>
+<%@ page import="org.sabaody.domain.user.model.attendancemanagement.EmploymentStatusDAO" %>
 <%@ page import="org.sabaody.domain.user.model.attendancemanagement.EmploymentStatus" %>
 <%@ page import="java.util.List" %>
-<%@ page import="org.sabaody.domain.daylaborer.controller.DayLaborerDAO" %>
+<%@ page import="org.sabaody.domain.daylaborer.model.DayLaborerDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE HTML>

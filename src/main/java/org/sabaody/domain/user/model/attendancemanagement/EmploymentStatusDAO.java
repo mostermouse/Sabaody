@@ -1,9 +1,6 @@
-package org.sabaody.domain.user.controller;
+package org.sabaody.domain.user.model.attendancemanagement;
 
 import org.sabaody.domain.login.model.Login;
-import org.sabaody.domain.user.model.attendancemanagement.AttendanceRecord;
-import org.sabaody.domain.user.model.attendancemanagement.EmploymentInfo;
-import org.sabaody.domain.user.model.attendancemanagement.EmploymentStatus;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;

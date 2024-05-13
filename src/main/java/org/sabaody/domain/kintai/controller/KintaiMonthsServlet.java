@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.sabaody.domain.kintai.model.KintaiMonths;
+import org.sabaody.domain.kintai.model.KintaiMonthsDAO;
 
 @WebServlet("/KintaiMonthsServlet")
 class KintaiMonthsServlet extends HttpServlet {

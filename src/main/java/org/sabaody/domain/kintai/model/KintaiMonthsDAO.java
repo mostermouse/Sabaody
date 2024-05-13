@@ -1,4 +1,4 @@
-package org.sabaody.domain.kintai.controller;
+package org.sabaody.domain.kintai.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,9 +10,6 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
-
-import org.sabaody.domain.login.model.Login;
-import org.sabaody.domain.kintai.model.KintaiMonths;
 
 public class KintaiMonthsDAO {
 	DataSource dataSource;

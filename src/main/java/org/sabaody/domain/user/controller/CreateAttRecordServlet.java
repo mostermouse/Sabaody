@@ -1,6 +1,7 @@
 package org.sabaody.domain.user.controller;
 
 import org.sabaody.domain.user.model.attendancemanagement.AttendanceRecord;
+import org.sabaody.domain.user.model.attendancemanagement.EmploymentStatusDAO;
 
 
 import javax.servlet.ServletException;
