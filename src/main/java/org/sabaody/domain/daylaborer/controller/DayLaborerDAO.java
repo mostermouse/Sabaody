@@ -1,8 +1,6 @@
 package org.sabaody.domain.daylaborer.controller;
 
 import org.sabaody.domain.daylaborer.model.DayLaborerManagement;
-import org.sabaody.domain.user.model.attendancemanagement.AttendanceRecord;
-import org.sabaody.domain.user.model.attendancemanagement.EmploymentInfo;
 import org.sabaody.domain.user.model.attendancemanagement.EmploymentStatus;
 
 import javax.naming.Context;
