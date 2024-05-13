@@ -71,13 +71,6 @@ CREATE TABLE daylaborer(
 
 //아이디삭제시 외래 참조되어있는거 연쇄 삭제 시킴
 
-ALTER TABLE login  //안씀
-    ADD CONSTRAINT fk_login_id
-        FOREIGN KEY (id)
-            REFERENCES employmentinfo(id)
-                ON DELETE CASCADE;
-
-
 ALTER TABLE ATTENDANCERECORD
     ADD CONSTRAINT FK_EMP_STATUS_ID
         FOREIGN KEY (ID)
@@ -104,10 +97,10 @@ SELECT ar.inputdate,
        ei.name,
        ei.department,
        ei.position,
-       ar.attendancetype,
-       ar.startdate,
-       ar.enddate,
-       ar.attendancedate,
+       ar.attendance_type,
+       ar.start_date,
+       ar.end_date,
+       ar.attendance_date,
        ar.amount,
        ar.summary
 FROM attendancerecord ar
