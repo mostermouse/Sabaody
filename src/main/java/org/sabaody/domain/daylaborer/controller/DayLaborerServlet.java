@@ -58,7 +58,7 @@ public class DayLaborerServlet extends HttpServlet {
 
 
 
-        response.sendRedirect("/daylaborerdetails");
+        response.sendRedirect("/daydetails");
     }
 
 

@@ -6,7 +6,7 @@
 <%@ page
 		import="org.sabaody.domain.user.model.attendancemanagement.AttendanceRecord"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE HTML>
 <html lang="UTF-8">
 <head>
@@ -110,7 +110,7 @@
 	<div id="top_gnb_2017">
 		<div class="navi_2017">
 			<ul class="navi_L_2017">
-				<li class="n01"><button onclick="location.href='/selectview'"
+				<li class="n01"><button onclick="location.href='/SelectStatusServlet'"
 										title="[Shift + 1] HOME">
 					<span id="SK01">勤怠管理</span>
 				</button></li>
@@ -122,7 +122,7 @@
 										title="[Shift + 3] 社員情報修正">
 					<span id="SK03">社員情報修正</span>
 				</button></li>
-				<li class="n04"><button onclick="location.href='/kintaidetails'"
+				<li class="n04"><button onclick="location.href='/kintaiselect'"
 										title="[Shift + 4] 勤怠照会">
 					<span id="SK04">勤怠照会</span>
 				</button></li>
@@ -132,7 +132,7 @@
 					<span id="SK05">休暇登録</span>
 				</button></li>
 				<li class="n06"><button
-						onclick="location.href='/vacation'"
+						onclick="location.href='/vacationselect'"
 						title="[Shift + 6] 休暇照会">
 					<span id="SK06">休暇照会</span>
 				</button></li>
@@ -142,12 +142,12 @@
 					<span id="SK07">休暇修正</span>
 				</button></li>
 				<li class="n08"><button
-						onclick="location.href='/daylaborer'"
+						onclick="location.href='/dayselect'"
 						title="[Shift + 8] 休暇修正">
 					<span id="SK08">日雇い管理</span>
 				</button></li>
 				<li class="n09"><button
-						onclick="location.href='/daylaborerdetails'"
+						onclick="location.href='/daydetails'"
 						title="[Shift + 9] 休暇修正">
 					<span id="SK09">日雇い照会</span>
 				</button></li>
@@ -507,26 +507,26 @@
 						<li class='w_90 tit'>摘要</li>
 					</ul>
 					<ul class="clsListingTable">
-						<%
-							KintaiDetailsDAO kintaiDetailsDAO = new KintaiDetailsDAO();
-							List<AttendanceRecord> kintaiDetailsList = kintaiDetailsDAO.getAllRecord();
-							if (kintaiDetailsList != null && !kintaiDetailsList.isEmpty()) {
-								for (AttendanceRecord record : kintaiDetailsList) {
-						%>
-						<li class='w_85'><%=record.getInputDate()%></li>
-						<li class='w_65'><%=record.getDivision()%></li>
-						<li class='w_65'><%=record.getName()%></li>
-						<li class='w_65'><%=record.getDepartment()%></li>
-						<li class='w_65'><%=record.getPosition()%></li>
-						<li class='w_80'><%=record.getAttendanceType()%></li>
-						<li class='w_159'><%=record.getStartDate()%> ~ <%=record.getEndDate()%></li>
-						<li class='w_70'><%=record.getAttendanceDate()%></li>
-						<li class='w_85'><%=record.getAmount()%></li>
-						<li class='w_90' style='word-wrap: break-word;'><%=record.getSummary()%></li>
-						<%
-								}
-							}
-						%>
+						<table>
+							<c:forEach var="kintai" items="${kintai}">
+								<tr>
+									<li class="w_85" style="text-align: center;">${kintai.inputDate}</li>
+									<li class="w_65" style="text-align: center;">${kintai.division}</li>
+									<li class="w_65" style="text-align: center;">${kintai.name}</li>
+									<li class="w_65" style="text-align: center;">${kintai.department}</li>
+									<li class="w_65" style="text-align: center;">${kintai.position}</li>
+									<li class="w_80" style="text-align: center;">${kintai.attendanceType}</li>
+									<li class="w_159" style="text-align: center;">${kintai.startDate}~${kintai.endDate}</li>
+									<li class="w_70" style="text-align: center;">${kintai.attendanceDate}</li>
+									<li class="w_85" style="text-align: center;">${kintai.amount}</li>
+									<li class="w_90" style="text-align: center;">${kintai.summary}</li>
+
+
+								</tr>
+
+							</c:forEach>
+						</table>
+
 					</ul>
 				</div>
 			</div>

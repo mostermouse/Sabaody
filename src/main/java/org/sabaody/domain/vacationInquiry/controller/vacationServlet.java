@@ -40,7 +40,7 @@ public class vacationServlet extends HttpServlet {
         }catch (Exception e){
             e.printStackTrace();
         }
-        response.sendRedirect("/vacation");
+        response.sendRedirect("/vacationselect");
 
     }
 }

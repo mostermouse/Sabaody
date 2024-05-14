@@ -41,7 +41,7 @@ public class DayLaborerUpdateServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        response.sendRedirect("/daylaborerdetails");
+        response.sendRedirect("/daydetails");
     }
 
 }

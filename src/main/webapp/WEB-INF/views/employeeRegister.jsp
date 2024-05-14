@@ -60,7 +60,7 @@
     <div id="top_gnb_2017">
         <div class="navi_2017">
             <ul class="navi_L_2017">
-                <li class="n01"><button onclick="location.href='/selectview'"
+                <li class="n01"><button onclick="location.href='/SelectStatusServlet'"
                                         title="[Shift + 1] HOME">
                     <span id="SK01">勤怠管理</span>
                 </button></li>
@@ -72,7 +72,7 @@
                                         title="[Shift + 3] 社員情報修正">
                     <span id="SK03">社員情報修正</span>
                 </button></li>
-                <li class="n04"><button onclick="location.href='/kintaidetails'"
+                <li class="n04"><button onclick="location.href='/kintaiselect'"
                                         title="[Shift + 4] 勤怠照会">
                     <span id="SK04">勤怠照会</span>
                 </button></li>
@@ -82,7 +82,7 @@
                     <span id="SK05">休暇登録</span>
                 </button></li>
                 <li class="n06"><button
-                        onclick="location.href='/vacation'"
+                        onclick="location.href='/vacationselect'"
                         title="[Shift + 6] 休暇照会">
                     <span id="SK06">休暇照会</span>
                 </button></li>
@@ -92,12 +92,12 @@
                     <span id="SK07">休暇修正</span>
                 </button></li>
                 <li class="n08"><button
-                        onclick="location.href='/daylaborer'"
+                        onclick="location.href='/dayselect'"
                         title="[Shift + 8] 休暇修正">
                     <span id="SK08">日雇い管理</span>
                 </button></li>
                 <li class="n09"><button
-                        onclick="location.href='/daylaborerdetails'"
+                        onclick="location.href='/daydetails'"
                         title="[Shift + 9] 休暇修正">
                     <span id="SK09">日雇い照会</span>
                 </button></li>

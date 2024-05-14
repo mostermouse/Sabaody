@@ -88,16 +88,16 @@ public class EmploymentStatusDAO {
 
 
     //Read
-    public List<EmploymentStatus> getAllEmploymentStatus() {
-        List<EmploymentStatus> employmentStatusList = new ArrayList<>();
+    public List<EmploymentInfo> getAllEmploymentStatus() {
+        List<EmploymentInfo> employmentStatusList = new ArrayList<>();
         try (Connection conn = dataSource.getConnection();
              PreparedStatement pstmt = conn.prepareStatement("SELECT *  FROM  EMPLOYMENTINFO");
              ResultSet rs = pstmt.executeQuery()) {
 
             while (rs.next()) {
-                EmploymentStatus employmentStatus = new EmploymentStatus();
-                employmentStatus.setDivision(rs.getString("division"));
+                EmploymentInfo employmentStatus = new EmploymentInfo();
                 employmentStatus.setId(rs.getString("id"));
+                employmentStatus.setDivision(rs.getString("division"));
                 employmentStatus.setName(rs.getString("name"));
                 employmentStatus.setDepartment(rs.getString("department"));
                 employmentStatus.setPosition(rs.getString("position"));
@@ -130,7 +130,7 @@ public class EmploymentStatusDAO {
     //Update
     public void updateEmploymentStatus(EmploymentInfo employmentInfo) {
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "UPDATE EMPLOYMENTINFO SET division = ?,name = ?,date_of_joining = ?, department = ?, position = ?,phone_number=? ,email=? WHERE id = ?";
+            String sql = "UPDATE EMPLOYMENTINFO SET division = ?,name = ?,date_of_joining = ?, department = ?, position = ?,phone_number=? ,address = ?,email=? WHERE id = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, employmentInfo.getDivision());
             statement.setString(2, employmentInfo.getName());
@@ -138,13 +138,15 @@ public class EmploymentStatusDAO {
             statement.setString(4, employmentInfo.getDepartment());
             statement.setString(5, employmentInfo.getPosition());
             statement.setString(6, employmentInfo.getPhonenumber());
-            statement.setString(7,employmentInfo.getEmail());
-            statement.setString(8, employmentInfo.getId());
+            statement.setString(7, employmentInfo.getAddress());
+            statement.setString(8, employmentInfo.getEmail());
+            statement.setString(9, employmentInfo.getId()); // 매개변수의 순서에 따라 설정
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
 
     public void deleteEmploymentStatus(String id) {
         try (Connection conn = dataSource.getConnection()) {

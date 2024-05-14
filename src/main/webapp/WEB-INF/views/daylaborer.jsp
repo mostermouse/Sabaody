@@ -4,6 +4,7 @@
 <%@ page import="java.util.List"%>
 <%@ page import="org.sabaody.domain.daylaborer.model.DayLaborerDAO"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE HTML>
 <html lang="UTF-8">
@@ -123,7 +124,7 @@
 		<div id="top_gnb_2017">
 			<div class="navi_2017">
 				<ul class="navi_L_2017">
-					<li class="n01"><button onclick="location.href='/selectview'"
+					<li class="n01"><button onclick="location.href='/SelectStatusServlet'"
 							title="[Shift + 1] HOME">
 							<span id="SK01">勤怠管理</span>
 						</button></li>
@@ -137,7 +138,7 @@
 							<span id="SK03">社員情報修正</span>
 						</button></li>
 					<li class="n04"><button
-							onclick="location.href='/kintaidetails'" title="[Shift + 4] 勤怠照会">
+							onclick="location.href='/kintaiselect'" title="[Shift + 4] 勤怠照会">
 							<span id="SK04">勤怠照会</span>
 						</button></li>
 					<li class="no05"><button
@@ -145,7 +146,7 @@
 							title="[Shift +5] 休暇登録">
 							<span id="SK05">休暇登録</span>
 						</button></li>
-					<li class="n06"><button onclick="location.href='/vacation'"
+					<li class="n06"><button onclick="location.href='/vacationselect'"
 							title="[Shift + 6] 休暇照会">
 							<span id="SK06">休暇照会</span>
 						</button></li>
@@ -154,12 +155,12 @@
 							title="[Shift + 7] 休暇修正">
 							<span id="SK07">休暇修正</span>
 						</button></li>
-					<li class="n08"><button onclick="location.href='/daylaborer'"
+					<li class="n08"><button onclick="location.href='/dayselect'"
 							title="[Shift + 8] 休暇修正">
 							<span id="SK08">日雇い管理</span>
 						</button></li>
 					<li class="n09"><button
-							onclick="location.href='/daylaborerdetails'"
+							onclick="location.href='/daydetails'"
 							title="[Shift + 9] 休暇修正">
 							<span id="SK09">日雇い照会</span>
 						</button></li>
@@ -713,48 +714,28 @@ input[type=text]::-ms-clear {
 								<div id="disContentList" class="disContentList"
 									style="width: 710px;">
 									<div id="table_dil_data">
-										<%-- DAO에서 가져온 고용 상태 정보를 표시합니다 --%>
-										<%
-										DayLaborerDAO dayStatusDAO = new DayLaborerDAO();
-										List<EmploymentStatus> employmentStatusList = dayStatusDAO.getDayStatus();
-										if (employmentStatusList != null && !employmentStatusList.isEmpty()) {
-											int employeeNo = 0;
-											for (EmploymentStatus employmentStatus : employmentStatusList) {
-										%>
-										<ul id="employeeNo<%=employeeNo%>" class="anchor"
-											style='width: 710px;'>
-											<li class='w_24 c'><label class="label_check"
-												for="grpEmployeeInfoId<%=employeeNo%>"><input
-													type="checkbox" name="grpEmployeeInfoId"
-													id="grpEmployeeInfoId<%=employeeNo%>"
-													value="<%=employmentStatus.getId()%>"></label></li>
-											<li class='w_100 c'><%=employmentStatus.getDivision()%>
-											</li>
-											<li class='w_105 c'><%=employmentStatus.getId()%></li>
-											<li class='w_100 c'><%=employmentStatus.getName()%></li>
-											<li class='w_120 c'><%=employmentStatus.getDepartment()%>
-											</li>
-											<li class='w_120 c'><%=employmentStatus.getPosition()%>
-											</li>
+										<table>
+											<c:forEach var="daylborer" items="${daylist}">
+												<tr>
+													<li class="w_24" style="text-align: center;"><label class="label_check" for="grpEmployeeInfoId"><input
+															type="checkbox" name="grpEmployeeInfoId"
+															id="grpEmployeeInfoId"
+															value="${daylborer.id}"></label></li>
+													<li class="w_100" style="text-align: center;">${daylborer.division}</li>
+													<li class="w_105" style="text-align: center;">${daylborer.id}</li>
+													<li class="w_100" style="text-align: center;">${daylborer.name}</li>
+													<li class="w_120" style="text-align: center;">${daylborer.department}</li>
+													<li class="w_120" style="text-align: center;">${daylborer.position}</li>
+													<li class="w_119" style="text-align: center;">
+														<form action="/deleteEmployee" method="post">
+															<input type="hidden" name="employeeId" value="${daylborer.id}">
+															<button type="submit" alt="削除" title="削除">削除</button>
+														</form>
+													</li>
+												</tr>
 
-											<li class='w_119 c'>
-												<form action="/deleteEmployee" method="post">
-													<input type="hidden" name="employeeId"
-														value="<%=employmentStatus.getId()%>">
-													<button type="submit" alt="削除" title="削除">削除</button>
-												</form>
-											</li>
-
-										</ul>
-										<%
-										employeeNo++;
-										}
-										} else {
-										%>
-										<p>No employment status available</p>
-										<%
-										}
-										%>
+											</c:forEach>
+										</table>
 									</div>
 								</div>
 

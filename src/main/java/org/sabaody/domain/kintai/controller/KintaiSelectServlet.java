@@ -1,34 +1,33 @@
-package org.sabaody.domain.user.controller;
+package org.sabaody.domain.kintai.controller;
 
+import org.sabaody.domain.kintai.model.KintaiDetailsDAO;
+import org.sabaody.domain.user.model.attendancemanagement.AttendanceRecord;
 import org.sabaody.domain.user.model.attendancemanagement.EmploymentInfo;
-import org.sabaody.domain.user.model.attendancemanagement.EmploymentStatus;
 import org.sabaody.domain.user.model.attendancemanagement.EmploymentStatusDAO;
-
-import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-@WebServlet("/SelectStatusServlet")
-public class SelectEmploymentStatusServlet extends HttpServlet {
+import java.io.IOException;
+import java.util.List;
+@WebServlet("/kintaiselect")
+public class KintaiSelectServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private EmploymentStatusDAO dao;
+    private KintaiDetailsDAO dao;
 
     public void init() throws ServletException {
         super.init();
-        dao = new EmploymentStatusDAO();
+        dao = new KintaiDetailsDAO();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<EmploymentInfo> employmentStatusList = dao.getAllEmploymentStatus();
-        request.setAttribute("employmentStatusList", employmentStatusList);
+        List<AttendanceRecord> kintaiList = dao.getAllRecord();
+        request.setAttribute("kintai", kintaiList);
 
 
-        request.getRequestDispatcher("/selectview").forward(request, response);
+        request.getRequestDispatcher("/kintaidetails").forward(request, response);
     }
 
 }

@@ -8,6 +8,7 @@
 <%@ page import="org.sabaody.domain.daylaborer.model.DayLaborerDAO" %>
 <%@ page import="org.sabaody.domain.daylaborer.model.DayLaborerManagement" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE HTML>
 <html lang="UTF-8">
@@ -112,7 +113,7 @@
     <div id="top_gnb_2017">
         <div class="navi_2017">
             <ul class="navi_L_2017">
-                <li class="n01"><button onclick="location.href='/selectview'"
+                <li class="n01"><button onclick="location.href='/SelectStatusServlet'"
                                         title="[Shift + 1] HOME">
                     <span id="SK01">勤怠管理</span>
                 </button></li>
@@ -124,7 +125,7 @@
                                         title="[Shift + 3] 社員情報修正">
                     <span id="SK03">社員情報修正</span>
                 </button></li>
-                <li class="n04"><button onclick="location.href='/kintaidetails'"
+                <li class="n04"><button onclick="location.href='/kintaiselect'"
                                         title="[Shift + 4] 勤怠照会">
                     <span id="SK04">勤怠照会</span>
                 </button></li>
@@ -134,7 +135,7 @@
                     <span id="SK05">休暇登録</span>
                 </button></li>
                 <li class="n06"><button
-                        onclick="location.href='/vacation'"
+                        onclick="location.href='/vacationselect'"
                         title="[Shift + 6] 休暇照会">
                     <span id="SK06">休暇照会</span>
                 </button></li>
@@ -144,12 +145,12 @@
                     <span id="SK07">休暇修正</span>
                 </button></li>
                 <li class="n08"><button
-                        onclick="location.href='/daylaborer'"
+                        onclick="location.href='/dayselect'"
                         title="[Shift + 8] 休暇修正">
                     <span id="SK08">日雇い管理</span>
                 </button></li>
                 <li class="n09"><button
-                        onclick="location.href='/daylaborerdetails'"
+                        onclick="location.href='/daydetails'"
                         title="[Shift + 9] 休暇修正">
                     <span id="SK09">日雇い照会</span>
                 </button></li>
@@ -509,26 +510,25 @@
                         <li class='w_90 tit'>備考</li>
                     </ul>
                     <ul class="clsListingTable">
-                        <%
-                            DayLaborerDAO dayLaborerDAO = new DayLaborerDAO();
-                            List<DayLaborerManagement> dayLaborerList = dayLaborerDAO.getAllDay();
-                            if (dayLaborerList != null && !dayLaborerList.isEmpty()) {
-                                for (DayLaborerManagement record : dayLaborerList) {
-                        %>
-                        <li class='w_85'><%=record.getStartDate()%></li>
-                        <li class='w_65'><%=record.getId()%></li>
-                        <li class='w_65'><%=record.getName()%></li>
-                        <li class='w_65'><%=record.getDepartment()%></li>
-                        <li class='w_65'><%=record.getProject()%></li>
-                        <li class='w_80'><%=record.getDailyRate()%></li>
-                        <li class='w_159'><%=record.getIncomeTax()%></li>
-                        <li class='w_70'><%=record.getLocalIncomeTax()%></li>
-                        <li class='w_85'><%=record.getNetPay()%></li>
-                        <li class='w_90' style='word-wrap: break-word;'>備考</li>
-                        <%
-                                }
-                            }
-                        %>
+                        <table>
+                            <c:forEach var="daylist" items="${dayList}">
+                                <tr>
+                                    <li class="w_85" style="text-align: center;">${daylist.startDate}</li>
+                                    <li class="w_65" style="text-align: center;">${daylist.id}</li>
+                                    <li class="w_65" style="text-align: center;">${daylist.name}</li>
+                                    <li class="w_65" style="text-align: center;">${daylist.department}</li>
+                                    <li class="w_65" style="text-align: center;">${daylist.project}</li>
+                                    <li class="w_80" style="text-align: center;">${daylist.dailyRate}</li>
+                                    <li class="w_159" style="text-align: center;">${daylist.incomeTax}</li>
+                                    <li class="w_70" style="text-align: center;">${daylist.localIncomeTax}</li>
+                                    <li class="w_85" style="text-align: center;">${daylist.netPay}</li>
+                                    <li class="w_90" style="text-align: center;"></li>
+
+
+                                </tr>
+
+                            </c:forEach>
+                        </table>
                     </ul>
                 </div>
             </div>

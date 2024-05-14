@@ -32,6 +32,7 @@ public class EmployeeUpdateServlet extends HttpServlet {
         String department = request.getParameter("department");
         String position = request.getParameter("position");
         String phoneNumber = request.getParameter("phoneNumber");
+        String address = request.getParameter("address");
         String email = request.getParameter("email");
 
 
@@ -46,6 +47,7 @@ public class EmployeeUpdateServlet extends HttpServlet {
         empInfo.setDepartment(department);
         empInfo.setPosition(position);
         empInfo.setPhonenumber(phoneNumber);
+        empInfo.setAddress(address);
         empInfo.setEmail(email);
 
         try {
@@ -56,7 +58,7 @@ public class EmployeeUpdateServlet extends HttpServlet {
 
 
 
-        response.sendRedirect("/kintaidetails");
+        response.sendRedirect("/SelectStatusServlet");
     }
 
 }

@@ -21,12 +21,8 @@ public class DeleteEmployeeServlet extends HttpServlet {
             dao.deleteEmploymentStatus(id);
 
             response.setContentType("text/html;charset=UTF-8");
-            PrintWriter out = response.getWriter();
-            out.println("<script type=\"text/javascript\">");
-            out.println("alert('削除されました。');");
-            out.println("location='/selectview';");
-            out.println("</script>");
 
+            response.sendRedirect("/SelectStatusServlet");
         } catch (Exception e) {
             e.printStackTrace();
         }

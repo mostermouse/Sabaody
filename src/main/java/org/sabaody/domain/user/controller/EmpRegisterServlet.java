@@ -44,7 +44,7 @@ public class EmpRegisterServlet extends HttpServlet {
             e.printStackTrace(); // 또는 적절한 예외 처리를 수행하세요.
         }
 
-        response.sendRedirect("/selectview");
+        response.sendRedirect("/SelectStatusServlet");
     }
 
 

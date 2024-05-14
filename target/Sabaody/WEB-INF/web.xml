@@ -115,6 +115,7 @@
     <servlet-name>daylaboreerupdate</servlet-name>
     <url-pattern>/daylaboreerupdate</url-pattern>
   </servlet-mapping>
+
   <filter>
     <filter-name>charConfig</filter-name>
     <filter-class>org.sabaody.filter.CharConfig</filter-class>
