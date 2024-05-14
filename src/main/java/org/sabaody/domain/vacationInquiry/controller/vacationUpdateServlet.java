@@ -51,7 +51,7 @@ public class vacationUpdateServlet extends HttpServlet {
 
 
 
-        response.sendRedirect("/vacation");
+        response.sendRedirect("/vacationselect");
     }
 
 }

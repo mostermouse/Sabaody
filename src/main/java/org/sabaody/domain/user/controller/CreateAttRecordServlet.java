@@ -64,7 +64,7 @@ public class CreateAttRecordServlet extends HttpServlet {
 
 
 
-        response.sendRedirect("/kintaidetails");
+        response.sendRedirect("/kintaiselect");
     }
 
 }
