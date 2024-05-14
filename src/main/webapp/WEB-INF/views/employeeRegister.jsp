@@ -193,12 +193,38 @@
                 <tr>
                     <td colspan="4" style="text-align: center;"><input
                             type="submit" value="登録"
-                            onclick="submitForm('register'); showSuccessMessage('登録 完了.');">
-                        <input type="submit" value="保存"
-                               onclick="submitForm('save'); showSuccessMessage('保存 完了.');">
+                            onclick="return validateForm();" >
+                            
+                        
                     </td>
+                    
                 </tr>
             </table>
+            
+            <script>
+    function validateForm() {
+        var id = document.getElementById('id').value;
+        var division = document.getElementById('division').value;
+        var name = document.getElementById('name').value;
+        var hireDate = document.getElementById('hireDate').value;
+        var department = document.getElementById('department').value;
+        var position = document.getElementById('position').value;
+        var phoneNumber = document.getElementById('phoneNumber').value;
+        var address = document.getElementById('address').value;
+        var email = document.getElementById('email').value;
+
+        // 각 필드가 비어 있는지 확인
+        if (id.trim() === '' || division.trim() === '' || name.trim() === '' ||
+            hireDate.trim() === '' || department.trim() === '' || position.trim() === '' ||
+            phoneNumber.trim() === '' || address.trim() === '' || email.trim() === '') {
+            alert('모든 정보를 입력해주세요.');
+            return false; // 서브밋 중지
+        }
+        return true; // 서브밋 허용
+    }
+		</script>
+            
+            
             <!-- Footer -->
             <footer style="background-color: #333; color: #fff; padding: 20px;">
                 <div style="text-align: center;">

@@ -1,4 +1,4 @@
-<%@ page import="org.sabaody.domain.user.controller.EmploymentStatusDAO"%>
+<%@ page import="org.sabaody.domain.user.model.attendancemanagement.EmploymentStatusDAO"%>
 <%@ page
         import="org.sabaody.domain.user.model.attendancemanagement.EmploymentStatus"%>
 <%@ page import="java.util.List"%>
@@ -121,7 +121,7 @@
 
 
 <div class="registration-container">
-    <h2>社員登録</h2>
+    <h2>休暇登録</h2>
     <form name="vacationregister" action="/vacationServlet" method="post">
         <form>
             <table>
@@ -130,30 +130,27 @@
                 </tr>
                 <tr>
                     <td class="highlight">社員番号:</td>
-                    <td><input type="text" id="id" name="id"></td>
+                    <td><input type="text" id="id" name="id" required maxlength="7"></td>
 
                 </tr>
 
                 <tr>
                     <td class="highlight">休暇項目:</td>
                     <td> <input type="text" id="vacationtype" name="vacationtype"
-                                placeholder="">
+                                placeholder="" required maxlength="9">
                 </tr>
                 <tr>
-                    <td class="highlight">全体休暇数:</td>
-                    <td colspan="3"><input type="number" id="vacationcnt"
-                                           name="vacationcnt"></td>
-                </tr>
-                <tr>
-                    <td class="highlight">使用した休暇:</td>
-                    <td><input type="number" id="vacationnum2" name="vacationnum2"></td>
-
-                </tr>
-                <tr>
-                    <td class="highlight">残り残余:</td>
-                    <td><input type="number" id="vacationnum3" name="vacationnum3"></td>
-
-                </tr>
+    				<td class="highlight">全体休暇数:</td>
+    				<td colspan="3"><input type="number" id="vacationcnt" name="vacationcnt"  ></td>
+				</tr>
+				<tr>
+   					<td class="highlight">使用した休暇:</td>
+    				<td><input type="number" id="vacationnum2" name="vacationnum2" onchange="calculateRemainingVacation()"></td>
+				</tr>
+				<tr>
+    			<td class="highlight">残り残余:</td>
+    			<td><input type="number" id="vacationnum3" name="vacationnum3" readonly></td>
+				</tr>
                 <tr>
                     <td colspan="4" style="text-align: center;"><input
                             type="submit" value="登録"
@@ -170,5 +167,24 @@
                     <p>2チーム プロジェクト</p>
                 </div>
             </footer>
+            <script>
+    // 사용된 휴가를 입력할 때마다 호출되어 남은 휴가를 계산하고 출력하는 함수
+    			function calculateRemainingVacation() {
+        // 전체 휴가의 값
+        			var vacationcnt = document.getElementById('vacationcnt').value;
+        // 사용된 휴가의 값
+        			var vacationnum2 = document.getElementById('vacationnum2').value;
+        			
+        	        if (vacationcnt.length > 2) {
+        	            alert("휴가 입력값이 2자리를 초과했습니다. 휴가 입력일수를 확인해주세요.");
+        	            document.getElementById('vacationnum2').value = "";
+        	            return;
+        	        }
+
+        // 남은 휴가를 계산하여 출력
+        			var remainingVacation = vacationcnt - vacationnum2;
+        			document.getElementById('vacationnum3').value = remainingVacation;
+    				}
+</script>
 </body>
 </html>

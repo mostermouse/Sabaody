@@ -2,7 +2,7 @@ create table employmentinfo(  //사원 정보 등록 테이블
  id varchar2(50) primary key not null,
     division varchar2(20) not null ,
     name varchar2(100) not null,
-    department varchar2(60) not null ,
+    department varchar2(40) not null ,
     position varchar2(100) not null,
     attendance_record varchar2(50),
     date_of_joining Date,
@@ -119,3 +119,7 @@ from EMPLOYMENTINFO ar JOIN kintaimonths sr On ar.ID = sr.ID;
 
 //일용직 월별 조회 셀렉트
 SELECT sr.start_days,sr.id, ar.name,ar.DEPARTMENT, sr.project, sr.daily_rate, sr.income_tax, sr.local_income_tax, sr.net_pay FROM EMPLOYMENTINFO ar JOIN DAYLABORER sr ON ar.ID = sr.ID;
+
+
+
+
